@@ -4,6 +4,9 @@ from bs4 import BeautifulSoup
 import json
 from urllib.parse import urljoin
 import csv
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 def extract(driver):
     # Get the page source
@@ -12,7 +15,8 @@ def extract(driver):
 
     # Extract all content sections
     data = {}
-    content_list = soup.find_all("div", class_="view-staff-profile-detail-page")
+    if soup.find(string="Department of Smart Computing and Cyber Resilience") or soup.find(string="Department of Data Science and Artificial Intelligence"):
+        content_list = soup.find_all("div", class_="view-staff-profile-detail-page")
 
     # Define the sections to extract
     sections = {
@@ -88,7 +92,7 @@ def get_links(staff_links, driver):
     for a_tag in soup.find_all("a", href=True):
         href = a_tag["href"]
         if href.startswith(check_url):  # Check if the link matches the desired pattern
-            staff_links.append(href)
+            staff_links.add(href)
 
 # URL to scrape
 URL = "https://sunwayuniversity.edu.my/school-of-engineering-technology/staff-profiles"
@@ -100,20 +104,20 @@ options.add_argument("--no-sandbox")  # Bypass OS security model
 options.add_argument(
     "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
 )
-options.binary_location = r"c:\Users\seanh\Documents\University\CAPSTONE 2\src\chrome-win64\chrome.exe"
+options.binary_location = r"c:\Users\seanh\Documents\University\CAPSTONE 2\CAPSTONE-2\src\chrome-win64\chrome.exe"
 
 # Initialize undetected ChromeDriver
-driver = uc.Chrome(options=options, driver_executable_path="chromedriver-win64/chromedriver.exe")
+driver = uc.Chrome(options=options, driver_executable_path="src/chromedriver-win64/chromedriver.exe")
 
 try:
     # Open the URL
     driver.get(URL)
 
     # Wait for Cloudflare to process
-    time.sleep(15)
+    time.sleep(10)
 
     # Find and access all staff profile links
-    staff_links = []
+    staff_links = set()
     base_url = "https://sunwayuniversity.edu.my/"
 
     get_links(staff_links, driver)
@@ -121,13 +125,10 @@ try:
     for i in range(1,7):
         page = f"?page={i}"
         driver.get(urljoin(URL, page))
-        time.sleep(2)
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, "block-sunway-content")))
         get_links(staff_links, driver)
 
-    # Remove duplicates if any
-    staff_links = list(set(staff_links))
-
-    with open("data\\staff_profiles.csv", mode="w", newline="", encoding="utf-8") as csv_file:
+    with open("src\\data\\staff_profiles.csv", mode="w", newline="", encoding="utf-8") as csv_file:
         # Define the CSV writer
         fieldnames = ["email", "name", "biography", "academic_and_professional_qualifications", "research_interests", "teaching_areas", "courses_taught", "notable_publications"]
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
@@ -140,17 +141,20 @@ try:
             print(f"Accessing: {link}")
             full_url = urljoin(base_url, link)
             driver.get(full_url)  # Navigate to the staff profile page
-            time.sleep(2)  # Wait for the page to load
+            WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, "profileitem")))  # Wait for the page to load
+            
+            soup = BeautifulSoup(driver.page_source, "html.parser")
+            div = soup.find("div", class_="profileitem")
+            if div and (div.get_text().strip() == "Department of Smart Computing and Cyber Resilience" or div.get_text().strip() == "Department of Data Science and Artificial Intelligence"):
+                # Extract data from the page
+                json_data = extract(driver)
 
-            # Extract data from the page
-            json_data = extract(driver)
+                 # Convert JSON string to a Python dictionary
+                data_dict = json.loads(json_data)
 
-            # Convert JSON string to a Python dictionary
-            data_dict = json.loads(json_data)
-
-            # Write the data to the CSV file
-            writer.writerow(data_dict)
-    
+                # Write the data to the CSV file
+                print("WRITING")
+                writer.writerow(data_dict)
 finally:
     # Close the browser
     driver.quit()
