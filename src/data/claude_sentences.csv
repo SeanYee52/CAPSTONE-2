@@ -1,0 +1,224 @@
+Sentence,Positive_Topic,Negative_Topic
+"I'm excited about exploring Natural Language Processing techniques for analyzing medical text data.",Natural Language Processing|AI for Healthcare,
+"Machine Learning algorithms fascinate me and I'd like to apply them to solve real-world problems.",Machine Learning,
+"I want to avoid hardware-related projects as I prefer software development.",,"Computer Architecture|Embedded Systems Design"
+"Python Programming is my strength and I want to leverage it in my final project.",Python Programming,
+"Network Security isn't an area I want to pursue for my final year project.",,"Network Security"
+"I'm interested in building applications that use sentiment analysis to understand customer feedback.",Sentiment analysis and opinion mining,
+"Generative AI ethics is an important consideration I want to explore alongside technical implementation.",Generative AI ethics and management,
+"I find Cryptography concepts too abstract for my interest level.",,"Cryptography"
+"I'm passionate about developing AI solutions that can improve healthcare diagnostics.",AI for Healthcare,
+"Data Visualization techniques would allow me to present complex findings in an accessible way.",Data Visualization,
+"I prefer not to work with Hardware Security for my final project.",,"Hardware Security"
+"Big Data Analysis techniques would help me tackle large datasets effectively.",Big Data Analysis,
+"Cloud Computing infrastructure knowledge would be valuable for deploying my project solutions.",Cloud Computing,
+"I'm not particularly drawn to Wireless Networks as a project focus.",,"Wireless Networks / WSNs"
+"Blockchain technology seems interesting but too specialized for my current skills.",,"Blockchain"
+"I enjoy working with Data Mining to discover patterns in large datasets.",Data Mining,
+"Computer Vision projects seem too complex for my current programming abilities.",,"Computer vision and image processing"
+"Deep Learning approaches could help me build sophisticated prediction models.",Deep Learning,
+"I'd like to avoid Robotics as it requires hardware knowledge I don't possess.",,"Robotics and Automatic System"
+"Statistical methods in data science align well with my analytical thinking style.",Statistical methods in data science,
+"Virtual Reality development requires specialized equipment I don't have access to.",,"Virtual Reality"
+"Business Intelligence applications interest me because they have clear industry relevance.",Business Intelligence,
+"I'm excited about applying Text Analytics to extract insights from unstructured data.",Text Analytics,
+"Quantum Computing is too theoretical for my practical project interests.",,"Quantum Computing"
+"I've enjoyed courses in Artificial Intelligence and want to develop my skills further in this area.",Artificial Intelligence,
+"IoT Security seems important but outside my core interests for this project.",,"IoT Security"
+"I'd like to work with Knowledge Graphs to represent complex relationships in data.",Knowledge Graphs,
+"Edge Computing isn't aligned with my software development focus.",,"Edge Computing"
+"I'm keen to explore Predictive Analytics models for forecasting trends.",Predictive Analytics,
+"Digital Forensics requires specialized knowledge that I haven't developed.",,"Digital Forensics"
+"Data Analytics using Python combines two areas I'm strong in.",Data Analytics using Python|Python Programming,
+"Augmented Reality development seems interesting but outside my current technical capabilities.",,"Augmented Reality"
+"I've enjoyed classes on Data Structures and Algorithms and want to apply these concepts.",Data structures and Algorithms,
+"I find Database Management essential but not exciting enough as my main project focus.",,"Database"
+"Applied Artificial Intelligence would let me create practical solutions to real problems.",Applied Artificial Intelligence,
+"Information Retrieval techniques would be useful for building search functionality.",Information Retrieval,
+"I'd rather avoid Cybersecurity as it requires specialized knowledge of threat landscapes.",,"Cybersecurity"
+"Social Media Analytics combines my interest in data and online communication patterns.",Social Media Analytics,
+"I'm interested in developing my skills in Data Privacy and security alongside my main focus.",Data Privacy and security,
+"Software Defined Networking seems too specialized for my background.",,"Software Defined Networking"
+"I would enjoy working with Business Computing applications that solve organizational problems.",Business Computing,
+"I'm fascinated by how Deep Learning for Data Science can find patterns humans might miss.",Deep Learning for Data Science,
+"Operating Systems development is too low-level for my interests.",,"Operating Systems"
+"Information and Data Analytics provides tools I could apply across multiple domains.",Information and Data Analytics,
+"I'm drawn to projects involving Human-Computer Interaction to create intuitive user experiences.",Human-Computer Interaction / Future Interaction Design,
+"Ethical Hacking requires specialized security knowledge I don't possess.",,"Ethical Hacking"
+"Programming for Data Science would build on my existing coding skills.",Programming for Data Science,
+"I'd be excited to work on Decision Support Systems that help optimize complex choices.",Decision Support System,
+"Mobile Computing doesn't interest me as much as data-focused topics.",,"Mobile Computing"
+"I enjoy working with Computational intelligence approaches to problem-solving.",Computational intelligence,
+"Financial Technology applications could give my project real-world relevance.",Financial Technology,
+"I'm not particularly interested in DevOps practices for my final year work.",,"DevOps"
+"UI/UX Design Development would allow me to create interfaces that users love.",UI/UX Design Development,
+"I'm keen to explore Context-awareness in applications to make them more responsive.",Context-awareness,
+"Computer Networks seems too infrastructure-focused for my interests.",,"Computer Networks"
+"I'd like to apply Data Science techniques to solve interesting problems.",Data Science,
+"Reinforcement Learning could help me develop adaptive systems that improve over time.",Reinforcement Learning,
+"Logic Design is too hardware-oriented for my software background.",,"Logic Design"
+"I'm interested in NLP applications that can understand and generate human language.",NLP,
+"Data Analysis principles would form the foundation of my analytical approach.",Data Analysis,
+"I prefer to avoid working with Microprocessor and Interfacing Techniques.",,"Microprocessor and Interfacing Techniques"
+"Applied Statistics would help me draw meaningful conclusions from my data.",Applied Statistics,
+"I'm interested in exploring Knowledge Management systems that organize information effectively.",Knowledge Management,
+"Concurrent Programming concepts feel too complex for a time-limited project.",,"Concurrent Programming"
+"User-Centered Systems Development aligns with my belief in designing for real people.",User-Centered Systems Development,
+"I find the intersection of AI and Big Data Analytics particularly interesting.",Artificial Intelligent and Big Data Analytics,
+"Game Development requires graphic design skills I haven't developed.",,"Game Developmen"
+"Information Security is important but too specialized for my interests.",,"Information Security"
+"I'm drawn to exploring how ICT in Environment can create sustainable solutions.",ICT in Environment,
+"Object Oriented Programming principles form the basis of my coding approach.",Object Oriented Programming,
+"Control systems involve too much engineering knowledge outside my computing focus.",,"Control systems"
+"Business Intelligence solutions can transform raw data into actionable insights.",Business Intelligence,
+"I enjoy working with Applied AI to solve practical business problems.",Applied Artificial Intelligence,
+"Web Development seems too focused on frontend skills rather than data analysis.",,"Web Development"
+"Statistical methods would help me validate findings in my project.",Statistical methods in data science,
+"I'm fascinated by how Natural Language Processing can interpret human communication.",Natural Language Processing,
+"Digital Marketing analytics is less interesting to me than pure data science approaches.",,"Digital Marketing"
+"I'd like to explore Information and Data Analytics to draw meaningful conclusions.",Information and Data Analytics,
+"Artificial Intelligence applications fascinate me, especially when applied to healthcare.",Artificial Intelligence|AI for Healthcare,
+"Computer Graphics requires specialized mathematical knowledge I haven't developed.",,"Computer Graphic"
+"Data Mining techniques would help me discover patterns in complex datasets.",Data Mining,
+"I'm excited about the potential of Machine Learning algorithms to solve prediction problems.",Machine Learning,
+"Internet of Things hardware integration is outside my area of expertise.",,"IoT"
+"Data Visualization would allow me to communicate my findings effectively.",Data Visualization,
+"I find Deep Learning neural networks fascinating and want to explore them further.",Deep Learning,
+"Software Engineering Development methodologies are important but not my main interest.",,"Software Engineering Development"
+"Python Programming would allow me to implement complex algorithms efficiently.",Python Programming,
+"I'm keen to explore Big Data Analysis techniques for large-scale data processing.",Big Data Analysis,
+"E-learning platforms require educational expertise outside my technical focus.",,"E-Learning"
+"Sentiment analysis could help me understand emotional content in text data.",Sentiment analysis and opinion mining,
+"I'm interested in Text Analytics approaches to processing unstructured information.",Text Analytics,
+"Network Analysis seems too infrastructure-focused compared to data analysis.",,"Network Analysis"
+"Data Communication is fundamental but not exciting enough as a project focus.",,"Data Communication and Networking"
+"I enjoy working with Knowledge Graphs to represent complex information relationships.",Knowledge Graphs,
+"Mobile Application Development feels too centered on user interface rather than data processing.",,"Mobile Application Development"
+"I'm fascinated by how AI ethics frameworks can guide responsible development.",Generative AI ethics and management,
+"Cloud Computing architectures would provide scalable infrastructure for my solution.",Cloud Computing,
+"Embedded Systems design requires hardware knowledge outside my focus area.",,"Embeded Systems"
+"Social Media Analytics could reveal interesting patterns in online communication.",Social Media Analytics,
+"I'm interested in exploring how Data Privacy frameworks protect sensitive information.",Data Privacy and security,
+"Augmented Reality development requires 3D modeling skills I don't possess.",,"Augmented Reality"
+"Data Analytics using Python combines my programming skills with analytical methods.",Data Analytics using Python,
+"I find Applied Artificial Intelligence practical applications compelling.",Applied Artificial Intelligence,
+"Computer Systems Engineering involves too much hardware knowledge for my interests.",,"Computer Systems Engineering"
+"Data structures and Algorithms form the foundation of efficient software solutions.",Data structures and Algorithms,
+"I'm excited about the potential of Predictive Analytics to forecast future trends.",Predictive Analytics,
+"Cybersecurity defenses are important but outside my area of interest.",,"Cybersecurity"
+"Information and Data Analytics provides methods to extract meaningful insights.",Information and Data Analytics,
+"I enjoy working with Decision Support Systems that optimize complex choices.",Decision Support System,
+"Digital Forensics investigation techniques are too specialized for my background.",,"Digital Forensics"
+"AI for Healthcare applications could make a meaningful difference in patient outcomes.",AI for Healthcare,
+"I'm interested in Computational intelligence approaches to problem-solving.",Computational intelligence,
+"Network Security protocols are too technical compared to my data interests.",,"Network Security"
+"Data Science using R would require learning a new language I'm not familiar with.",,"Data Science using R"
+"I find Human-Computer Interaction principles essential for creating usable systems.",Human-Computer Interaction / Future Interaction Design,
+"Wireless Communications infrastructure is too hardware-focused for my interests.",,"Wireless Communications and Networks"
+"NLP techniques could help me analyze text data in meaningful ways.",NLP,
+"I'm drawn to Business Intelligence applications with clear industry relevance.",Business Intelligence,
+"Operating Systems development is too low-level for my software interests.",,"Operating Systems"
+"Statistical methods in data science would help me validate my findings.",Statistical methods in data science,
+"I enjoy working with Machine Learning algorithms to create predictive models.",Machine Learning,
+"IoT Security involves hardware considerations outside my expertise.",,"IoT Security"
+"Data Visualization techniques would enhance how I present complex findings.",Data Visualization,
+"I'm interested in exploring Deep Learning for complex pattern recognition.",Deep Learning,
+"Computer Architecture feels too hardware-oriented compared to my software focus.",,"Computer Architecture"
+"Python Programming would allow me to implement my ideas efficiently.",Python Programming,
+"I find Big Data Analysis techniques valuable for handling massive datasets.",Big Data Analysis,
+"Virtual Reality development requires specialized equipment and skills I lack.",,"Virtual Reality"
+"Context-awareness in applications fascinates me as a research direction.",Context-awareness,
+"I'm interested in Knowledge Management systems that organize information effectively.",Knowledge Management,
+"Blockchain technology seems interesting but too specialized for my current skills.",,"Blockchain"
+"Information Retrieval methods would help me build effective search functionality.",Information Retrieval,
+"I enjoy working with Object Oriented Programming principles in my development work.",Object Oriented Programming,
+"Mobile Computing focuses too much on device considerations rather than data analysis.",,"Mobile Computing"
+"Applied Statistics would provide rigorous methods for testing my hypotheses.",Applied Statistics,
+"I'm drawn to Data Mining approaches for discovering hidden patterns.",Data Mining,
+"Quantum Computing concepts are too theoretical for my practical project goals.",,"Quantum Computing"
+"Text Analytics techniques would help me extract meaning from unstructured data.",Text Analytics,
+"I find AI in Telecommunications applications interesting but outside my healthcare focus.",,"AI in Telecommunications"
+"Cloud Computing platforms would provide flexible infrastructure for my project.",Cloud Computing,
+"I'm interested in Reinforcement Learning for developing adaptive systems.",Reinforcement Learning,
+"Hardware Security requires specialized electronic knowledge I don't possess.",,"Hardware Security"
+"User-Centered Systems Development aligns with my human-focused design philosophy.",User-Centered Systems Development,
+"I enjoy exploring Artificial Intelligent and Big Data Analytics combinations.",Artificial Intelligent and Big Data Analytics,
+"Game Development requires graphic design skills outside my technical focus.",,"Game Developmen"
+"Programming for Data Science builds on my existing coding knowledge.",Programming for Data Science,
+"I'm fascinated by the potential of sentiment analysis to understand emotional content.",Sentiment analysis and opinion mining,
+"Embedded Systems programming involves hardware considerations I want to avoid.",,"Embedded Systems"
+"The ethical implications of generative AI are important considerations for my project.",Generative AI ethics and management,
+"I find Data Analysis principles fundamental to extracting meaningful insights.",Data Analysis,
+"Software Defined Networking requires network infrastructure knowledge I lack.",,"Software Defined Networking"
+"Natural Language Processing could help me build systems that understand human text.",Natural Language Processing,
+"I'm interested in developing Decision Support Systems for complex decision-making.",Decision Support System,
+"Digital Marketing analytics is less relevant to my healthcare interests.",,"Digital Marketing"
+"AI for Healthcare applications could improve diagnostic accuracy and patient outcomes.",AI for Healthcare,
+"I enjoy working with Knowledge Graphs to represent complex relationships.",Knowledge Graphs,
+"E-commerce systems focus too much on transactions rather than data insights.",,"E-commerce"
+"Data Analytics using Python would leverage my programming strengths.",Data Analytics using Python,
+"I'm drawn to Computational intelligence approaches for solving complex problems.",Computational intelligence,
+"Cryptography algorithms are too mathematical compared to my applied interests.",,"Cryptography"
+"Information and Data Analytics provides methods for extracting meaningful insights.",Information and Data Analytics,
+"I find Applied Artificial Intelligence practical applications compelling for real-world problems.",Applied Artificial Intelligence,
+"Computer vision requires specialized image processing knowledge I haven't developed.",,"Computer vision and image processing"
+"Statistical methods would provide rigor to my data-driven conclusions.",Statistical methods in data science,
+"I'm interested in NLP applications for medical text analysis.",NLP|AI for Healthcare,
+"Robotics programming requires hardware knowledge outside my focus area.",,"Robotics and Automatic System"
+"Data structures and Algorithms are fundamental to efficient software development.",Data structures and Algorithms,
+"I enjoy working with Predictive Analytics models to forecast future trends.",Predictive Analytics,
+"Database administration is too focused on system maintenance rather than analysis.",,"Database"
+"Python Programming would be my language of choice for implementing my solution.",Python Programming,
+"I'm drawn to Social Media Analytics for understanding online communication patterns.",Social Media Analytics,
+"DevOps practices are important but outside my research interests.",,"DevOps"
+"Big Data Analysis techniques would help me process large volumes of information.",Big Data Analysis,
+"I find Human-Computer Interaction design principles essential for usable systems.",Human-Computer Interaction / Future Interaction Design,
+"Edge Computing architectures are too infrastructure-focused for my interests.",,"Edge Computing"
+"Applied Statistics would provide mathematical rigor to my findings.",Applied Statistics,
+"I'm interested in exploring Business Intelligence applications with industry relevance.",Business Intelligence,
+"Logic Design is too hardware-oriented compared to my software background.",,"Logic Design"
+"Data Privacy and security frameworks would help me handle sensitive information ethically.",Data Privacy and security,
+"I enjoy working with Machine Learning algorithms for pattern recognition.",Machine Learning,
+"Network Analysis requires specialized infrastructure knowledge I don't possess.",,"Network Analysis"
+"Deep Learning approaches could help me build sophisticated neural networks.",Deep Learning,
+"I'm drawn to Information Retrieval techniques for effective search functionality.",Information Retrieval,
+"Computer Networks involves too much infrastructure knowledge for my interests.",,"Computer Networks"
+"Data Visualization would help me communicate complex findings effectively.",Data Visualization,
+"I find Text Analytics approaches valuable for extracting meaning from unstructured text.",Text Analytics,
+"Microprocessor programming is too hardware-focused for my software background.",,"Microprocessor and Interfacing Techniques"
+"Object Oriented Programming principles would form the foundation of my development approach.",Object Oriented Programming,
+"I'm interested in exploring Context-awareness to make applications more responsive.",Context-awareness,
+"Mobile Application Development requires UI design skills outside my data focus.",,"Mobile Application Development"
+"Cloud Computing architectures would provide scalable infrastructure for my solution.",Cloud Computing,
+"I enjoy working with Artificial Intelligence applications for practical problem-solving.",Artificial Intelligence,
+"Wireless Networks infrastructure is too hardware-oriented for my interests.",,"Wireless Networks / WSNs"
+"Data Mining techniques would help me discover hidden patterns in complex data.",Data Mining,
+"I'm drawn to User-Centered Systems Development approaches that focus on human needs.",User-Centered Systems Development,
+"Digital Forensics requires specialized security knowledge I don't possess.",,"Digital Forensics"
+"Programming for Data Science combines my interest in coding and analysis.",Programming for Data Science,
+"I find Reinforcement Learning techniques fascinating for developing adaptive systems.",Reinforcement Learning,
+"Cybersecurity threats are important but outside my research focus.",,"Cybersecurity"
+"Knowledge Management systems would help organize complex information effectively.",Knowledge Management,
+"I'm interested in Artificial Intelligent and Big Data Analytics combinations.",Artificial Intelligent and Big Data Analytics,
+"Computer Architecture is too hardware-focused compared to my software interests.",,"Computer Architecture"
+"Sentiment analysis could reveal emotional content in customer feedback data.",Sentiment analysis and opinion mining,
+"I enjoy exploring the ethical implications of Generative AI systems.",Generative AI ethics and management,
+"Internet of Things devices require hardware knowledge I don't possess.",,"IoT"
+"Data Analytics using Python would leverage my existing programming skills.",Data Analytics using Python,
+"I'm drawn to Decision Support Systems that optimize complex choices.",Decision Support System,
+"Software Engineering methodologies are important but not my main interest.",,"Software Engineering Development"
+"Natural Language Processing could help me build systems that understand text data.",Natural Language Processing,
+"I find Computational intelligence approaches valuable for complex problem-solving.",Computational intelligence,
+"Operating Systems development is too low-level for my software interests.",,"Operating Systems"
+"AI for Healthcare applications could improve medical diagnosis and treatment planning.",AI for Healthcare,
+"I'm interested in Knowledge Graphs for representing complex information relationships.",Knowledge Graphs,
+"Virtual Reality development requires specialized 3D skills I haven't developed.",,"Virtual Reality"
+"Data Analysis principles would provide the foundation for my analytical approach.",Data Analysis,
+"I enjoy working with Applied Artificial Intelligence for practical solutions.",Applied Artificial Intelligence,
+"Blockchain systems are interesting but too specialized for my current skills.",,"Blockchain"
+"Statistical methods in data science would help me validate my research findings.",Statistical methods in data science,
+"I'm drawn to Information and Data Analytics for extracting meaningful insights.",Information and Data Analytics,
+"Game Development requires graphic design skills outside my technical focus.",,"Game Developmen"
+"Data Structures and Algorithms are fundamental to efficient software development.",Data structures and Algorithms,
+"I find Big Data Analysis techniques valuable for processing massive datasets.",Big Data Analysis,
+"Embedded Systems design requires hardware knowledge I don't possess.",,"Embeded Systems"

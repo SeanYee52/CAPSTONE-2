@@ -15,8 +15,7 @@ def extract(driver):
 
     # Extract all content sections
     data = {}
-    if soup.find(string="Department of Smart Computing and Cyber Resilience") or soup.find(string="Department of Data Science and Artificial Intelligence"):
-        content_list = soup.find_all("div", class_="view-staff-profile-detail-page")
+    content_list = soup.find_all("div", class_="view-staff-profile-detail-page")
 
     # Define the sections to extract
     sections = {
@@ -82,7 +81,7 @@ def extract(driver):
     return json_data
 
 def get_links(staff_links, driver):
-    check_url = "/school-of-engineering-technology/staff-profiles/"
+    check_url = "/faculty-of-engineering-technology/staff-profiles/"
 
     # Get the page source
     page_content = driver.page_source
@@ -95,7 +94,7 @@ def get_links(staff_links, driver):
             staff_links.add(href)
 
 # URL to scrape
-URL = "https://sunwayuniversity.edu.my/school-of-engineering-technology/staff-profiles"
+URL = "https://sunwayuniversity.edu.my//faculty-of-engineering-technology/staff-profiles"
 
 # Set up undetected ChromeDriver
 options = uc.ChromeOptions()
@@ -145,7 +144,7 @@ try:
             
             soup = BeautifulSoup(driver.page_source, "html.parser")
             div = soup.find("div", class_="profileitem")
-            if div and (div.get_text().strip() == "Department of Smart Computing and Cyber Resilience" or div.get_text().strip() == "Department of Data Science and Artificial Intelligence"):
+            if div and ("Department of Smart Computing and Cyber Resilience" in div.get_text().strip() or "Department of Data Science and Artificial Intelligence" in div.get_text().strip()):
                 # Extract data from the page
                 json_data = extract(driver)
 
