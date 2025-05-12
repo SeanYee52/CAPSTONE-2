@@ -1,4 +1,4 @@
-Sentence,Positive Interests,Negative Interests
+sentence,positive_topic,negative_topic
 I'm keen on exploring how deep learning can be applied to computer vision tasks.,Deep Learning;Computer vision and image processing,
 Projects involving statistical methods in data science sound interesting.,Statistical methods in data science,
 I'd prefer to steer clear of topics like computer architecture.,,Computer Architecture

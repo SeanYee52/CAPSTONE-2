@@ -1,4 +1,4 @@
-Sentence,Positive_Topic,Negative_Topic
+sentence,positive_Topic,negative_Topic
 "I'm excited about exploring Natural Language Processing techniques for analyzing medical text data.",Natural Language Processing|AI for Healthcare,
 "Machine Learning algorithms fascinate me and I'd like to apply them to solve real-world problems.",Machine Learning,
 "I want to avoid hardware-related projects as I prefer software development.",,"Computer Architecture|Embedded Systems Design"
