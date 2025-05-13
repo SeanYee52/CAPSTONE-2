@@ -1,7 +1,7 @@
-sentence,positive_Topic,negative_Topic
-"I'm excited about exploring Natural Language Processing techniques for analyzing medical text data.",Natural Language Processing|AI for Healthcare,
+sentence,positive_topic,negative_topic
+"I'm excited about exploring Natural Language Processing techniques for analyzing medical text data.","Natural Language Processing, AI for Healthcare",
 "Machine Learning algorithms fascinate me and I'd like to apply them to solve real-world problems.",Machine Learning,
-"I want to avoid hardware-related projects as I prefer software development.",,"Computer Architecture|Embedded Systems Design"
+"I want to avoid hardware-related projects as I prefer software development.",,"Computer Architecture, Embedded Systems Design"
 "Python Programming is my strength and I want to leverage it in my final project.",Python Programming,
 "Network Security isn't an area I want to pursue for my final year project.",,"Network Security"
 "I'm interested in building applications that use sentiment analysis to understand customer feedback.",Sentiment analysis and opinion mining,
@@ -29,7 +29,7 @@ sentence,positive_Topic,negative_Topic
 "Edge Computing isn't aligned with my software development focus.",,"Edge Computing"
 "I'm keen to explore Predictive Analytics models for forecasting trends.",Predictive Analytics,
 "Digital Forensics requires specialized knowledge that I haven't developed.",,"Digital Forensics"
-"Data Analytics using Python combines two areas I'm strong in.",Data Analytics using Python|Python Programming,
+"Data Analytics using Python combines two areas I'm strong in.","Data Analytics using Python, Python Programming",
 "Augmented Reality development seems interesting but outside my current technical capabilities.",,"Augmented Reality"
 "I've enjoyed classes on Data Structures and Algorithms and want to apply these concepts.",Data structures and Algorithms,
 "I find Database Management essential but not exciting enough as my main project focus.",,"Database"
@@ -77,7 +77,7 @@ sentence,positive_Topic,negative_Topic
 "I'm fascinated by how Natural Language Processing can interpret human communication.",Natural Language Processing,
 "Digital Marketing analytics is less interesting to me than pure data science approaches.",,"Digital Marketing"
 "I'd like to explore Information and Data Analytics to draw meaningful conclusions.",Information and Data Analytics,
-"Artificial Intelligence applications fascinate me, especially when applied to healthcare.",Artificial Intelligence|AI for Healthcare,
+"Artificial Intelligence applications fascinate me, especially when applied to healthcare.","Artificial Intelligence, AI for Healthcare",
 "Computer Graphics requires specialized mathematical knowledge I haven't developed.",,"Computer Graphic"
 "Data Mining techniques would help me discover patterns in complex datasets.",Data Mining,
 "I'm excited about the potential of Machine Learning algorithms to solve prediction problems.",Machine Learning,
@@ -163,7 +163,7 @@ sentence,positive_Topic,negative_Topic
 "I find Applied Artificial Intelligence practical applications compelling for real-world problems.",Applied Artificial Intelligence,
 "Computer vision requires specialized image processing knowledge I haven't developed.",,"Computer vision and image processing"
 "Statistical methods would provide rigor to my data-driven conclusions.",Statistical methods in data science,
-"I'm interested in NLP applications for medical text analysis.",NLP|AI for Healthcare,
+"I'm interested in NLP applications for medical text analysis.","NLP, AI for Healthcare",
 "Robotics programming requires hardware knowledge outside my focus area.",,"Robotics and Automatic System"
 "Data structures and Algorithms are fundamental to efficient software development.",Data structures and Algorithms,
 "I enjoy working with Predictive Analytics models to forecast future trends.",Predictive Analytics,
