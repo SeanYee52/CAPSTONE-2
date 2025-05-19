@@ -1,9 +1,6 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Post
+from django.views.generic import ListView
 
-# Create your views here.
-
-# create a function
-def home(request):
-    
-    return HttpResponse("<h1>Welcome to GeeksforGeeks</h1>")
+class HomeView(ListView):
+    model = Post
+    template_name = 'home.html'
