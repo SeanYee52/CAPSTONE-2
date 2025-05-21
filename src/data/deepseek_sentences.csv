@@ -1,405 +1,353 @@
 sentence,positive_topic,negative_topic
-"I'm excited about applying AI in healthcare for disease prediction.",Artificial Intelligence,Digital Hardware Design
-"Cybersecurity projects, like malware analysis, align with my career goals.",Cybersecurity,Embedded Systems
-"I want to explore Human-Computer Interaction to improve UX design.",Human-Computer Interaction,Microprocessor and Interfacing Techniques
-"Blockchain for secure transactions in fintech sounds fascinating.",Blockchain,Control systems
-"Data Science with Python for business analytics is my top choice.",Data Science,Optical Communication
-"Natural Language Processing for chatbots is an exciting challenge.",Natural Language Processing,Green Computing
-"I prefer working on predictive analytics over hardware projects.",Predictive Analytics,Digital Electronic System
-"Computer vision for medical imaging would be a meaningful project.",Computer vision and image processing,Fluid Drive System
-"Developing mobile apps with AR features is something I’d enjoy.",Augmented Reality,Telecommunication
-"I’m interested in IoT security but not in traditional networking.",IoT Security,Computer Networks
-"Reinforcement Learning for robotics sounds like a great challenge.",Reinforcement Learning,Energy Informatics
-"Sentiment analysis in social media is more appealing than database management.",Sentiment analysis and opinion mining,Database
-"AI-driven optimization in smart grids is an area I’d like to explore.",AI applications for industrial optimization,Computer Architecture
-"Ethical hacking aligns with my interest in cybersecurity.",Ethical Hacking,Industrial Internet of Things
-"Cloud computing for scalable solutions is preferable over embedded systems.",Cloud Computing,Embedded Programming
-"Generative AI ethics is a critical topic I’d like to research.",Generative AI ethics and management,Wireless sensor networks
-"Big Data analysis for business intelligence excites me.",Big Data Analysis,Digital Marketing
-"I’d love to work on autonomous vehicle algorithms.",Autonomous Vehicles,Microgrid/Smart Grid
-"Developing games with AI is more interesting than telecom projects.",Games,Telecommunication
-"Exploring NLP for language translation is a passion of mine.",Natural Language Processing,Hardware Security
-"Software-defined networking is appealing, unlike fiber optics.",Software Defined Networking,Fiber Laser
-"AI in telecommunications sounds innovative and impactful.",AI in Telecommunications,Computer Graphic
-"Fintech solutions using blockchain are my preferred focus.",Fintech,Computer Organization
-"UX/UI design is more engaging than low-level programming.",UI/UX Design Development,Programming in C++
-"Smart energy-efficient buildings interest me, but not photonic devices.",Smart Energy-Efficient Buildings,Photonic Devices
-"Data privacy in healthcare is a critical area I’d like to work on.",Data Privacy and security,Digital Hardware Design
-"Quantum computing fascinates me, unlike traditional networking.",Quantum Computing,Data Communication and Networking
-"Computer vision for security surveillance is a strong interest.",Computer vision and image processing,Energy Management System
-"Developing VR applications is preferable over e-commerce systems.",Virtual Reality,E-commerce
-"AI for sentiment analysis is more appealing than web development.",Sentiment analysis and opinion mining,Web Development
-"Exploring federated learning for privacy-preserving AI is exciting.",Federated Learning,Enterprise Systems and e-Commerce Application
-"Robotics automation is a better fit for me than network analysis.",Robotics and Automatic System,Network Analysis
-"Deep Learning for medical diagnosis is a meaningful project.",Deep Learning,Information Technology Operation Management
-"E-learning platforms with AI interest me more than digital forensics.",E-Learning,Digital Forensics
-"Smart city sustainability is a topic I’d love to explore.",Sustainable smart city,Computer Applications
-"Text analytics for customer feedback is preferable over ontology engineering.",Text Analytics,Ontology Engineering
-"Edge computing for IoT efficiency is more interesting than cellular networks.",Edge Computing,Cellular Networks
-"Developing AR for education is a passion, unlike traditional databases.",Augmented Reality,Emerging databases
-"AI-driven recommendation systems excite me more than hardware security.",Artificial Intelligence,Hardware Security
-"Data visualization for business insights is a strong interest.",Data Visualization,Logic Design
-"Exploring 5G wireless is less appealing than AI optimization.",5G Wireless,AI applications for industrial optimization
-"Knowledge graphs for semantic search are fascinating.",Knowledge Graphs,Information Systems and Design
-"Green machine learning aligns with my sustainability interests.",Green Machine Learning,Computer Networks
-"Mobile computing for accessibility is preferable over photonic devices.",Mobile Computing,Photonic Devices
-"AI in healthcare is more compelling than traditional software engineering.",AI for Healthcare,Software Engineering Development
-"Developing cybersecurity tools is more interesting than e-health systems.",Information Security tools,E-health
-"Big data for climate research is a meaningful direction.",Big-Data,Digital Marketing
-"Exploring NLP for legal documents is preferable over game development.",Natural Language Processing,Game Development
-"Computer networks for IoT are less appealing than AI ethics.",Computer Networks,Generative AI ethics and management
-"Fintech innovations excite me more than traditional banking systems.",Fintech,Financial Technology
-"Developing smart grid solutions is preferable over fiber optics.",Smart Grid; Distribution Network Communication,Fiber Laser
-"AI-powered chatbots are more interesting than network security.",Artificial Intelligence,Network security
-"Data mining for fraud detection is a strong interest.",Data Mining,Computer Graphic
-"Human-Computer Interaction for VR is preferable over telecommunication.",Human-Computer Interaction,Telecommunication
-"Blockchain for supply chain transparency is a great topic.",Blockchain,Information Technology
-"Deep learning for image recognition excites me more than web dev.",Deep Learning,Web Development
-"Exploring sentiment analysis is preferable over digital forensics.",Sentiment analysis and opinion mining,Digital Forensics
-"AI in sports analytics is more appealing than traditional databases.",Sports Engineering and Performance Analysis,Database
-"Developing AR for retail is preferable over control systems.",Augmented Reality,Control systems
-"Cybersecurity risk assessment is more interesting than e-commerce.",Cybersecurity,E-commerce
-"Quantum algorithms fascinate me more than traditional computing.",Quantum Computing,Computer Systems Engineering
-"AI for financial predictions is preferable over hardware design.",Artificial Intelligence,Digital Hardware Design
-"Data science for public health is a meaningful direction.",Data Science,Digital Marketing
-"Exploring federated learning is more appealing than embedded systems.",Federated Learning,Embedded Systems Design
-"Computer vision for agriculture is preferable over telecom.",Computer vision and image processing,Telecommunication
-"Developing NLP for mental health analysis is a passion.",Natural Language Processing,Computer Applications
-"Blockchain for voting systems is more interesting than UI design.",Blockchain,UI/UX Design Development
-"AI in education technology is preferable over network analysis.",AI for Healthcare,Network Analysis
-"Smart energy systems excite me more than photonic devices.",Energy Efficiency Optimisation,Photonic Devices
-"Data privacy laws and tech are more appealing than game dev.",Data Privacy and security,Game Development
-"AI-driven robotics is preferable over traditional software engineering.",Robotics and Automatic System,Software Engineering Development
-"Exploring edge AI is more interesting than cellular networks.",Edge Intelligence,Cellular Networks
-"Developing fintech apps is preferable over ontology engineering.",Fintech,Ontology Engineering
-"AI for environmental monitoring is a strong interest.",AI applications for industrial optimization,ICT in Environment
-"Computer vision for wildlife conservation is meaningful.",Computer vision and image processing,Information Technology
-"Cybersecurity for IoT is preferable over traditional networking.",IoT Security,Computer Networks
-"Deep learning for speech recognition excites me more than web dev.",Deep Learning,Web Development
-"Exploring AI ethics is more appealing than digital marketing.",Generative AI ethics and management,Digital Marketing
-"Developing AR for healthcare is preferable over control systems.",Augmented Reality,Control systems
-"Quantum cryptography is more interesting than traditional security.",Quantum Computing,Cryptography
-"AI for drug discovery is preferable over hardware projects.",AI for Healthcare,Digital Hardware Design
-"Data science for climate change is a meaningful direction.",Data Science,Information Technology
-"Exploring federated learning is more appealing than embedded systems.",Federated Learning,Embedded Systems Design
-"Computer vision for autonomous drones is preferable over telecom.",Computer vision and image processing,Telecommunication
-"Developing NLP for customer support is a passion.",Natural Language Processing,Computer Applications
-"Blockchain for healthcare records is more interesting than UI design.",Blockchain,UI/UX Design Development
-"AI in mental health tech is preferable over network analysis.",AI for Healthcare,Network Analysis
-"Smart grid optimization excites me more than photonic devices.",Smart Grid; Distribution Network Communication,Photonic Devices
-"Data privacy in social media is more appealing than game dev.",Data Privacy and security,Game Development
-"AI-driven automation is preferable over traditional software engineering.",Artificial Intelligence,Software Engineering Development
-"Exploring edge computing is more interesting than cellular networks.",Edge Computing,Cellular Networks
-"Developing fintech solutions is preferable over ontology engineering.",Fintech,Ontology Engineering
-"AI for disaster response is a strong interest.",AI applications for industrial optimization,ICT in Environment
-"Computer vision for traffic management is meaningful.",Computer vision and image processing,Information Technology
-"Cybersecurity for smart homes is preferable over traditional networking.",IoT Security,Computer Networks
-"Deep learning for medical imaging excites me more than web dev.",Deep Learning,Web Development
-"Exploring AI fairness is more appealing than digital marketing.",Generative AI ethics and management,Digital Marketing
-"Developing VR for therapy is preferable over control systems.",Virtual Reality,Control systems
-"Quantum machine learning is more interesting than classical AI.",Quantum Computing,Artificial Intelligence
-"AI for personalized education is preferable over hardware projects.",AI for Healthcare,Digital Hardware Design
-"Data science for economic forecasting is a meaningful direction.",Data Science,Information Technology
-"Exploring federated learning is more appealing than embedded systems.",Federated Learning,Embedded Systems Design
-"Computer vision for sports analytics is preferable over telecom.",Computer vision and image processing,Telecommunication
-"Developing NLP for legal tech is a passion.",Natural Language Processing,Computer Applications
-"Blockchain for digital identity is more interesting than UI design.",Blockchain,UI/UX Design Development
-"AI in elderly care tech is preferable over network analysis.",AI for Healthcare,Network Analysis
-"Renewable energy AI excites me more than photonic devices.",Energy Storage and Renewable Energy Integration,Photonic Devices
-"Data privacy in IoT is more appealing than game dev.",Data Privacy and security,Game Development
-"AI-driven supply chain optimization is preferable over traditional software.",Artificial Intelligence,Software Engineering Development
-"Exploring edge AI for healthcare is more interesting than cellular networks.",Edge Intelligence,Cellular Networks
-"Developing fintech blockchain apps is preferable over ontology engineering.",Fintech,Ontology Engineering
-"AI for wildlife protection is a strong interest.",AI applications for industrial optimization,ICT in Environment
-"Computer vision for retail automation is meaningful.",Computer vision and image processing,Information Technology
-"Cybersecurity for autonomous vehicles is preferable over traditional networking.",IoT Security,Computer Networks
-"Deep learning for emotion detection excites me more than web dev.",Deep Learning,Web Development
-"Exploring AI transparency is more appealing than digital marketing.",Generative AI ethics and management,Digital Marketing
-"Developing AR for engineering is preferable over control systems.",Augmented Reality,Control systems
-"Quantum AI for finance is more interesting than classical methods.",Quantum Computing,Financial Technology
-"AI for agricultural optimization is preferable over hardware projects.",AI for Healthcare,Digital Hardware Design
-"Data science for pandemic tracking is a meaningful direction.",Data Science,Information Technology
-"Exploring federated learning is more appealing than embedded systems.",Federated Learning,Embedded Systems Design
-"Computer vision for security drones is preferable over telecom.",Computer vision and image processing,Telecommunication
-"Developing NLP for finance is a passion.",Natural Language Processing,Computer Applications
-"Blockchain for copyright protection is more interesting than UI design.",Blockchain,UI/UX Design Development
-"AI in child education tech is preferable over network analysis.",AI for Healthcare,Network Analysis
-"AI for energy-efficient AI excites me more than photonic devices.",Green Machine Learning,Photonic Devices
-"Data privacy in fintech is more appealing than game dev.",Data Privacy and security,Game Development
-"AI-driven logistics is preferable over traditional software engineering.",Artificial Intelligence,Software Engineering Development
-"Exploring edge AI for manufacturing is more interesting than cellular networks.",Edge Intelligence,Cellular Networks
-"Developing fintech AI tools is preferable over ontology engineering.",Fintech,Ontology Engineering
-"AI for ocean conservation is a strong interest.",AI applications for industrial optimization,ICT in Environment
-"Computer vision for industrial safety is meaningful.",Computer vision and image processing,Information Technology
-"Cybersecurity for medical devices is preferable over traditional networking.",IoT Security,Computer Networks
-"Deep learning for gesture recognition excites me more than web dev.",Deep Learning,Web Development
-"Exploring AI accountability is more appealing than digital marketing.",Generative AI ethics and management,Digital Marketing
-"Developing VR for architecture is preferable over control systems.",Virtual Reality,Control systems
-"Quantum AI for drug discovery is more interesting than classical AI.",Quantum Computing,Artificial Intelligence
-"AI for smart cities is preferable over hardware projects.",AI for Healthcare,Digital Hardware Design
-"Data science for crime prediction is a meaningful direction.",Data Science,Information Technology
-"Exploring federated learning is more appealing than embedded systems.",Federated Learning,Embedded Systems Design
-"Computer vision for fashion tech is preferable over telecom.",Computer vision and image processing,Telecommunication
-"Developing NLP for HR analytics is a passion.",Natural Language Processing,Computer Applications
-"Blockchain for art authentication is more interesting than UI design.",Blockchain,UI/UX Design Development
-"AI in disability tech is preferable over network analysis.",AI for Healthcare,Network Analysis
-"AI for carbon footprint reduction excites me more than photonic devices.",Green Machine Learning,Photonic Devices
-"Data privacy in AI models is more appealing than game dev.",Data Privacy and security,Game Development
-"AI-driven retail personalization is preferable over traditional software.",Artificial Intelligence,Software Engineering Development
-"Exploring edge AI for agriculture is more interesting than cellular networks.",Edge Intelligence,Cellular Networks
-"Developing fintech AI compliance tools is preferable over ontology engineering.",Fintech,Ontology Engineering
-"AI for forest conservation is a strong interest.",AI applications for industrial optimization,ICT in Environment
-"Computer vision for food quality inspection is meaningful.",Computer vision and image processing,Information Technology
-"Cybersecurity for drones is preferable over traditional networking.",IoT Security,Computer Networks
-"Deep learning for sign language translation excites me more than web dev.",Deep Learning,Web Development
-"Exploring AI bias mitigation is more appealing than digital marketing.",Generative AI ethics and management,Digital Marketing
-"Developing AR for tourism is preferable over control systems.",Augmented Reality,Control systems
-"Quantum AI for climate modeling is more interesting than classical AI.",Quantum Computing,Artificial Intelligence
-"AI for water management is preferable over hardware projects.",AI for Healthcare,Digital Hardware Design
-"Data science for political analysis is a meaningful direction.",Data Science,Information Technology
-"Exploring federated learning is more appealing than embedded systems.",Federated Learning,Embedded Systems Design
-"Computer vision for archaeology is preferable over telecom.",Computer vision and image processing,Telecommunication
-"Developing NLP for fake news detection is a passion.",Natural Language Processing,Computer Applications
-"Blockchain for charity transparency is more interesting than UI design.",Blockchain,UI/UX Design Development
-"AI in rural education tech is preferable over network analysis.",AI for Healthcare,Network Analysis
-"AI for eco-friendly manufacturing excites me more than photonic devices.",Green Machine Learning,Photonic Devices
-"Data privacy in AI hiring tools is more appealing than game dev.",Data Privacy and security,Game Development
-"AI-driven fashion recommendation is preferable over traditional software.",Artificial Intelligence,Software Engineering Development
-"Exploring edge AI for energy grids is more interesting than cellular networks.",Edge Intelligence,Cellular Networks
-"Developing fintech AI fraud detection is preferable over ontology engineering.",Fintech,Ontology Engineering
-"AI for air pollution monitoring is a strong interest.",AI applications for industrial optimization,ICT in Environment
-"Computer vision for construction safety is meaningful.",Computer vision and image processing,Information Technology
-"Cybersecurity for smart grids is preferable over traditional networking.",IoT Security,Computer Networks
-"Deep learning for music generation excites me more than web dev.",Deep Learning,Web Development
-"Exploring AI in judicial systems is more appealing than digital marketing.",Generative AI ethics and management,Digital Marketing
-"Developing VR for remote work is preferable over control systems.",Virtual Reality,Control systems
-"Quantum AI for material science is more interesting than classical AI.",Quantum Computing,Artificial Intelligence
-"AI for disaster relief drones is preferable over hardware projects.",AI for Healthcare,Digital Hardware Design
-"Data science for social good is a meaningful direction.",Data Science,Information Technology
-"Exploring federated learning is more appealing than embedded systems.",Federated Learning,Embedded Systems Design
-"Computer vision for wildlife tracking is preferable over telecom.",Computer vision and image processing,Telecommunication
-"Developing NLP for mental health chatbots is a passion.",Natural Language Processing,Computer Applications
-"Blockchain for vaccine tracking is more interesting than UI design.",Blockchain,UI/UX Design Development
-"AI in accessible gaming tech is preferable over network analysis.",AI for Healthcare,Network Analysis
-"AI for sustainable farming excites me more than photonic devices.",Green Machine Learning,Photonic Devices
-"Data privacy in AI recruitment is more appealing than game dev.",Data Privacy and security,Game Development
-"AI-driven personalized learning is preferable over traditional software.",Artificial Intelligence,Software Engineering Development
-"Exploring edge AI for traffic optimization is more interesting than cellular networks.",Edge Intelligence,Cellular Networks
-"Developing fintech AI risk assessment is preferable over ontology engineering.",Fintech,Ontology Engineering
-"AI for coral reef monitoring is a strong interest.",AI applications for industrial optimization,ICT in Environment
-"Computer vision for fire detection is meaningful.",Computer vision and image processing,Information Technology
-"Cybersecurity for wearable tech is preferable over traditional networking.",IoT Security,Computer Networks
-"Deep learning for historical text analysis excites me more than web dev.",Deep Learning,Web Development
-"Exploring AI in public policy is more appealing than digital marketing.",Generative AI ethics and management,Digital Marketing
-"Developing AR for medical training is preferable over control systems.",Augmented Reality,Control systems
-"Quantum AI for space exploration is more interesting than classical AI.",Quantum Computing,Artificial Intelligence
-"AI for noise pollution mapping is preferable over hardware projects.",AI for Healthcare,Digital Hardware Design
-"Data science for humanitarian aid is a meaningful direction.",Data Science,Information Technology
-"Exploring federated learning is more appealing than embedded systems.",Federated Learning,Embedded Systems Design
-"Computer vision for urban planning is preferable over telecom.",Computer vision and image processing,Telecommunication
-"Developing NLP for emotional AI is a passion.",Natural Language Processing,Computer Applications
-"Blockchain for ethical sourcing is more interesting than UI design.",Blockchain,UI/UX Design Development
-"AI in assistive robotics is preferable over network analysis.",AI for Healthcare,Network Analysis
-"AI for green energy optimization excites me more than photonic devices.",Green Machine Learning,Photonic Devices
-"Data privacy in AI-driven hiring is more appealing than game dev.",Data Privacy and security,Game Development
-"AI-driven personalized healthcare is preferable over traditional software.",Artificial Intelligence,Software Engineering Development
-"Exploring edge AI for wildlife conservation is more interesting than cellular networks.",Edge Intelligence,Cellular Networks
-"Developing fintech AI for micro-loans is preferable over ontology engineering.",Fintech,Ontology Engineering
-"AI for earthquake prediction is a strong interest.",AI applications for industrial optimization,ICT in Environment
-"Computer vision for plant disease detection is meaningful.",Computer vision and image processing,Information Technology
-"Cybersecurity for AI systems is preferable over traditional networking.",IoT Security,Computer Networks
-"Deep learning for ancient language translation excites me more than web dev.",Deep Learning,Web Development
-"Exploring AI in ethical journalism is more appealing than digital marketing.",Generative AI ethics and management,Digital Marketing
-"Developing VR for PTSD therapy is preferable over control systems.",Virtual Reality,Control systems
-"Quantum AI for protein folding is more interesting than classical AI.",Quantum Computing,Artificial Intelligence
-"AI for waste management drones is preferable over hardware projects.",AI for Healthcare,Digital Hardware Design
-"Data science for conflict resolution is a meaningful direction.",Data Science,Information Technology
-"Exploring federated learning is more appealing than embedded systems.",Federated Learning,Embedded Systems Design
-"Computer vision for disaster response drones is preferable over telecom.",Computer vision and image processing,Telecommunication
-"Developing NLP for accessibility tools is a passion.",Natural Language Processing,Computer Applications
-"Blockchain for art royalties is more interesting than UI design.",Blockchain,UI/UX Design Development
-"AI in neurotechnology is preferable over network analysis.",AI for Healthcare,Network Analysis
-"AI for circular economy models excites me more than photonic devices.",Green Machine Learning,Photonic Devices
-"Data privacy in AI-driven education is more appealing than game dev.",Data Privacy and security,Game Development
-"AI-driven climate adaptation tools is preferable over traditional software.",Artificial Intelligence,Software Engineering Development
-"Exploring edge AI for precision agriculture is more interesting than cellular networks.",Edge Intelligence,Cellular Networks
-"Developing fintech AI for financial inclusion is preferable over ontology engineering.",Fintech,Ontology Engineering
-"AI for glacier monitoring is a strong interest.",AI applications for industrial optimization,ICT in Environment
-"Computer vision for marine life tracking is meaningful.",Computer vision and image processing,Information Technology
-"Cybersecurity for AI-powered vehicles is preferable over traditional networking.",IoT Security,Computer Networks
-"Deep learning for cultural heritage preservation excites me more than web dev.",Deep Learning,Web Development
-"Exploring AI in ethical fashion is more appealing than digital marketing.",Generative AI ethics and management,Digital Marketing
-"Developing AR for disaster training is preferable over control systems.",Augmented Reality,Control systems
-"Quantum AI for renewable energy is more interesting than classical AI.",Quantum Computing,Artificial Intelligence
-"AI for smart recycling systems is preferable over hardware projects.",AI for Healthcare,Digital Hardware Design
-"Data science for gender equality research is a meaningful direction.",Data Science,Information Technology
-"Exploring federated learning is more appealing than embedded systems.",Federated Learning,Embedded Systems Design
-"Computer vision for endangered species protection is preferable over telecom.",Computer vision and image processing,Telecommunication
-"Developing NLP for crisis response chatbots is a passion.",Natural Language Processing,Computer Applications
-"Blockchain for carbon credit tracking is more interesting than UI design.",Blockchain,UI/UX Design Development
-"AI in exoskeleton tech is preferable over network analysis.",AI for Healthcare,Network Analysis
-"AI for sustainable packaging excites me more than photonic devices.",Green Machine Learning,Photonic Devices
-"Data privacy in AI-driven mental health apps is more appealing than game dev.",Data Privacy and security,Game Development
-"AI-driven personalized nutrition is preferable over traditional software.",Artificial Intelligence,Software Engineering Development
-"Exploring edge AI for ocean cleanup is more interesting than cellular networks.",Edge Intelligence,Cellular Networks
-"Developing fintech AI for disaster relief funding is preferable over ontology engineering.",Fintech,Ontology Engineering
-"AI for wildfire prevention is a strong interest.",AI applications for industrial optimization,ICT in Environment
-"Computer vision for archaeological site mapping is meaningful.",Computer vision and image processing,Information Technology
-"Cybersecurity for AI in healthcare is preferable over traditional networking.",IoT Security,Computer Networks
-"Deep learning for indigenous language revival excites me more than web dev.",Deep Learning,Web Development
-"Exploring AI in ethical AI governance is more appealing than digital marketing.",Generative AI ethics and management,Digital Marketing
-"Developing VR for phobia treatment is preferable over control systems.",Virtual Reality,Control systems
-"Quantum AI for fusion energy is more interesting than classical AI.",Quantum Computing,Artificial Intelligence
-"AI for urban green spaces is preferable over hardware projects.",AI for Healthcare,Digital Hardware Design
-"Data science for refugee support is a meaningful direction.",Data Science,Information Technology
-"Exploring federated learning is more appealing than embedded systems.",Federated Learning,Embedded Systems Design
-"Computer vision for pollution monitoring drones is preferable over telecom.",Computer vision and image processing,Telecommunication
-"Developing NLP for suicide prevention tools is a passion.",Natural Language Processing,Computer Applications
-"Blockchain for humanitarian aid transparency is more interesting than UI design.",Blockchain,UI/UX Design Development
-"AI in bionic prosthetics is preferable over network analysis.",AI for Healthcare,Network Analysis
-"AI for zero-waste cities excites me more than photonic devices.",Green Machine Learning,Photonic Devices
-"Data privacy in AI-driven hiring is more appealing than game dev.",Data Privacy and security,Game Development
-"AI-driven personalized medicine is preferable over traditional software.",Artificial Intelligence,Software Engineering Development
-"Exploring edge AI for desert agriculture is more interesting than cellular networks.",Edge Intelligence,Cellular Networks
-"Developing fintech AI for ethical investing is preferable over ontology engineering.",Fintech,Ontology Engineering
-"AI for Arctic ecosystem monitoring is a strong interest.",AI applications for industrial optimization,ICT in Environment
-"Computer vision for historical artifact restoration is meaningful.",Computer vision and image processing,Information Technology
-"Cybersecurity for AI in finance is preferable over traditional networking.",IoT Security,Computer Networks
-"Deep learning for sign language synthesis excites me more than web dev.",Deep Learning,Web Development
-"Exploring AI in ethical AI auditing is more appealing than digital marketing.",Generative AI ethics and management,Digital Marketing
-"Developing AR for surgical planning is preferable over control systems.",Augmented Reality,Control systems
-"Quantum AI for clean water solutions is more interesting than classical AI.",Quantum Computing,Artificial Intelligence
-"AI for eco-tourism is preferable over hardware projects.",AI for Healthcare,Digital Hardware Design
-"Data science for disability inclusion is a meaningful direction.",Data Science,Information Technology
-"Exploring federated learning is more appealing than embedded systems.",Federated Learning,Embedded Systems Design
-"Computer vision for disaster damage assessment is preferable over telecom.",Computer vision and image processing,Telecommunication
-"Developing NLP for trauma counseling bots is a passion.",Natural Language Processing,Computer Applications
-"Blockchain for fair trade certification is more interesting than UI design.",Blockchain,UI/UX Design Development
-"AI in sleep disorder tech is preferable over network analysis.",AI for Healthcare,Network Analysis
-"AI for sustainable fashion excites me more than photonic devices.",Green Machine Learning,Photonic Devices
-"Data privacy in AI-driven therapy apps is more appealing than game dev.",Data Privacy and security,Game Development
-"AI-driven personalized fitness is preferable over traditional software.",Artificial Intelligence,Software Engineering Development
-"Exploring edge AI for reforestation is more interesting than cellular networks.",Edge Intelligence,Cellular Networks
-"Developing fintech AI for poverty alleviation is preferable over ontology engineering.",Fintech,Ontology Engineering
-"AI for endangered language preservation is a strong interest.",AI applications for industrial optimization,ICT in Environment
-"Computer vision for coral reef restoration is meaningful.",Computer vision and image processing,Information Technology
-"Cybersecurity for AI in education is preferable over traditional networking.",IoT Security,Computer Networks
-"Deep learning for ancient script decoding excites me more than web dev.",Deep Learning,Web Development
-"Exploring AI in ethical AI policy is more appealing than digital marketing.",Generative AI ethics and management,Digital Marketing
-"Developing VR for autism therapy is preferable over control systems.",Virtual Reality,Control systems
-"Quantum AI for carbon capture is more interesting than classical AI.",Quantum Computing,Artificial Intelligence
-"AI for smart composting is preferable over hardware projects.",AI for Healthcare,Digital Hardware Design
-"Data science for indigenous rights is a meaningful direction.",Data Science,Information Technology
-"Exploring federated learning is more appealing than embedded systems.",Federated Learning,Embedded Systems Design
-"Computer vision for air quality drones is preferable over telecom.",Computer vision and image processing,Telecommunication
-"Developing NLP for addiction recovery tools is a passion.",Natural Language Processing,Computer Applications
-"Blockchain for wildlife conservation funding is more interesting than UI design.",Blockchain,UI/UX Design Development
-"AI in Parkinson's disease tech is preferable over network analysis.",AI for Healthcare,Network Analysis
-"AI for sustainable fisheries excites me more than photonic devices.",Green Machine Learning,Photonic Devices
-"Data privacy in AI-driven wellness apps is more appealing than game dev.",Data Privacy and security,Game Development
-"AI-driven personalized mental health is preferable over traditional software.",Artificial Intelligence,Software Engineering Development
-"Exploring edge AI for wetland conservation is more interesting than cellular networks.",Edge Intelligence,Cellular Networks
-"Developing fintech AI for disaster recovery loans is preferable over ontology engineering.",Fintech,Ontology Engineering
-"AI for historical climate modeling is a strong interest.",AI applications for industrial optimization,ICT in Environment
-"Computer vision for earthquake damage assessment is meaningful.",Computer vision and image processing,Information Technology
-"Cybersecurity for AI in legal tech is preferable over traditional networking.",IoT Security,Computer Networks
-"Deep learning for folklore preservation excites me more than web dev.",Deep Learning,Web Development
-"Exploring AI in ethical AI education is more appealing than digital marketing.",Generative AI ethics and management,Digital Marketing
-"Developing AR for physical therapy is preferable over control systems.",Augmented Reality,Control systems
-"Quantum AI for biodiversity protection is more interesting than classical AI.",Quantum Computing,Artificial Intelligence
-"AI for eco-friendly transportation is preferable over hardware projects.",AI for Healthcare,Digital Hardware Design
-"Data science for youth empowerment is a meaningful direction.",Data Science,Information Technology
-"Exploring federated learning is more appealing than embedded systems.",Federated Learning,Embedded Systems Design
-"Computer vision for flood prediction drones is preferable over telecom.",Computer vision and image processing,Telecommunication
-"Developing NLP for crisis hotline bots is a passion.",Natural Language Processing,Computer Applications
-"Blockchain for renewable energy credits is more interesting than UI design.",Blockchain,UI/UX Design Development
-"AI in Alzheimer's tech is preferable over network analysis.",AI for Healthcare,Network Analysis
-"AI for sustainable architecture excites me more than photonic devices.",Green Machine Learning,Photonic Devices
-"Data privacy in AI-driven elder care is more appealing than game dev.",Data Privacy and security,Game Development
-"AI-driven personalized rehabilitation is preferable over traditional software.",Artificial Intelligence,Software Engineering Development
-"Exploring edge AI for bee conservation is more interesting than cellular networks.",Edge Intelligence,Cellular Networks
-"Developing fintech AI for social impact investing is preferable over ontology engineering.",Fintech,Ontology Engineering
-"AI for cultural heritage protection is a strong interest.",AI applications for industrial optimization,ICT in Environment
-"Computer vision for landslide detection is meaningful.",Computer vision and image processing,Information Technology
-"Cybersecurity for AI in government is preferable over traditional networking.",IoT Security,Computer Networks
-"Deep learning for minority language education excites me more than web dev.",Deep Learning,Web Development
-"Exploring AI in ethical AI advocacy is more appealing than digital marketing.",Generative AI ethics and management,Digital Marketing
-"Developing VR for chronic pain management is preferable over control systems.",Virtual Reality,Control systems
-"Quantum AI for ocean cleanup is more interesting than classical AI.",Quantum Computing,Artificial Intelligence
-"AI for green urban planning is preferable over hardware projects.",AI for Healthcare,Digital Hardware Design
-"Data science for peacebuilding is a meaningful direction.",Data Science,Information Technology
-"Exploring federated learning is more appealing than embedded systems.",Federated Learning,Embedded Systems Design
-"Computer vision for wildfire detection drones is preferable over telecom.",Computer vision and image processing,Telecommunication
-"Developing NLP for grief support bots is a passion.",Natural Language Processing,Computer Applications
-"Blockchain for ethical diamond sourcing is more interesting than UI design.",Blockchain,UI/UX Design Development
-"AI in stroke recovery tech is preferable over network analysis.",AI for Healthcare,Network Analysis
-"AI for sustainable textiles excites me more than photonic devices.",Green Machine Learning,Photonic Devices
-"Data privacy in AI-driven child education is more appealing than game dev.",Data Privacy and security,Game Development
-"AI-driven personalized elder care is preferable over traditional software.",Artificial Intelligence,Software Engineering Development
-"Exploring edge AI for reforestation drones is more interesting than cellular networks.",Edge Intelligence,Cellular Networks
-"Developing fintech AI for climate resilience funding is preferable over ontology engineering.",Fintech,Ontology Engineering
-"AI for ancient medicine digitization is a strong interest.",AI applications for industrial optimization,ICT in Environment
-"Computer vision for oil spill detection is meaningful.",Computer vision and image processing,Information Technology
-"Cybersecurity for AI in philanthropy is preferable over traditional networking.",IoT Security,Computer Networks
-"Deep learning for indigenous storytelling excites me more than web dev.",Deep Learning,Web Development
-"Exploring AI in ethical AI journalism is more appealing than digital marketing.",Generative AI ethics and management,Digital Marketing
-"Developing AR for PTSD exposure therapy is preferable over control systems.",Augmented Reality,Control systems
-"Quantum AI for desertification reversal is more interesting than classical AI.",Quantum Computing,Artificial Intelligence
-"AI for eco-village design is preferable over hardware projects.",AI for Healthcare,Digital Hardware Design
-"Data science for disability tech innovation is a meaningful direction.",Data Science,Information Technology
-"Exploring federated learning is more appealing than embedded systems.",Federated Learning,Embedded Systems Design
-"Computer vision for glacier monitoring drones is preferable over telecom.",Computer vision and image processing,Telecommunication
-"Developing NLP for refugee support chatbots is a passion.",Natural Language Processing,Computer Applications
-"Blockchain for fair wage verification is more interesting than UI design.",Blockchain,UI/UX Design Development
-"AI in multiple sclerosis tech is preferable over network analysis.",AI for Healthcare,Network Analysis
-"AI for sustainable jewelry excites me more than photonic devices.",Green Machine Learning,Photonic Devices
-"Data privacy in AI-driven family planning is more appealing than game dev.",Data Privacy and security,Game Development
-"AI-driven personalized disaster prep is preferable over traditional software.",Artificial Intelligence,Software Engineering Development
-"Exploring edge AI for endangered tree planting is more interesting than cellular networks.",Edge Intelligence,Cellular Networks
-"Developing fintech AI for ethical microfinance is preferable over ontology engineering.",Fintech,Ontology Engineering
-"AI for historical artifact forgery detection is a strong interest.",AI applications for industrial optimization,ICT in Environment
-"Computer vision for river pollution monitoring is meaningful.",Computer vision and image processing,Information Technology
-"Cybersecurity for AI in human rights is preferable over traditional networking.",IoT Security,Computer Networks
-"Deep learning for sign language poetry excites me more than web dev.",Deep Learning,Web Development
-"Exploring AI in ethical AI art is more appealing than digital marketing.",Generative AI ethics and management,Digital Marketing
-"Developing VR for social anxiety is preferable over control systems.",Virtual Reality,Control systems
-"Quantum AI for soil regeneration is more interesting than classical AI.",Quantum Computing,Artificial Intelligence
-"AI for green funeral tech is preferable over hardware projects.",AI for Healthcare,Digital Hardware Design
-"Data science for LGBTQ+ advocacy is a meaningful direction.",Data Science,Information Technology
-"Exploring federated learning is more appealing than embedded systems.",Federated Learning,Embedded Systems Design
-"Computer vision for illegal logging detection is preferable over telecom.",Computer vision and image processing,Telecommunication
-"Developing NLP for human trafficking prevention is a passion.",Natural Language Processing,Computer Applications
-"Blockchain for conflict-free mineral tracking is more interesting than UI design.",Blockchain,UI/UX Design Development
-"AI in cystic fibrosis tech is preferable over network analysis.",AI for Healthcare,Network Analysis
-"AI for sustainable perfume excites me more than photonic devices.",Green Machine Learning,Photonic Devices
-"Data privacy in AI-driven fertility apps is more appealing than game dev.",Data Privacy and security,Game Development
-"AI-driven personalized crisis response is preferable over traditional software.",Artificial Intelligence,Software Engineering Development
-"Exploring edge AI for pangolin conservation is more interesting than cellular networks.",Edge Intelligence,Cellular Networks
-"Developing fintech AI for disaster insurance is preferable over ontology engineering.",Fintech,Ontology Engineering
-"AI for lost language reconstruction is a strong interest.",AI applications for industrial optimization,ICT in Environment
-"Computer vision for Arctic wildlife tracking is meaningful.",Computer vision and image processing,Information Technology
-"Cybersecurity for AI in refugee aid is preferable over traditional networking.",IoT Security,Computer Networks
-"Deep learning for disability art creation excites me more than web dev.",Deep Learning,Web Development
-"Exploring AI in ethical AI music is more appealing than digital marketing.",Generative AI ethics and management,Digital Marketing
-"Developing AR for amputee rehab is preferable over control systems.",Augmented Reality,Control systems
-"Quantum AI for coral reef acoustics is more interesting than classical AI.",Quantum Computing,Artificial Intelligence
-"AI for green burial tech is preferable over hardware projects.",AI for Healthcare,Digital Hardware Design
-"Data science for hate speech detection is a meaningful direction.",Data Science,Information Technology
-"Exploring federated learning is more appealing than embedded systems.",Federated Learning,Embedded Systems Design
-"Computer vision for poaching prevention drones is preferable over telecom.",Computer vision and image processing,Telecommunication
-"Developing NLP for crisis negotiation bots is a passion.",Natural Language Processing,Computer Applications
-"Blockchain for ethical coffee trade is more interesting than UI design.",Blockchain,UI/UX Design Development
-"AI in rare disease tech is preferable over network analysis.",AI for Healthcare,Network Analysis
-"AI for sustainable wine production excites me more than photonic devices.",Green Machine Learning,Photonic Devices
-"Data privacy in AI-driven marriage counseling is more appealing than game dev.",Data Privacy and security,Game Development
-"AI-driven personalized conflict resolution is preferable over traditional software.",Artificial Intelligence,Software Engineering Development
-"Exploring edge AI for whale conservation is more interesting than cellular networks.",Edge Intelligence,Cellular Networks
-"Developing fintech AI for ethical crowdfunding is preferable over ontology engineering.",Fintech,Ontology Engineering
-"AI for extinct species digital revival is a strong interest.",AI applications for industrial optimization,ICT in Environment
-"Computer vision for ocean floor mapping is meaningful.",Computer vision and image processing,Information Technology
-"Cybersecurity for AI in peacekeeping is preferable over traditional networking.",IoT Security,Computer Networks
-"Deep learning for deaf-blind communication excites me more than web dev.",Deep Learning,Web Development
-"Exploring AI in ethical AI theater is more appealing than digital marketing.",Generative AI ethics and management,Digital Marketing
-"Developing VR for phantom limb pain is preferable over control systems.",Virtual Reality,Control systems
-"Quantum AI for ancient climate secrets is more interesting than classical AI.",Quantum Computing,Artificial Intelligence
-"AI for eco-friendly cremation is preferable over hardware projects.",AI for
+"I am excited about exploring Deep Learning for image recognition due to its real-world applications.",Deep Learning,
+"A project on Blockchain for secure transactions aligns with my interest in decentralized systems.",Blockchain,
+"I prefer not to work on Computer Networks, as I find network configurations too tedious.",,Computer Networks
+"Natural Language Processing fascinates me because of its potential in improving human-computer interaction.",Natural Language Processing,
+"I want to avoid Hardware Security as I lack experience in circuit-level security mechanisms.",,Hardware Security
+"Data Visualization is appealing because transforming raw data into insights is both creative and analytical.",Data Visualization,
+"I am not keen on Control Systems due to my limited background in electrical engineering.",,Control Systems
+"A project on AI for Healthcare would allow me to contribute to medical advancements.",AI for Healthcare,
+"I dislike Microprocessor and Interfacing Techniques because debugging hardware is frustrating.",,Microprocessor and Interfacing Techniques
+"Cloud Computing interests me as I enjoy working with scalable and distributed systems.",Cloud Computing,
+"Quantum Computing excites me because of its potential to revolutionize problem-solving.",Quantum Computing,
+"I'd avoid Fluid Drive System projects as they are too specialized for my background.",,Fluid Drive System
+"Human-Computer Interaction is fascinating for its focus on improving user experiences.",Human-Computer Interaction,
+"I'm not confident in Digital Electronic Systems, so I'd prefer software-based projects.",,Digital Electronic System
+"Generative AI ethics is critical, and I'd love to explore its societal implications.",Generative AI ethics and management,
+"Malware analysis seems stressful; I'd rather work on proactive security like Cryptography.",Cryptography,Malware analysis
+"Augmented Reality aligns with my passion for blending digital and physical worlds.",Augmented Reality,
+"I lack interest in Telecommunication due to its heavy reliance on theoretical frameworks.",,Telecommunication
+"Sustainable smart cities combine my interests in IoT and environmental tech.",Sustainable smart city,
+"Microgrids are outside my expertise; I'd focus on Data Analytics instead.",Data Analytics,Microgrid/Smart Grid
+"Computer vision and image processing offer exciting challenges in pattern recognition.",Computer vision and image processing,
+"I'd steer clear of Fiber Laser research because it's too niche for my skills.",,Fiber Laser
+"Sentiment analysis could help me understand social media trends better.",Sentiment analysis and opinion mining,
+"Embedded Systems Design seems too hardware-focused for my coding strengths.",,Embedded Systems Design
+"Federated Learning is intriguing due to its privacy-preserving ML approach.",Federated Learning,
+"I'm not drawn to Industrial IoT as I prefer consumer-facing applications.",,Industrial Internet of Things
+"Robotics and Automatic Systems would let me combine AI with mechanical design.",Robotics and Automatic System,
+"Photonic Devices are outside my physics comfort zone.",,Photonic Devices
+"Developing Mobile Apps aligns with my interest in user-centric design.",Mobile Application Development,
+"I find Empirical Software Engineering too abstract compared to hands-on coding.",,Empirical Software Engineering
+"Exploring 5G Wireless technologies could be future-proof for my career.",5G Wireless,
+"Ontology Engineering seems overly theoretical for my practical mindset.",,Ontology Engineering
+"Digital Marketing projects would let me blend tech and business strategies.",Digital Marketing,
+"Computer Architecture feels too low-level for my high-level programming focus.",,Computer Architecture
+"Mixed Reality offers innovative ways to enhance education and training.",Mixed Reality,
+"Green Computing doesn't excite me as much as AI-driven solutions.",,Green Computing
+"Big Data Analysis skills are essential for today's data-driven industries.",Big Data Analysis,
+"I'm uninterested in Device-to-Device Communication's narrow scope.",,Device-to-Device Communication
+"Developing Games would allow creative storytelling through technology.",Games,
+"Safety Critical System development seems too high-stakes for my taste.",,Safety Critical System
+"Computer Security is crucial in our increasingly digital world.",Computer Security,
+"Enterprise Systems sound too corporate for my startup-oriented interests.",,Enterprise Systems and e-Commerce Application
+"Wireless sensor networks could solve real-world monitoring challenges.",Wireless sensor networks,
+"I find Techno-economic Assessment too finance-oriented.",,Techno-economic Assessment for Renewable Energy System
+"Virtual Reality has immense potential beyond just gaming.",Virtual Reality,
+"Blended Learning research doesn't align with my technical focus.",,Blended and Collaborative Learning
+"Predictive Analytics can transform decision-making in businesses.",Predictive Analytics,
+"Medical Imaging requires domain knowledge I don't possess.",,Medical imaging
+"Edge Computing is fascinating for bringing computation closer to data sources.",Edge Computing,
+"I'm not excited about Programming in C++ compared to Python.",,Programming in C++
+"Knowledge Graphs could revolutionize how we organize information.",Knowledge Graphs,
+"Digital Hardware Design is too far removed from my software skills.",,Digital Hardware Design
+"Autonomous Vehicles represent the cutting edge of AI applications.",Autonomous Vehicles,
+"Sports Engineering doesn't match my IT-focused career goals.",,Sports Engineering and Performance Analysis
+"Reinforcement Learning offers dynamic problem-solving approaches.",Reinforcement Learning,
+"Information Retrieval seems outdated compared to modern NLP techniques.",,Information Retrieval
+"Smart Grid technology is vital for sustainable energy management.",Smart Grid,
+"E-Learning platforms don't interest me as much as core tech development.",,E-Learning
+"Digital Forensics combines my interests in cybersecurity and investigation.",Digital Forensics,
+"Mobile Commerce feels too similar to general e-commerce topics.",,Mobile Commerce
+"Computer Graphics would let me explore visual computing techniques.",Computer Graphic,
+"High-Performance Computing is too specialized for my broad interests.",,High-Performance Computing
+"Text Analytics could provide insights into customer feedback patterns.",Text Analytics,
+"Software Defined Networking seems too network-centric for my focus.",,Software Defined Networking
+"Ubiquitous Computing aligns with my interest in seamless technology integration.",Ubiquitious computing,
+"Green Machine Learning isn't as compelling as general AI applications.",,Green Machine Learning
+"Medical Information Systems could improve healthcare delivery.",Medical Information System,
+"Movement Detection research feels too narrow in application.",,Movement Detection
+"Information Security Tools are practical for cybersecurity careers.",Information Security tools,
+"E-Health projects require medical knowledge I don't have.",,E-health
+"User Interface Design merges my creative and technical sides.",User Interface Design,
+"Programming Languages theory doesn't appeal as much as applied coding.",,Programming Languages
+"Tiny Machine Learning is innovative for resource-constrained devices.",Tiny/Embedded Machine Learning,
+"Digital Image Forgery Detection is too niche for my broad interests.",,Digital image forgery detection
+"Business Intelligence bridges data science and corporate strategy.",Business Intelligence,
+"Energy Storage topics are too engineering-focused for me.",,Energy Storage and Renewable Energy Integration
+"Computer Applications development offers wide real-world applicability.",Computer Applications,
+"Model Checking sounds too mathematically intensive.",,Model checking and Theorem proving
+"Wireless Communications interest me for their role in modern connectivity.",Wireless Communications and Networks,
+"Evolutionary Computation seems abstract compared to practical ML.",,Evolutionary Computation and Swarm Intelligence
+"Digital Healthcare could revolutionize patient care through technology.",Digital healthcare,
+"ICT in Environment feels too policy-oriented.",,ICT in Environment
+"Network Security is essential in our interconnected world.",Network security,
+"Programming Concepts feel too basic for a final year project.",,Programming concepts and principles
+"Data Privacy combines my interests in law and technology.",Data Privacy and security,
+"Computer-Aided Design doesn't align with my software focus.",,Computer-Aided Design and Simulation
+"Internet of Things is transforming how devices interact.",Internet of things (IoT),
+"Identification Technology seems too specialized.",,Identification Technology
+"Software Engineering Development is fundamental for any tech career.",Software Engineering Development,
+"Multimedia Computing isn't as appealing as core AI topics.",,Multimedia Computing
+"Applied Statistics is valuable across all data-driven fields.",Applied Statistics,
+"Agile Methodologies feel more like process than technology.",,Agile Methodologies
+"Brain-Computer Interfaces represent the frontier of neurotechnology.",Brain Computer Interface,
+"Energy Efficiency Optimization is too energy-sector specific.",,Energy Efficiency Optimisation
+"Computer Systems Engineering offers a holistic view of computing.",Computer Systems Engineering,
+"Fintech feels too finance-oriented for my tech focus.",,Fintech
+"Data Structures and Algorithms are the backbone of efficient coding.",Data structures and Algorithms,
+"Digital Forensics tools are too specialized for my broad interests.",,Digital Forensics
+"Distributed Systems are crucial for modern scalable applications.",Distributed Systems,
+"Interactive Arts don't align with my technical project goals.",,Interactive arts
+"Information Systems Design bridges business and technology.",Information Systems and Design,
+"Game Development seems too creative for my analytical strengths.",,Game Developmen
+"Data Mining uncovers valuable patterns in large datasets.",Data Mining,
+"Energy Informatics is outside my domain of interest.",,Energy Informatics
+"Web Development offers practical, marketable skills.",Web Development,
+"Operating Systems development is too low-level for me.",,Operating Systems
+"Computer Organization is fascinating for understanding hardware-software interaction.",Computer Organization,
+"Requirements Engineering feels too documentation-heavy.",,Requirements engineering
+"Information and Data Analytics are essential in the big data era.",Information and Data Analytics,
+"OOP principles are too basic for a final-year project.",,OOP
+"Business Computing combines technology and management strategies.",Business Computing,
+"Optical Communication is too physics-intensive for me.",,Optical Communication
+"AI in Telecommunications could optimize network performance.",AI in Telecommunications,
+"Digital Marketing feels more like business than technology.",,Digital Marketing
+"Data Science using R would strengthen my statistical toolkit.",Data Science using R,
+"Software Enginnering seems too broad for a focused project.",,Software Enginnering
+"Artificial Neural Networks are fundamental to modern AI.",Artificial Neural Network,
+"Information Technology Operation Management is too operational.",,Information Technology Operation Management
+"Edge Intelligence brings AI to distributed networks.",Edge Intelligence,
+"Linear Algebra applications are too math-heavy for my liking.",,Linear Algebra and Applications
+"Smart Energy-Efficient Buildings combine sustainability and tech.",Smart Energy-Efficient Buildings,
+"Programming in Java feels outdated compared to Python.",,Programming in Java
+"Cyber-Physical Systems integrate computation with physical processes.",Cyber-Physical Systems,
+"Contents Design seems more artistic than technical.",,Contents design
+"Ethical Hacking is exciting for its offensive security approach.",Ethical Hacking,
+"E-Commerce platforms don't interest me technically.",,E-commerce
+"Semantic Web technologies could make data more interconnected.",Semantic Web,
+"Mobile Technology for Learning Disabilities is too niche.",,Mobile Technology for Learning Disabilities
+"Clustering Algorithms help uncover hidden data patterns.",Clustering Algorithms & Optimization,
+"Advanced Micro-Technologies are too hardware-focused.",,Advanced Micro- Technologies
+"Computer & Programming feels too vague for a specialized project.",,Computer & Programming
+"Social Media Analytics could reveal consumer behavior insights.",Social Media Analytics,
+"Information and Communication Technology is too broad.",,Information and Communication Technology
+"Artificial Intelligence is revolutionizing every industry.",Artificial Intelligence,
+"DevOps practices feel more operational than developmental.",,DevOps
+"Optimized Controller design is too control-theory intensive.",,Optimized Controller
+"Decision Support Systems aid organizational decision-making.",Decision Support System,
+"Hardware Oriented Computing doesn't match my software skills.",,Hardware Oriented Computing
+"Information Technology is fundamental but too general for a project.",,Information Technology
+"Design of Computer & Communication Systems is complex.",,Design of Computer & Communication Systems
+"Statistics provides the foundation for data science work.",Statistics,
+"Energy Management System is too energy-sector specific.",,Energy Management System
+"Mobile Computing enables technology on the go.",Mobile Computing,
+"Internet Programming feels like basic web development.",,Internet Programming
+"Computational intelligence offers smart problem-solving approaches.",Computational intelligence,
+"Cellular Networks are too telecom-focused for me.",,Cellular Networks
+"Applied Artificial Intelligence has immediate real-world impact.",Applied Artificial Intelligence,
+"Vulnerability Assessment seems too narrow in scope.",,Vulnerability Assessment
+"UI/UX Design Development merges aesthetics with functionality.",UI/UX Design Development,
+"Theory of Automata is too theoretical for my applied focus.",,Theory of Automata
+"Context-awareness could make applications more adaptive.",Context-awareness,
+"Programming in Python is versatile and powerful.",Programming in Python,
+"Database systems are fundamental but not innovative enough.",,Database
+"Big-Data technologies handle today's massive datasets.",Big-Data,
+"Logic Design is too hardware-centric for my skills.",,Logic Design
+"Computer Security tools protect against growing cyber threats.",Computer Security,
+"Embedded Programming is too close to hardware for my comfort.",,Embedded Programming
+"Data Communication and Networking is essential infrastructure.",Data Communication and Networking,
+"Wireless Networks / WSNs are too specific for my interests.",,Wireless Networks / WSNs
+"Intelligent transportation systems could revolutionize mobility.",Intelligent transportation systems,
+"Digital Healthcare requires medical domain knowledge I lack.",,Digital healthcare
+"Cryptography secures our digital communications.",Cryptography,
+"Medical Information System is too healthcare-specific.",,Medical Information System
+"Concurrent Programming handles parallel processing challenges.",Concurrent Programming,
+"E-Learning platforms don't excite me technically.",,E-Learning
+"Human factors in Software Systems improve user experience.",Human factors in Software Systems,
+"Information Security is too broad for a focused project.",,Information Security
+"Data Science combines statistics, programming and domain knowledge.",Data Science,
+"Microprocessor techniques are too hardware-intensive.",,Microprocessor and Interfacing Techniques
+"Machine Learning algorithms can learn from data patterns.",Machine Learning,
+"Visible Light Positioning is too niche for my interests.",,Visible Light Positioning
+"Software Design and Architecture creates robust systems.",Software Design and Architecture,
+"Industrial IoT feels too manufacturing-focused.",,Industrial Internet of Things
+"User-Centered Systems Development focuses on real user needs.",User-Centered Systems Development,
+"Programming in C++ feels outdated compared to modern languages.",,Programming in C++
+"Knowledge Management organizes institutional knowledge.",Knowledge Management,
+"Digital Electronic System is too hardware-oriented.",,Digital Electronic System
+"Data Center Networking optimizes server infrastructure.",Data Center Networking,
+"Human-Computer Interactions seem too UX-focused for my coding interests.",,Human-Computer Interactions
+"Network Analysis reveals connectivity patterns.",Network Analysis,
+"Green Machine Learning isn't as compelling as general ML applications.",,Green Machine Learning
+"Data Management is crucial but not innovative enough.",,Data Management
+"Object Oriented Programming principles are too basic.",,Object Oriented Programming
+"Emerging databases handle new data challenges.",Emerging databases,
+"Federated Learning preserves privacy in machine learning.",Federated Learning,
+"Malware analysis seems too reactive compared to proactive security.",,Malware analysis
+"Augmented Reality enhances real-world experiences digitally.",Augmented Reality,
+"Telecommunication systems don't excite me technically.",,Telecommunication
+"Sustainable smart city tech combines IoT and environmentalism.",Sustainable smart city,
+"Microgrid technology is too energy-sector specific.",,Microgrid/Smart Grid
+"Computer vision applications are transforming industries.",Computer vision and image processing,
+"Fiber Laser research is too physics-intensive.",,Fiber Laser
+"Sentiment analysis extracts meaning from textual data.",Sentiment analysis and opinion mining,
+"Embedded Systems require hardware skills I don't have.",,Embedded Systems Design
+"Robotics combines mechanical and software engineering.",Robotics and Automatic System,
+"Photonic Devices are outside my expertise.",,Photonic Devices
+"Mobile apps development is practical and marketable.",Mobile Application Development,
+"Empirical Software Engineering seems too research-oriented.",,Empirical Software Engineering
+"5G Wireless enables faster mobile communications.",5G Wireless,
+"Ontology Engineering is too abstract for my liking.",,Ontology Engineering
+"Digital Marketing blends tech and business strategies.",Digital Marketing,
+"Computer Architecture is too low-level for my interests.",,Computer Architecture
+"Mixed Reality merges physical and digital worlds.",Mixed Reality,
+"Green Computing isn't as exciting as AI applications.",,Green Computing
+"Big Data technologies handle massive datasets effectively.",Big Data Analysis,
+"Device-to-Device Communication seems too narrow.",,Device-to-Device Communication
+"Game development allows creative technical expression.",Games,
+"Safety Critical Systems have too much responsibility.",,Safety Critical System
+"Cybersecurity protects our digital infrastructure.",Cybersecurity,
+"Enterprise Systems feel too corporate-focused.",,Enterprise Systems and e-Commerce Application
+"Wireless sensor networks monitor environments intelligently.",Wireless sensor networks,
+"Techno-economic analysis is too finance-oriented.",,Techno-economic Assessment for Renewable Energy System
+"Virtual Reality creates immersive digital experiences.",Virtual Reality,
+"Blended Learning doesn't align with my tech focus.",,Blended and Collaborative Learning
+"Predictive Analytics forecasts future trends.",Predictive Analytics,
+"Medical imaging requires specialized knowledge.",,Medical imaging
+"Edge Computing processes data closer to its source.",Edge Computing,
+"C++ programming feels outdated compared to Python.",,Programming in C++
+"Knowledge Graphs organize information semantically.",Knowledge Graphs,
+"Digital Hardware Design is too close to electrical engineering.",,Digital Hardware Design
+"Autonomous Vehicles represent AI's physical manifestation.",Autonomous Vehicles,
+"Sports Engineering doesn't match my IT interests.",,Sports Engineering and Performance Analysis
+"Reinforcement Learning agents learn through interaction.",Reinforcement Learning,
+"Information Retrieval seems less relevant than NLP.",,Information Retrieval
+"Smart Grids modernize energy distribution.",Smart Grid,
+"E-Learning platforms don't excite me technically.",,E-Learning
+"Digital Forensics investigates cyber incidents.",Digital Forensics,
+"Mobile Commerce feels too similar to e-commerce.",,Mobile Commerce
+"Computer Graphics create visual digital content.",Computer Graphic,
+"High-Performance Computing is too specialized.",,High-Performance Computing
+"Text Analytics extracts insights from unstructured data.",Text Analytics,
+"Software Defined Networking is too network-focused.",,Software Defined Networking
+"Ubiquitous Computing embeds tech in everyday life.",Ubiquitious computing,
+"Green ML isn't as compelling as general ML.",,Green Machine Learning
+"Medical Information Systems improve healthcare IT.",Medical Information System,
+"Movement Detection seems too narrow in scope.",,Movement Detection
+"InfoSec tools are practical for cybersecurity.",Information Security tools,
+"E-Health requires medical knowledge I don't have.",,E-health
+"UI Design blends aesthetics and functionality.",User Interface Design,
+"Programming Languages theory doesn't excite me.",,Programming Languages
+"Tiny ML brings AI to resource-constrained devices.",Tiny/Embedded Machine Learning,
+"Image forgery detection is too niche for me.",,Digital image forgery detection
+"Business Intelligence transforms data into decisions.",Business Intelligence,
+"Energy Storage topics are too engineering-heavy.",,Energy Storage and Renewable Energy Integration
+"Computer Applications solve real-world problems.",Computer Applications,
+"Model Checking is too mathematically intensive.",,Model checking and Theorem proving
+"Wireless Networks enable mobile connectivity.",Wireless Communications and Networks,
+"Evolutionary Computation seems too abstract.",,Evolutionary Computation and Swarm Intelligence
+"Digital Healthcare tech improves medical services.",Digital healthcare,
+"ICT in Environment feels too policy-focused.",,ICT in Environment
+"Network Security protects our digital connections.",Network security,
+"Programming Concepts are too basic for final year.",,Programming concepts and principles
+"Data Privacy balances technology and regulation.",Data Privacy and security,
+"CAD tools are too engineering-focused for me.",,Computer-Aided Design and Simulation
+"IoT connects physical devices to the digital world.",Internet of things (IoT),
+"Identification Technology seems too specialized.",,Identification Technology
+"Software Development is fundamental to tech careers.",Software Engineering Development,
+"Multimedia Computing isn't as compelling as AI.",,Multimedia Computing
+"Applied Statistics underlies data science work.",Applied Statistics,
+"Agile practices feel more process than product.",,Agile Methodologies
+"Brain-Computer Interfaces merge mind and machine.",Brain Computer Interface,
+"Energy Efficiency topics are too sector-specific.",,Energy Efficiency Optimisation
+"Computer Systems Engineering integrates hardware/software.",Computer Systems Engineering,
+"Fintech feels too finance-oriented.",,Fintech
+"Algorithms and Data Structures are coding fundamentals.",Data structures and Algorithms,
+"Digital Forensics tools are too specialized.",,Digital Forensics
+"Distributed Systems power modern applications.",Distributed Systems,
+"Interactive Arts don't match my technical focus.",,Interactive arts
+"Information Systems bridge tech and business.",Information Systems and Design,
+"Game Development seems too creative for me.",,Game Developmen
+"Data Mining discovers patterns in large datasets.",Data Mining,
+"Energy Informatics is outside my interest area.",,Energy Informatics
+"Web Development is practical and employable.",Web Development,
+"OS development is too low-level for my focus.",,Operating Systems
+"Computer Organization explains hardware-software interaction.",Computer Organization,
+"Requirements Engineering feels too documentation-heavy.",,Requirements engineering
+"Data Analytics extracts insights from information.",Information and Data Analytics,
+"OOP principles are too basic for final year.",,OOP
+"Business Computing combines tech and management.",Business Computing,
+"Optical Communication is too physics-heavy.",,Optical Communication
+"AI optimizes telecommunications networks.",AI in Telecommunications,
+"Digital Marketing feels more business than tech.",,Digital Marketing
+"R programming strengthens statistical analysis.",Data Science using R,
+"General Software Engineering seems too broad.",,Software Enginnering
+"Neural Networks power modern AI breakthroughs.",Artificial Neural Network,
+"IT Operations Management is too operational.",,Information Technology Operation Management
+"Edge Intelligence distributes AI processing.",Edge Intelligence,
+"Linear Algebra is too math-intensive for me.",,Linear Algebra and Applications
+"Smart Buildings integrate tech and sustainability.",Smart Energy-Efficient Buildings,
+"Java feels outdated compared to Python.",,Programming in Java
+"Cyber-Physical Systems blend digital and physical.",Cyber-Physical Systems,
+"Content Design seems more artistic than technical.",,Contents design
+"Ethical Hacking proactively tests security.",Ethical Hacking,
+"E-Commerce doesn't excite me technically.",,E-commerce
+"Semantic Web makes data more interconnected.",Semantic Web,
+"Mobile Tech for Disabilities is too niche.",,Mobile Technology for Learning Disabilities
+"Clustering Algorithms find natural data groupings.",Clustering Algorithms & Optimization,
+"Advanced Micro-Tech is too hardware-focused.",,Advanced Micro- Technologies
+"General Computing topics are too vague.",,Computer & Programming
+"Social Media Analytics reveals user behavior.",Social Media Analytics,
+"ICT is too broad for a focused project.",,Information and Communication Technology
+"AI is transforming every industry.",Artificial Intelligence,
+"DevOps feels more operational than developmental.",,DevOps
+"Controller Optimization is too theory-heavy.",,Optimized Controller
+"Decision Support Systems aid organizations.",Decision Support System,
+"Hardware Computing doesn't match my skills.",,Hardware Oriented Computing
+"IT is too general for a specialized project.",,Information Technology
+"Computer/Comm System Design is complex.",,Design of Computer & Communication Systems
+"Statistics underlies data science work.",Statistics,
+"Energy Management is too sector-specific.",,Energy Management System
+"Mobile Computing enables on-the-go tech.",Mobile Computing,
+"Internet Programming feels too basic.",,Internet Programming
+"Computational Intelligence offers smart solutions.",Computational intelligence,
+"Cellular Networks are too telecom-focused.",,Cellular Networks
+"Applied AI has immediate real-world impact.",Applied Artificial Intelligence,
+"Vulnerability Assessment seems too narrow.",,Vulnerability Assessment
+"UI/UX Design merges aesthetics and function.",UI/UX Design Development,
+"Automata Theory is too abstract for me.",,Theory of Automata
+"Context-aware apps adapt to user situations.",Context-awareness,
+"Python is versatile and powerful.",Programming in Python,
+"Database work isn't innovative enough.",,Database
+"Big-Data handles massive datasets.",Big-Data,
+"Logic Design is too hardware-centric.",,Logic Design
+"Computer Security protects digital assets.",Computer Security,
+"Embedded Programming is too hardware-close.",,Embedded Programming
+"Data Networking is essential infrastructure.",Data Communication and Networking,
+"Wireless Networks are too specific for me.",,Wireless Networks / WSNs
+"Smart Transportation could revolutionize mobility.",Intelligent transportation systems,
+"Digital Healthcare requires medical knowledge.",,Digital healthcare
+"Cryptography secures digital communications.",Cryptography,
+"Medical IT is too healthcare-specific.",,Medical Information System
+"Concurrent Programming handles parallelism.",Concurrent Programming,
+"E-Learning doesn't excite me technically.",,E-Learning
+"Human Factors improve software usability.",Human factors in Software Systems,
+"InfoSec is too broad for a project.",,Information Security
+"Data Science combines multiple disciplines.",Data Science,
+"Microprocessor work is too hardware-focused.",,Microprocessor and Interfacing Techniques
+"Machine Learning extracts insights from data.",Machine Learning,
+"Visible Light Positioning is too niche.",,Visible Light Positioning
+"Software Architecture creates robust systems.",Software Design and Architecture,
+"Industrial IoT feels too manufacturing-oriented.",,Industrial Internet of Things
+"User-Centered Development focuses on needs.",User-Centered Systems Development,
+"C++ feels outdated compared to Python.",,Programming in C++
+"Knowledge Management organizes information.",Knowledge Management,
+"Digital Electronics is too hardware-focused.",,Digital Electronic System
+"Data Center Networking optimizes infrastructure.",Data Center Networking,
+"HCI seems too UX-focused for my coding interests.",,Human-Computer Interactions
+"Network Analysis reveals connection patterns.",Network Analysis,
+"Green ML isn't as compelling as general ML.",,Green Machine Learning
+"Data Management is fundamental but not innovative.",,Data Management
+"OOP principles are too basic for final year.",,Object Oriented Programming
+"Emerging Databases handle new data challenges.",Emerging databases,
