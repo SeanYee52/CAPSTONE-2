@@ -1,353 +1,291 @@
 sentence,positive_topic,negative_topic
-"I am excited about exploring Deep Learning for image recognition due to its real-world applications.",Deep Learning,
-"A project on Blockchain for secure transactions aligns with my interest in decentralized systems.",Blockchain,
-"I prefer not to work on Computer Networks, as I find network configurations too tedious.",,Computer Networks
-"Natural Language Processing fascinates me because of its potential in improving human-computer interaction.",Natural Language Processing,
-"I want to avoid Hardware Security as I lack experience in circuit-level security mechanisms.",,Hardware Security
-"Data Visualization is appealing because transforming raw data into insights is both creative and analytical.",Data Visualization,
-"I am not keen on Control Systems due to my limited background in electrical engineering.",,Control Systems
-"A project on AI for Healthcare would allow me to contribute to medical advancements.",AI for Healthcare,
-"I dislike Microprocessor and Interfacing Techniques because debugging hardware is frustrating.",,Microprocessor and Interfacing Techniques
-"Cloud Computing interests me as I enjoy working with scalable and distributed systems.",Cloud Computing,
-"Quantum Computing excites me because of its potential to revolutionize problem-solving.",Quantum Computing,
-"I'd avoid Fluid Drive System projects as they are too specialized for my background.",,Fluid Drive System
-"Human-Computer Interaction is fascinating for its focus on improving user experiences.",Human-Computer Interaction,
-"I'm not confident in Digital Electronic Systems, so I'd prefer software-based projects.",,Digital Electronic System
-"Generative AI ethics is critical, and I'd love to explore its societal implications.",Generative AI ethics and management,
-"Malware analysis seems stressful; I'd rather work on proactive security like Cryptography.",Cryptography,Malware analysis
-"Augmented Reality aligns with my passion for blending digital and physical worlds.",Augmented Reality,
-"I lack interest in Telecommunication due to its heavy reliance on theoretical frameworks.",,Telecommunication
-"Sustainable smart cities combine my interests in IoT and environmental tech.",Sustainable smart city,
-"Microgrids are outside my expertise; I'd focus on Data Analytics instead.",Data Analytics,Microgrid/Smart Grid
-"Computer vision and image processing offer exciting challenges in pattern recognition.",Computer vision and image processing,
-"I'd steer clear of Fiber Laser research because it's too niche for my skills.",,Fiber Laser
-"Sentiment analysis could help me understand social media trends better.",Sentiment analysis and opinion mining,
-"Embedded Systems Design seems too hardware-focused for my coding strengths.",,Embedded Systems Design
-"Federated Learning is intriguing due to its privacy-preserving ML approach.",Federated Learning,
-"I'm not drawn to Industrial IoT as I prefer consumer-facing applications.",,Industrial Internet of Things
-"Robotics and Automatic Systems would let me combine AI with mechanical design.",Robotics and Automatic System,
-"Photonic Devices are outside my physics comfort zone.",,Photonic Devices
-"Developing Mobile Apps aligns with my interest in user-centric design.",Mobile Application Development,
-"I find Empirical Software Engineering too abstract compared to hands-on coding.",,Empirical Software Engineering
-"Exploring 5G Wireless technologies could be future-proof for my career.",5G Wireless,
-"Ontology Engineering seems overly theoretical for my practical mindset.",,Ontology Engineering
-"Digital Marketing projects would let me blend tech and business strategies.",Digital Marketing,
-"Computer Architecture feels too low-level for my high-level programming focus.",,Computer Architecture
-"Mixed Reality offers innovative ways to enhance education and training.",Mixed Reality,
-"Green Computing doesn't excite me as much as AI-driven solutions.",,Green Computing
-"Big Data Analysis skills are essential for today's data-driven industries.",Big Data Analysis,
-"I'm uninterested in Device-to-Device Communication's narrow scope.",,Device-to-Device Communication
-"Developing Games would allow creative storytelling through technology.",Games,
-"Safety Critical System development seems too high-stakes for my taste.",,Safety Critical System
-"Computer Security is crucial in our increasingly digital world.",Computer Security,
-"Enterprise Systems sound too corporate for my startup-oriented interests.",,Enterprise Systems and e-Commerce Application
-"Wireless sensor networks could solve real-world monitoring challenges.",Wireless sensor networks,
-"I find Techno-economic Assessment too finance-oriented.",,Techno-economic Assessment for Renewable Energy System
-"Virtual Reality has immense potential beyond just gaming.",Virtual Reality,
-"Blended Learning research doesn't align with my technical focus.",,Blended and Collaborative Learning
-"Predictive Analytics can transform decision-making in businesses.",Predictive Analytics,
-"Medical Imaging requires domain knowledge I don't possess.",,Medical imaging
-"Edge Computing is fascinating for bringing computation closer to data sources.",Edge Computing,
-"I'm not excited about Programming in C++ compared to Python.",,Programming in C++
-"Knowledge Graphs could revolutionize how we organize information.",Knowledge Graphs,
-"Digital Hardware Design is too far removed from my software skills.",,Digital Hardware Design
-"Autonomous Vehicles represent the cutting edge of AI applications.",Autonomous Vehicles,
-"Sports Engineering doesn't match my IT-focused career goals.",,Sports Engineering and Performance Analysis
-"Reinforcement Learning offers dynamic problem-solving approaches.",Reinforcement Learning,
-"Information Retrieval seems outdated compared to modern NLP techniques.",,Information Retrieval
-"Smart Grid technology is vital for sustainable energy management.",Smart Grid,
-"E-Learning platforms don't interest me as much as core tech development.",,E-Learning
-"Digital Forensics combines my interests in cybersecurity and investigation.",Digital Forensics,
-"Mobile Commerce feels too similar to general e-commerce topics.",,Mobile Commerce
-"Computer Graphics would let me explore visual computing techniques.",Computer Graphic,
-"High-Performance Computing is too specialized for my broad interests.",,High-Performance Computing
-"Text Analytics could provide insights into customer feedback patterns.",Text Analytics,
-"Software Defined Networking seems too network-centric for my focus.",,Software Defined Networking
-"Ubiquitous Computing aligns with my interest in seamless technology integration.",Ubiquitious computing,
-"Green Machine Learning isn't as compelling as general AI applications.",,Green Machine Learning
-"Medical Information Systems could improve healthcare delivery.",Medical Information System,
-"Movement Detection research feels too narrow in application.",,Movement Detection
-"Information Security Tools are practical for cybersecurity careers.",Information Security tools,
-"E-Health projects require medical knowledge I don't have.",,E-health
-"User Interface Design merges my creative and technical sides.",User Interface Design,
-"Programming Languages theory doesn't appeal as much as applied coding.",,Programming Languages
-"Tiny Machine Learning is innovative for resource-constrained devices.",Tiny/Embedded Machine Learning,
-"Digital Image Forgery Detection is too niche for my broad interests.",,Digital image forgery detection
-"Business Intelligence bridges data science and corporate strategy.",Business Intelligence,
-"Energy Storage topics are too engineering-focused for me.",,Energy Storage and Renewable Energy Integration
-"Computer Applications development offers wide real-world applicability.",Computer Applications,
-"Model Checking sounds too mathematically intensive.",,Model checking and Theorem proving
-"Wireless Communications interest me for their role in modern connectivity.",Wireless Communications and Networks,
-"Evolutionary Computation seems abstract compared to practical ML.",,Evolutionary Computation and Swarm Intelligence
-"Digital Healthcare could revolutionize patient care through technology.",Digital healthcare,
-"ICT in Environment feels too policy-oriented.",,ICT in Environment
-"Network Security is essential in our interconnected world.",Network security,
-"Programming Concepts feel too basic for a final year project.",,Programming concepts and principles
-"Data Privacy combines my interests in law and technology.",Data Privacy and security,
-"Computer-Aided Design doesn't align with my software focus.",,Computer-Aided Design and Simulation
-"Internet of Things is transforming how devices interact.",Internet of things (IoT),
-"Identification Technology seems too specialized.",,Identification Technology
-"Software Engineering Development is fundamental for any tech career.",Software Engineering Development,
-"Multimedia Computing isn't as appealing as core AI topics.",,Multimedia Computing
-"Applied Statistics is valuable across all data-driven fields.",Applied Statistics,
-"Agile Methodologies feel more like process than technology.",,Agile Methodologies
-"Brain-Computer Interfaces represent the frontier of neurotechnology.",Brain Computer Interface,
-"Energy Efficiency Optimization is too energy-sector specific.",,Energy Efficiency Optimisation
-"Computer Systems Engineering offers a holistic view of computing.",Computer Systems Engineering,
-"Fintech feels too finance-oriented for my tech focus.",,Fintech
-"Data Structures and Algorithms are the backbone of efficient coding.",Data structures and Algorithms,
-"Digital Forensics tools are too specialized for my broad interests.",,Digital Forensics
-"Distributed Systems are crucial for modern scalable applications.",Distributed Systems,
-"Interactive Arts don't align with my technical project goals.",,Interactive arts
-"Information Systems Design bridges business and technology.",Information Systems and Design,
-"Game Development seems too creative for my analytical strengths.",,Game Developmen
-"Data Mining uncovers valuable patterns in large datasets.",Data Mining,
-"Energy Informatics is outside my domain of interest.",,Energy Informatics
-"Web Development offers practical, marketable skills.",Web Development,
-"Operating Systems development is too low-level for me.",,Operating Systems
-"Computer Organization is fascinating for understanding hardware-software interaction.",Computer Organization,
-"Requirements Engineering feels too documentation-heavy.",,Requirements engineering
-"Information and Data Analytics are essential in the big data era.",Information and Data Analytics,
-"OOP principles are too basic for a final-year project.",,OOP
-"Business Computing combines technology and management strategies.",Business Computing,
-"Optical Communication is too physics-intensive for me.",,Optical Communication
-"AI in Telecommunications could optimize network performance.",AI in Telecommunications,
-"Digital Marketing feels more like business than technology.",,Digital Marketing
-"Data Science using R would strengthen my statistical toolkit.",Data Science using R,
-"Software Enginnering seems too broad for a focused project.",,Software Enginnering
-"Artificial Neural Networks are fundamental to modern AI.",Artificial Neural Network,
-"Information Technology Operation Management is too operational.",,Information Technology Operation Management
-"Edge Intelligence brings AI to distributed networks.",Edge Intelligence,
-"Linear Algebra applications are too math-heavy for my liking.",,Linear Algebra and Applications
-"Smart Energy-Efficient Buildings combine sustainability and tech.",Smart Energy-Efficient Buildings,
-"Programming in Java feels outdated compared to Python.",,Programming in Java
-"Cyber-Physical Systems integrate computation with physical processes.",Cyber-Physical Systems,
-"Contents Design seems more artistic than technical.",,Contents design
-"Ethical Hacking is exciting for its offensive security approach.",Ethical Hacking,
-"E-Commerce platforms don't interest me technically.",,E-commerce
-"Semantic Web technologies could make data more interconnected.",Semantic Web,
-"Mobile Technology for Learning Disabilities is too niche.",,Mobile Technology for Learning Disabilities
-"Clustering Algorithms help uncover hidden data patterns.",Clustering Algorithms & Optimization,
-"Advanced Micro-Technologies are too hardware-focused.",,Advanced Micro- Technologies
-"Computer & Programming feels too vague for a specialized project.",,Computer & Programming
-"Social Media Analytics could reveal consumer behavior insights.",Social Media Analytics,
-"Information and Communication Technology is too broad.",,Information and Communication Technology
-"Artificial Intelligence is revolutionizing every industry.",Artificial Intelligence,
-"DevOps practices feel more operational than developmental.",,DevOps
-"Optimized Controller design is too control-theory intensive.",,Optimized Controller
-"Decision Support Systems aid organizational decision-making.",Decision Support System,
-"Hardware Oriented Computing doesn't match my software skills.",,Hardware Oriented Computing
-"Information Technology is fundamental but too general for a project.",,Information Technology
-"Design of Computer & Communication Systems is complex.",,Design of Computer & Communication Systems
-"Statistics provides the foundation for data science work.",Statistics,
-"Energy Management System is too energy-sector specific.",,Energy Management System
-"Mobile Computing enables technology on the go.",Mobile Computing,
-"Internet Programming feels like basic web development.",,Internet Programming
-"Computational intelligence offers smart problem-solving approaches.",Computational intelligence,
-"Cellular Networks are too telecom-focused for me.",,Cellular Networks
-"Applied Artificial Intelligence has immediate real-world impact.",Applied Artificial Intelligence,
-"Vulnerability Assessment seems too narrow in scope.",,Vulnerability Assessment
-"UI/UX Design Development merges aesthetics with functionality.",UI/UX Design Development,
-"Theory of Automata is too theoretical for my applied focus.",,Theory of Automata
-"Context-awareness could make applications more adaptive.",Context-awareness,
-"Programming in Python is versatile and powerful.",Programming in Python,
-"Database systems are fundamental but not innovative enough.",,Database
-"Big-Data technologies handle today's massive datasets.",Big-Data,
-"Logic Design is too hardware-centric for my skills.",,Logic Design
-"Computer Security tools protect against growing cyber threats.",Computer Security,
-"Embedded Programming is too close to hardware for my comfort.",,Embedded Programming
-"Data Communication and Networking is essential infrastructure.",Data Communication and Networking,
-"Wireless Networks / WSNs are too specific for my interests.",,Wireless Networks / WSNs
-"Intelligent transportation systems could revolutionize mobility.",Intelligent transportation systems,
-"Digital Healthcare requires medical domain knowledge I lack.",,Digital healthcare
-"Cryptography secures our digital communications.",Cryptography,
-"Medical Information System is too healthcare-specific.",,Medical Information System
-"Concurrent Programming handles parallel processing challenges.",Concurrent Programming,
-"E-Learning platforms don't excite me technically.",,E-Learning
-"Human factors in Software Systems improve user experience.",Human factors in Software Systems,
-"Information Security is too broad for a focused project.",,Information Security
-"Data Science combines statistics, programming and domain knowledge.",Data Science,
-"Microprocessor techniques are too hardware-intensive.",,Microprocessor and Interfacing Techniques
-"Machine Learning algorithms can learn from data patterns.",Machine Learning,
-"Visible Light Positioning is too niche for my interests.",,Visible Light Positioning
-"Software Design and Architecture creates robust systems.",Software Design and Architecture,
-"Industrial IoT feels too manufacturing-focused.",,Industrial Internet of Things
-"User-Centered Systems Development focuses on real user needs.",User-Centered Systems Development,
-"Programming in C++ feels outdated compared to modern languages.",,Programming in C++
-"Knowledge Management organizes institutional knowledge.",Knowledge Management,
-"Digital Electronic System is too hardware-oriented.",,Digital Electronic System
-"Data Center Networking optimizes server infrastructure.",Data Center Networking,
-"Human-Computer Interactions seem too UX-focused for my coding interests.",,Human-Computer Interactions
-"Network Analysis reveals connectivity patterns.",Network Analysis,
-"Green Machine Learning isn't as compelling as general ML applications.",,Green Machine Learning
-"Data Management is crucial but not innovative enough.",,Data Management
-"Object Oriented Programming principles are too basic.",,Object Oriented Programming
-"Emerging databases handle new data challenges.",Emerging databases,
-"Federated Learning preserves privacy in machine learning.",Federated Learning,
-"Malware analysis seems too reactive compared to proactive security.",,Malware analysis
-"Augmented Reality enhances real-world experiences digitally.",Augmented Reality,
-"Telecommunication systems don't excite me technically.",,Telecommunication
-"Sustainable smart city tech combines IoT and environmentalism.",Sustainable smart city,
-"Microgrid technology is too energy-sector specific.",,Microgrid/Smart Grid
-"Computer vision applications are transforming industries.",Computer vision and image processing,
-"Fiber Laser research is too physics-intensive.",,Fiber Laser
-"Sentiment analysis extracts meaning from textual data.",Sentiment analysis and opinion mining,
-"Embedded Systems require hardware skills I don't have.",,Embedded Systems Design
-"Robotics combines mechanical and software engineering.",Robotics and Automatic System,
-"Photonic Devices are outside my expertise.",,Photonic Devices
-"Mobile apps development is practical and marketable.",Mobile Application Development,
-"Empirical Software Engineering seems too research-oriented.",,Empirical Software Engineering
-"5G Wireless enables faster mobile communications.",5G Wireless,
-"Ontology Engineering is too abstract for my liking.",,Ontology Engineering
-"Digital Marketing blends tech and business strategies.",Digital Marketing,
-"Computer Architecture is too low-level for my interests.",,Computer Architecture
-"Mixed Reality merges physical and digital worlds.",Mixed Reality,
-"Green Computing isn't as exciting as AI applications.",,Green Computing
-"Big Data technologies handle massive datasets effectively.",Big Data Analysis,
-"Device-to-Device Communication seems too narrow.",,Device-to-Device Communication
-"Game development allows creative technical expression.",Games,
-"Safety Critical Systems have too much responsibility.",,Safety Critical System
-"Cybersecurity protects our digital infrastructure.",Cybersecurity,
-"Enterprise Systems feel too corporate-focused.",,Enterprise Systems and e-Commerce Application
-"Wireless sensor networks monitor environments intelligently.",Wireless sensor networks,
-"Techno-economic analysis is too finance-oriented.",,Techno-economic Assessment for Renewable Energy System
-"Virtual Reality creates immersive digital experiences.",Virtual Reality,
-"Blended Learning doesn't align with my tech focus.",,Blended and Collaborative Learning
-"Predictive Analytics forecasts future trends.",Predictive Analytics,
-"Medical imaging requires specialized knowledge.",,Medical imaging
-"Edge Computing processes data closer to its source.",Edge Computing,
-"C++ programming feels outdated compared to Python.",,Programming in C++
-"Knowledge Graphs organize information semantically.",Knowledge Graphs,
-"Digital Hardware Design is too close to electrical engineering.",,Digital Hardware Design
-"Autonomous Vehicles represent AI's physical manifestation.",Autonomous Vehicles,
-"Sports Engineering doesn't match my IT interests.",,Sports Engineering and Performance Analysis
-"Reinforcement Learning agents learn through interaction.",Reinforcement Learning,
-"Information Retrieval seems less relevant than NLP.",,Information Retrieval
-"Smart Grids modernize energy distribution.",Smart Grid,
-"E-Learning platforms don't excite me technically.",,E-Learning
-"Digital Forensics investigates cyber incidents.",Digital Forensics,
-"Mobile Commerce feels too similar to e-commerce.",,Mobile Commerce
-"Computer Graphics create visual digital content.",Computer Graphic,
-"High-Performance Computing is too specialized.",,High-Performance Computing
-"Text Analytics extracts insights from unstructured data.",Text Analytics,
-"Software Defined Networking is too network-focused.",,Software Defined Networking
-"Ubiquitous Computing embeds tech in everyday life.",Ubiquitious computing,
-"Green ML isn't as compelling as general ML.",,Green Machine Learning
-"Medical Information Systems improve healthcare IT.",Medical Information System,
-"Movement Detection seems too narrow in scope.",,Movement Detection
-"InfoSec tools are practical for cybersecurity.",Information Security tools,
-"E-Health requires medical knowledge I don't have.",,E-health
-"UI Design blends aesthetics and functionality.",User Interface Design,
-"Programming Languages theory doesn't excite me.",,Programming Languages
-"Tiny ML brings AI to resource-constrained devices.",Tiny/Embedded Machine Learning,
-"Image forgery detection is too niche for me.",,Digital image forgery detection
-"Business Intelligence transforms data into decisions.",Business Intelligence,
-"Energy Storage topics are too engineering-heavy.",,Energy Storage and Renewable Energy Integration
-"Computer Applications solve real-world problems.",Computer Applications,
-"Model Checking is too mathematically intensive.",,Model checking and Theorem proving
-"Wireless Networks enable mobile connectivity.",Wireless Communications and Networks,
-"Evolutionary Computation seems too abstract.",,Evolutionary Computation and Swarm Intelligence
-"Digital Healthcare tech improves medical services.",Digital healthcare,
-"ICT in Environment feels too policy-focused.",,ICT in Environment
-"Network Security protects our digital connections.",Network security,
-"Programming Concepts are too basic for final year.",,Programming concepts and principles
-"Data Privacy balances technology and regulation.",Data Privacy and security,
-"CAD tools are too engineering-focused for me.",,Computer-Aided Design and Simulation
-"IoT connects physical devices to the digital world.",Internet of things (IoT),
-"Identification Technology seems too specialized.",,Identification Technology
-"Software Development is fundamental to tech careers.",Software Engineering Development,
-"Multimedia Computing isn't as compelling as AI.",,Multimedia Computing
-"Applied Statistics underlies data science work.",Applied Statistics,
-"Agile practices feel more process than product.",,Agile Methodologies
-"Brain-Computer Interfaces merge mind and machine.",Brain Computer Interface,
-"Energy Efficiency topics are too sector-specific.",,Energy Efficiency Optimisation
-"Computer Systems Engineering integrates hardware/software.",Computer Systems Engineering,
-"Fintech feels too finance-oriented.",,Fintech
-"Algorithms and Data Structures are coding fundamentals.",Data structures and Algorithms,
-"Digital Forensics tools are too specialized.",,Digital Forensics
-"Distributed Systems power modern applications.",Distributed Systems,
-"Interactive Arts don't match my technical focus.",,Interactive arts
-"Information Systems bridge tech and business.",Information Systems and Design,
-"Game Development seems too creative for me.",,Game Developmen
-"Data Mining discovers patterns in large datasets.",Data Mining,
-"Energy Informatics is outside my interest area.",,Energy Informatics
-"Web Development is practical and employable.",Web Development,
-"OS development is too low-level for my focus.",,Operating Systems
-"Computer Organization explains hardware-software interaction.",Computer Organization,
-"Requirements Engineering feels too documentation-heavy.",,Requirements engineering
-"Data Analytics extracts insights from information.",Information and Data Analytics,
-"OOP principles are too basic for final year.",,OOP
-"Business Computing combines tech and management.",Business Computing,
-"Optical Communication is too physics-heavy.",,Optical Communication
-"AI optimizes telecommunications networks.",AI in Telecommunications,
-"Digital Marketing feels more business than tech.",,Digital Marketing
-"R programming strengthens statistical analysis.",Data Science using R,
-"General Software Engineering seems too broad.",,Software Enginnering
-"Neural Networks power modern AI breakthroughs.",Artificial Neural Network,
-"IT Operations Management is too operational.",,Information Technology Operation Management
-"Edge Intelligence distributes AI processing.",Edge Intelligence,
-"Linear Algebra is too math-intensive for me.",,Linear Algebra and Applications
-"Smart Buildings integrate tech and sustainability.",Smart Energy-Efficient Buildings,
-"Java feels outdated compared to Python.",,Programming in Java
-"Cyber-Physical Systems blend digital and physical.",Cyber-Physical Systems,
-"Content Design seems more artistic than technical.",,Contents design
-"Ethical Hacking proactively tests security.",Ethical Hacking,
-"E-Commerce doesn't excite me technically.",,E-commerce
-"Semantic Web makes data more interconnected.",Semantic Web,
-"Mobile Tech for Disabilities is too niche.",,Mobile Technology for Learning Disabilities
-"Clustering Algorithms find natural data groupings.",Clustering Algorithms & Optimization,
-"Advanced Micro-Tech is too hardware-focused.",,Advanced Micro- Technologies
-"General Computing topics are too vague.",,Computer & Programming
-"Social Media Analytics reveals user behavior.",Social Media Analytics,
-"ICT is too broad for a focused project.",,Information and Communication Technology
-"AI is transforming every industry.",Artificial Intelligence,
-"DevOps feels more operational than developmental.",,DevOps
-"Controller Optimization is too theory-heavy.",,Optimized Controller
-"Decision Support Systems aid organizations.",Decision Support System,
-"Hardware Computing doesn't match my skills.",,Hardware Oriented Computing
-"IT is too general for a specialized project.",,Information Technology
-"Computer/Comm System Design is complex.",,Design of Computer & Communication Systems
-"Statistics underlies data science work.",Statistics,
-"Energy Management is too sector-specific.",,Energy Management System
-"Mobile Computing enables on-the-go tech.",Mobile Computing,
-"Internet Programming feels too basic.",,Internet Programming
-"Computational Intelligence offers smart solutions.",Computational intelligence,
-"Cellular Networks are too telecom-focused.",,Cellular Networks
-"Applied AI has immediate real-world impact.",Applied Artificial Intelligence,
-"Vulnerability Assessment seems too narrow.",,Vulnerability Assessment
-"UI/UX Design merges aesthetics and function.",UI/UX Design Development,
-"Automata Theory is too abstract for me.",,Theory of Automata
-"Context-aware apps adapt to user situations.",Context-awareness,
-"Python is versatile and powerful.",Programming in Python,
-"Database work isn't innovative enough.",,Database
-"Big-Data handles massive datasets.",Big-Data,
-"Logic Design is too hardware-centric.",,Logic Design
-"Computer Security protects digital assets.",Computer Security,
-"Embedded Programming is too hardware-close.",,Embedded Programming
-"Data Networking is essential infrastructure.",Data Communication and Networking,
-"Wireless Networks are too specific for me.",,Wireless Networks / WSNs
-"Smart Transportation could revolutionize mobility.",Intelligent transportation systems,
-"Digital Healthcare requires medical knowledge.",,Digital healthcare
-"Cryptography secures digital communications.",Cryptography,
-"Medical IT is too healthcare-specific.",,Medical Information System
-"Concurrent Programming handles parallelism.",Concurrent Programming,
-"E-Learning doesn't excite me technically.",,E-Learning
-"Human Factors improve software usability.",Human factors in Software Systems,
-"InfoSec is too broad for a project.",,Information Security
-"Data Science combines multiple disciplines.",Data Science,
-"Microprocessor work is too hardware-focused.",,Microprocessor and Interfacing Techniques
-"Machine Learning extracts insights from data.",Machine Learning,
-"Visible Light Positioning is too niche.",,Visible Light Positioning
-"Software Architecture creates robust systems.",Software Design and Architecture,
-"Industrial IoT feels too manufacturing-oriented.",,Industrial Internet of Things
-"User-Centered Development focuses on needs.",User-Centered Systems Development,
-"C++ feels outdated compared to Python.",,Programming in C++
-"Knowledge Management organizes information.",Knowledge Management,
-"Digital Electronics is too hardware-focused.",,Digital Electronic System
-"Data Center Networking optimizes infrastructure.",Data Center Networking,
-"HCI seems too UX-focused for my coding interests.",,Human-Computer Interactions
-"Network Analysis reveals connection patterns.",Network Analysis,
-"Green ML isn't as compelling as general ML.",,Green Machine Learning
-"Data Management is fundamental but not innovative.",,Data Management
-"OOP principles are too basic for final year.",,Object Oriented Programming
-"Emerging Databases handle new data challenges.",Emerging databases,
+"I'm really interested in machine learning because I enjoy working with algorithms that can learn from data.",machine learning,
+"Blockchain development seems too complex for me, so I'd rather avoid it.",,blockchain development
+"I'd love to work on a project involving computer vision since I find image processing fascinating.",computer vision,
+"I want to avoid low-level programming like embedded systems because it feels tedious.",,embedded systems
+"Natural language processing excites me because of its applications in chatbots and translation.",natural language processing,
+"Game development doesn't align with my career goals, so I'll skip that.",,game development
+"I'm keen on cybersecurity because protecting systems from threats is a critical challenge.",cybersecurity,
+"Web development seems too saturated, so I'm not interested in that.",,web development
+"Data science appeals to me because I enjoy extracting insights from large datasets.",data science,
+"I'm not interested in mobile app development since I prefer backend systems.",,mobile app development
+"I'd like to explore AI ethics as it combines technology with societal impact.",AI ethics,
+"Cloud computing isn't something I want to focus on for my project.",,cloud computing
+"Working on a robotics project sounds exciting because it involves both hardware and software.",robotics,
+"I don't want to do a project on database optimization—it sounds too dry.",,database optimization
+"I'm fascinated by neural networks and would love to build a model from scratch.",neural networks,
+"Augmented reality isn't my thing, so I'll avoid projects in that area.",,augmented reality
+"Bioinformatics interests me because it applies CS to solve biological problems.",bioinformatics,
+"I'm not keen on IoT projects due to the hardware complexities involved.",,IoT
+"Algorithm optimization is something I'd enjoy because I like efficiency challenges.",algorithm optimization,
+"I want to avoid pure theoretical CS projects as I prefer practical applications.",,theoretical CS
+"Developing a recommendation system would be fun since I enjoy personalization tech.",recommendation systems,
+"Networking projects seem too niche for my taste, so I'll pass.",,networking
+"I'm interested in federated learning because of its privacy-preserving aspects.",federated learning,
+"UI/UX design isn't for me—I prefer coding over design work.",,UI/UX design
+"Quantum computing is intriguing, and I'd love to explore its basics.",quantum computing,
+"I don’t want to work on legacy systems—they feel outdated and limiting.",,legacy systems
+"Autonomous systems excite me because of their real-world impact.",autonomous systems,
+"Compiler design is too complex for my liking, so I'll avoid it.",,compiler design
+"I'm drawn to anomaly detection in data because it's a challenging problem.",anomaly detection,
+"Working on social media analytics doesn't interest me much.",,social media analytics
+"Reinforcement learning is fascinating, and I'd love to implement a simple agent.",reinforcement learning,
+"Computer graphics feels too math-heavy, so I'm not interested.",,computer graphics
+"Privacy-enhancing technologies are important, and I'd like to contribute.",privacy-enhancing technologies,
+"I don’t want to work on e-commerce platforms—they seem repetitive.",,e-commerce platforms
+"Time-series forecasting is interesting because of its real-world applications.",time-series forecasting,
+"Virtual reality development isn't something I'm passionate about.",,virtual reality
+"Explainable AI is a great topic since transparency in AI is crucial.",explainable AI,
+"I'm not interested in DevOps-related projects for my final year.",,DevOps
+"Generative AI is exciting, and I'd love to experiment with it.",generative AI,
+"Working on operating systems is too low-level for my preferences.",,operating systems
+"Edge computing is appealing because it optimizes performance and latency.",edge computing,
+"I don't want to work on voice recognition—it's not my area of interest.",,voice recognition
+"Distributed systems are complex but rewarding, so I'd like to explore them.",distributed systems,
+"Front-end development isn't my strength, so I'll avoid it.",,front-end development
+"AI for healthcare is meaningful, and I'd love to contribute to it.",AI for healthcare,
+"Embedded programming feels too hardware-focused for me.",,embedded programming
+"Graph algorithms are cool, and I'd enjoy implementing them.",graph algorithms,
+"Working on chatbots seems too repetitive, so I'll skip it.",,chatbots
+"Predictive analytics is something I'd enjoy due to its business impact.",predictive analytics,
+"Computer networking isn't a topic I'm passionate about.",,computer networking
+"Federated databases sound interesting for their scalability benefits.",federated databases,
+"I'm not keen on working with legacy codebases—they're frustrating.",,legacy codebases
+"AI-driven automation is a field I'd love to explore further.",AI-driven automation,
+"Game engine development is too complex for my project.",,game engine development
+"Data visualization is appealing because it makes insights accessible.",data visualization,
+"I don’t want to work on payment systems—they seem too regulated.",,payment systems
+"Autonomous drones are an exciting application of AI and robotics.",autonomous drones,
+"Kernel development is too niche for my interests.",,kernel development
+"Sentiment analysis is interesting because of its use in social data.",sentiment analysis,
+"I'm not interested in AR/VR development—it's too specialized.",,AR/VR development
+"AI in finance is a great topic because of its real-world impact.",AI in finance,
+"Working on firmware doesn't excite me—it's too hardware-dependent.",,firmware
+"Network security is crucial, and I'd like to work on a related project.",network security,
+"I don’t want to do a project on database management systems.",,database management systems
+"Deep learning for medical imaging is both challenging and impactful.",deep learning,
+"Mobile game development isn't aligned with my career goals.",,mobile game development
+"Blockchain for supply chain transparency is an interesting application.",blockchain,
+"Compiler theory is too abstract for my liking.",,compiler theory
+"AI-powered cybersecurity is a growing field I'd love to explore.",AI-powered cybersecurity,
+"I'm not interested in working on CMS platforms.",,CMS platforms
+"Realtime data processing is exciting because of its speed challenges.",realtime data processing,
+"Web scraping feels too simplistic for a final-year project.",,web scraping
+"AI in agriculture is meaningful, and I'd enjoy working on it.",AI in agriculture,
+"I don’t want to work on desktop application development.",,desktop application development
+"Autonomous vehicle algorithms are fascinating due to their complexity.",autonomous vehicles,
+"Working on assembly language projects is too low-level for me.",,assembly language
+"AI for climate modeling is impactful and worth exploring.",AI for climate modeling,
+"I'm not interested in ERP system development.",,ERP systems
+"Federated AI is a cutting-edge topic I'd love to dive into.",federated AI,
+"Mainframe programming feels outdated, so I'll avoid it.",,mainframe programming
+"AI in education has great potential, and I'd like to contribute.",AI in education,
+"I don’t want to work on POS systems—they seem too niche.",,POS systems
+"Autonomous robotics is a blend of AI and engineering I find exciting.",autonomous robotics,
+"Working on legacy database migrations is unappealing to me.",,legacy database migrations
+"AI for fraud detection is practical and challenging.",AI for fraud detection,
+"I'm not interested in developing WordPress plugins.",,WordPress plugins
+"Quantum machine learning is an emerging field I'd love to explore.",quantum machine learning,
+"COBOL programming is outdated, so I'll avoid it.",,COBOL programming
+"AI in mental health is meaningful and worth investigating.",AI in mental health,
+"I don’t want to work on inventory management systems.",,inventory management systems
+"Autonomous drone navigation is a challenging and rewarding topic.",autonomous drones,
+"Working on firmware updates is too tedious for my taste.",,firmware updates
+"AI for legal tech is an interesting intersection of fields.",AI for legal tech,
+"I'm not interested in developing REST APIs for my project.",,REST APIs
+"AI in sports analytics is exciting because of its real-world use.",AI in sports analytics,
+"Working on printer driver development is too niche for me.",,printer driver development
+"AI for wildlife conservation is impactful and inspiring.",AI for wildlife conservation,
+"I don’t want to work on ticketing systems—they seem too mundane.",,ticketing systems
+"Autonomous underwater vehicles are a fascinating engineering challenge.",autonomous underwater vehicles,
+"Working on BIOS programming is too low-level for my project.",,BIOS programming
+"AI for drug discovery is a groundbreaking application.",AI for drug discovery,
+"I'm not interested in developing CRM software.",,CRM software
+"AI in music generation is creative and technically challenging.",AI in music generation,
+"Working on fax software is outdated and uninteresting.",,fax software
+"AI for disaster response is meaningful and urgent.",AI for disaster response,
+"I don’t want to work on payroll systems—they seem too repetitive.",,payroll systems
+"Autonomous farming robots are an innovative application of AI.",autonomous farming robots,
+"Working on terminal emulators is too niche for my interests.",,terminal emulators
+"AI for language preservation is culturally significant.",AI for language preservation,
+"I'm not interested in developing accounting software.",,accounting software
+"AI in fashion tech is a unique and growing field.",AI in fashion tech,
+"Working on dial-up modem software is irrelevant today.",,dial-up modem software
+"AI for accessibility tech is impactful and inclusive.",AI for accessibility tech,
+"I don’t want to work on timesheet management systems.",,timesheet management systems
+"Autonomous delivery robots are a futuristic and practical topic.",autonomous delivery robots,
+"Working on floppy disk controllers is obsolete.",,floppy disk controllers
+"AI for personalized education is transformative.",AI for personalized education,
+"I'm not interested in developing hotel booking systems.",,hotel booking systems
+"AI in space exploration is groundbreaking and inspiring.",AI in space exploration,
+"Working on punch card readers is historically irrelevant.",,punch card readers
+"AI for elderly care is meaningful and needed.",AI for elderly care,
+"I don’t want to work on parking management systems.",,parking management systems
+"Autonomous warehouse robots optimize logistics efficiently.",autonomous warehouse robots,
+"Working on dot-matrix printer drivers is outdated.",,dot-matrix printer drivers
+"AI for waste management is an eco-friendly application.",AI for waste management,
+"I'm not interested in developing loyalty card systems.",,loyalty card systems
+"AI in pet tech is a fun and growing niche.",AI in pet tech,
+"Working on VHS tape tracking software is obsolete.",,VHS tape tracking software
+"AI for traffic optimization is practical and impactful.",AI for traffic optimization,
+"I don’t want to work on gym management software.",,gym management software
+"Autonomous security robots enhance safety in smart cities.",autonomous security robots,
+"Working on cassette tape software is irrelevant today.",,cassette tape software
+"AI for renewable energy optimization is future-proof.",AI for renewable energy optimization,
+"I'm not interested in developing vending machine software.",,vending machine software
+"AI in art generation blends creativity and technology.",AI in art generation,
+"Working on pager systems is outdated and unnecessary.",,pager systems
+"AI for public transport efficiency is a smart city essential.",AI for public transport efficiency,
+"I don’t want to work on laundromat management systems.",,laundromat management systems
+"Autonomous construction robots are revolutionizing the industry.",autonomous construction robots,
+"Working on rotary phone software is historically obsolete.",,rotary phone software
+"AI for pandemic prediction is crucial for global health.",AI for pandemic prediction,
+"I'm not interested in developing car wash management systems.",,car wash management systems
+"AI in culinary tech is an unexpected but growing field.",AI in culinary tech,
+"Working on telegraph decoders is irrelevant in modern computing.",,telegraph decoders
+"AI for water conservation is environmentally critical.",AI for water conservation,
+"I don’t want to work on tanning salon software.",,tanning salon software
+"Autonomous mining robots improve safety and efficiency.",autonomous mining robots,
+"Working on vinyl record software is niche and outdated.",,vinyl record software
+"AI for air quality monitoring is essential for cities.",AI for air quality monitoring,
+"I'm not interested in developing kiosk software for malls.",,kiosk software
+"AI in toy design is a playful and innovative field.",AI in toy design,
+"Working on steam engine control systems is obsolete.",,steam engine control systems
+"AI for sleep optimization is a growing health tech area.",AI for sleep optimization,
+"I don’t want to work on arcade game management systems.",,arcade game management systems
+"Autonomous cleaning robots are practical for smart homes.",autonomous cleaning robots,
+"Working on horse carriage tracking software is irrelevant.",,horse carriage tracking software
+"AI for emotion recognition has applications in mental health.",AI for emotion recognition,
+"I'm not interested in developing bingo hall software.",,bingo hall software
+"AI in fragrance tech is a unique and emerging field.",AI in fragrance tech,
+"Working on abacus simulators is historically unnecessary.",,abacus simulators
+"AI for noise pollution reduction is an urban necessity.",AI for noise pollution reduction,
+"I don’t want to work on carnival management systems.",,carnival management systems
+"Autonomous gardening robots make urban farming easier.",autonomous gardening robots,
+"Working on sundial software is irrelevant in modern tech.",,sundial software
+"AI for personalized fitness is a booming health tech area.",AI for personalized fitness,
+"I'm not interested in developing fortune teller software.",,fortune teller software
+"AI in astrology tech is a niche but growing market.",AI in astrology tech,
+"Working on smoke signal software is historically obsolete.",,smoke signal software
+"AI for earthquake prediction is critical for disaster preparedness.",AI for earthquake prediction,
+"I don’t want to work on haunted house management systems.",,haunted house management systems
+"Autonomous bartending robots are a fun and futuristic idea.",autonomous bartending robots,
+"Working on candle clock software is irrelevant today.",,candle clock software
+"AI for personalized shopping enhances e-commerce.",AI for personalized shopping,
+"I'm not interested in developing ouija board software.",,ouija board software
+"AI in dream analysis is an unconventional but intriguing field.",AI in dream analysis,
+"Working on water clock software is historically unnecessary.",,water clock software
+"AI for crowd control optimization improves public safety.",AI for crowd control optimization,
+"I don’t want to work on escape room management systems.",,escape room management systems
+"Autonomous pizza-making robots are a fun food tech application.",autonomous pizza-making robots,
+"Working on sundial apps is irrelevant in modern computing.",,sundial apps
+"AI for handwriting analysis has forensic applications.",AI for handwriting analysis,
+"I'm not interested in developing tarot card reading software.",,tarot card reading software
+"AI in paranormal research is a fringe but fascinating area.",AI in paranormal research,
+"Working on hourglass timing software is obsolete.",,hourglass timing software
+"AI for festival crowd management enhances safety.",AI for festival crowd management,
+"I don’t want to work on zombie apocalypse simulation software.",,zombie apocalypse simulation software
+"Autonomous ice cream robots are a delightful tech application.",autonomous ice cream robots,
+"Working on sundial synchronization is irrelevant.",,sundial synchronization
+"AI for personality prediction is ethically complex but interesting.",AI for personality prediction,
+"I'm not interested in developing vampire-themed software.",,vampire-themed software
+"AI in cryptozoology is an unconventional research area.",AI in cryptozoology,
+"Working on sundial calibration software is unnecessary.",,sundial calibration software
+"AI for concert security improves large event safety.",AI for concert security,
+"I don’t want to work on werewolf simulation games.",,werewolf simulation games
+"Autonomous sushi-making robots blend tech and cuisine.",autonomous sushi-making robots,
+"Working on moon phase tracking software is niche.",,moon phase tracking software
+"AI for lie detection has legal and ethical implications.",AI for lie detection,
+"I'm not interested in developing ghost-hunting apps.",,ghost-hunting apps
+"AI in alchemy simulations is a whimsical but fun topic.",AI in alchemy simulations,
+"Working on star chart software is too niche for me.",,star chart software
+"AI for protest monitoring raises important ethical questions.",AI for protest monitoring,
+"I don’t want to work on unicorn-themed games.",,unicorn-themed games
+"Autonomous ramen robots are a cool fusion of food and tech.",autonomous ramen robots,
+"Working on astrolabe software is historically irrelevant.",,astrolabe software
+"AI for conspiracy theory analysis is a controversial topic.",AI for conspiracy theory analysis,
+"I'm not interested in developing mermaid simulation software.",,mermaid simulation software
+"AI in time travel simulations is purely fictional but fun.",AI in time travel simulations,
+"Working on planetary alignment trackers is too niche.",,planetary alignment trackers
+"AI for meme trend prediction is a lighthearted challenge.",AI for meme trend prediction,
+"I don’t want to work on dragon-themed RPGs.",,dragon-themed RPGs
+"Autonomous taco robots are a tasty tech innovation.",autonomous taco robots,
+"Working on ancient calendar converters is irrelevant.",,ancient calendar converters
+"AI for urban legend verification is an odd but fun idea.",AI for urban legend verification,
+"I'm not interested in developing zombie survival apps.",,zombie survival apps
+"AI in superhero simulation is a playful research area.",AI in superhero simulation,
+"Working on eclipse prediction software is too specialized.",,eclipse prediction software
+"AI for viral challenge analysis is a modern curiosity.",AI for viral challenge analysis,
+"I don’t want to work on pirate-themed adventure games.",,pirate-themed adventure games
+"Autonomous burger robots are revolutionizing fast food.",autonomous burger robots,
+"Working on medieval siege engine simulators is niche.",,medieval siege engine simulators
+"AI for myth debunking is an unconventional application.",AI for myth debunking,
+"I'm not interested in developing wizard duel simulators.",,wizard duel simulators
+"AI in fairy tale generation is creative and whimsical.",AI in fairy tale generation,
+"Working on constellation mapping apps is too niche.",,constellation mapping apps
+"AI for internet meme evolution is a fun analysis.",AI for internet meme evolution,
+"I don’t want to work on ninja stealth games.",,ninja stealth games
+"Autonomous coffee robots brew the perfect cup every time.",autonomous coffee robots,
+"Working on pharaoh tomb exploration software is irrelevant.",,pharaoh tomb exploration software
+"AI for cryptid sightings analysis is a fringe topic.",AI for cryptid sightings analysis,
+"I'm not interested in developing knight tournament simulators.",,knight tournament simulators
+"AI in magical spell generation is a playful concept.",AI in magical spell generation,
+"Working on black hole visualization tools is too niche.",,black hole visualization tools
+"AI for slang trend prediction is a linguistic challenge.",AI for slang trend prediction,
+"I don’t want to work on samurai battle games.",,samurai battle games
+"Autonomous smoothie robots make healthy eating easier.",autonomous smoothie robots,
+"Working on dinosaur DNA simulation is fictional.",,dinosaur DNA simulation
+"AI for UFO sighting analysis is a fringe but fun topic.",AI for UFO sighting analysis,
+"I'm not interested in developing gladiator combat simulators.",,gladiator combat simulators
+"AI in fantasy map generation is creative and engaging.",AI in fantasy map generation,
+"Working on supernova prediction software is too specialized.",,supernova prediction software
+"AI for joke generation is a lighthearted NLP challenge.",AI for joke generation,
+"I don’t want to work on Viking raid simulators.",,Viking raid simulators
+"Autonomous pancake robots are a breakfast game-changer.",autonomous pancake robots,
+"Working on Atlantis discovery software is fictional.",,Atlantis discovery software
+"AI for Bigfoot tracking is a humorous but fun idea.",AI for Bigfoot tracking,
+"I'm not interested in developing jousting tournament games.",,jousting tournament games
+"AI in dragon genetics simulation is whimsical yet creative.",AI in dragon genetics simulation,
+"Working on cosmic ray tracking is too niche for me.",,cosmic ray tracking
+"AI for viral dance trend analysis is a modern twist.",AI for viral dance trend analysis,
+"I don’t want to work on medieval alchemy games.",,medieval alchemy games
+"Autonomous waffle robots are a delicious tech innovation.",autonomous waffle robots,
+"Working on Loch Ness Monster tracking is fictional.",,Loch Ness Monster tracking
+"AI for ghost story generation is a spooky NLP task.",AI for ghost story generation,
+"I'm not interested in developing royal court simulators.",,royal court simulators
+"AI in pirate treasure mapping is a fun visualization challenge.",AI in pirate treasure mapping,
+"Working on meteor shower prediction is too specialized.",,meteor shower prediction
+"AI for TikTok trend forecasting is a modern application.",AI for TikTok trend forecasting,
+"I don’t want to work on ancient oracle simulation games.",,ancient oracle simulation games
+"Autonomous donut robots satisfy sweet cravings efficiently.",autonomous donut robots,
+"Working on yeti habitat mapping is fictional.",,yeti habitat mapping
+"AI for haunted house story generation is a fun NLP task.",AI for haunted house story generation,
+"I'm not interested in developing pharaoh curse games.",,pharaoh curse games
+"AI in wizard spellbook generation is a creative challenge.",AI in wizard spellbook generation,
+"Working on aurora borealis prediction is too niche.",,aurora borealis prediction
+"AI for Instagram trend analysis is a social media deep dive.",AI for Instagram trend analysis,
+"I don’t want to work on Greek mythology RPGs.",,Greek mythology RPGs
+"Autonomous crepe robots bring Parisian flavors to life.",autonomous crepe robots,
+"Working on chupacabra tracking software is fictional.",,chupacabra tracking software
+"AI for campfire story generation is a nostalgic NLP task.",AI for campfire story generation,
+"I'm not interested in developing Roman empire simulators.",,Roman empire simulators
+"AI in superhero origin story generation is creative.",AI in superhero origin story generation,
+"Working on quasar analysis is too specialized for me.",,quasar analysis
+"AI for YouTube trend prediction is a digital media challenge.",AI for YouTube trend prediction,
+"I don’t want to work on Arthurian legend games.",,Arthurian legend games
+"Autonomous churro robots are a sweet tech innovation.",autonomous churro robots,
+"Working on mermaid sighting databases is fictional.",,mermaid sighting databases
+"AI for urban myth generation is a fun storytelling task.",AI for urban myth generation,
+"I'm not interested in developing Trojan war simulators.",,Trojan war simulators
+"AI in alien language translation is a sci-fi concept.",AI in alien language translation,
+"Working on dark matter visualization is too advanced.",,dark matter visualization
+"AI for Twitter trend forecasting is a real-time challenge.",AI for Twitter trend forecasting,
+"I don’t want to work on Norse mythology RPGs.",,Norse mythology RPGs
+"Autonomous bagel robots perfect breakfast efficiency.",autonomous bagel robots,
+"Working on kraken tracking software is fictional.",,kraken tracking software
+"AI for bedtime story generation is a soothing NLP task.",AI for bedtime story generation,
+"I'm not interested in developing Spartan battle simulators.",,Spartan battle simulators
+"AI in vampire lore generation is a gothic twist.",AI in vampire lore generation,
+"Working on neutron star analysis is too complex.",,neutron star analysis
+"AI for Reddit trend analysis is a community-driven challenge.",AI for Reddit trend analysis,
+"I don’t want to work on Egyptian mythology games.",,Egyptian mythology games

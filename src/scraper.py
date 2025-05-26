@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import json
 from urllib.parse import urljoin
 import csv
+import re
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -81,17 +82,16 @@ def extract(driver):
     return json_data
 
 def get_links(staff_links, driver):
-    check_url = "/faculty-of-engineering-technology/staff-profiles/"
+    check_url = "/staff-profiles/"
 
-    # Get the page source
     page_content = driver.page_source
     soup = BeautifulSoup(page_content, "html.parser")
 
-    # Extract all <a> tags with href matching the base URL
-    for a_tag in soup.find_all("a", href=True):
-        href = a_tag["href"]
-        if href.startswith(check_url):  # Check if the link matches the desired pattern
+    for a in soup.find_all("a", href=True):
+        href = a["href"]
+        if check_url in href:
             staff_links.add(href)
+
 
 # URL to scrape
 URL = "https://sunwayuniversity.edu.my//faculty-of-engineering-technology/staff-profiles"
@@ -109,6 +109,12 @@ options.binary_location = r"c:\Users\seanh\Documents\University\CAPSTONE 2\CAPST
 driver = uc.Chrome(options=options, driver_executable_path="src/chromedriver-win64/chromedriver.exe")
 
 try:
+
+    # Get list of staff names from supervisors_list.csv
+    with open("src\\data\\supervisors_list.csv", mode="r", encoding="utf-8-sig") as csv_file:   
+        reader = csv.DictReader(csv_file)
+        staff_names = [row["Name"].replace("Assoc. Prof. ", "").replace("Prof. ", "").replace("Dr ", "") for row in reader]
+
     # Open the URL
     driver.get(URL)
 
@@ -128,11 +134,8 @@ try:
         get_links(staff_links, driver)
 
     with open("src\\data\\staff_profiles.csv", mode="w", newline="", encoding="utf-8") as csv_file:
-        # Define the CSV writer
         fieldnames = ["email", "name", "biography", "academic_and_professional_qualifications", "research_interests", "teaching_areas", "courses_taught", "notable_publications"]
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-
-        # Write the header row
         writer.writeheader()
 
         # Visit each staff profile link and extract data
@@ -143,8 +146,9 @@ try:
             WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, "profileitem")))  # Wait for the page to load
             
             soup = BeautifulSoup(driver.page_source, "html.parser")
-            div = soup.find("div", class_="profileitem")
-            if div and ("Department of Smart Computing and Cyber Resilience" in div.get_text().strip() or "Department of Data Science and Artificial Intelligence" in div.get_text().strip()):
+            staff_name = [div.find("h1") for div in soup.find_all("span", class_="field-content") if div.find("h1")][0].get_text(strip=True).replace("Associate Professor ", "").replace("Professor ", "").replace("Dr ", "").replace("Ir ", "").replace("Ts. ", "")
+            print(staff_name)
+            if staff_name in staff_names:
                 # Extract data from the page
                 json_data = extract(driver)
 
@@ -155,5 +159,4 @@ try:
                 print("WRITING")
                 writer.writerow(data_dict)
 finally:
-    # Close the browser
     driver.quit()

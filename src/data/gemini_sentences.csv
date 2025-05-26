@@ -1,167 +1,135 @@
-"sentence","positive_topic","negative_topic"
-"I'm keen on exploring how deep learning can be applied to computer vision tasks.","Deep Learning, Computer vision and image processing",""
-"Projects involving statistical methods in data science sound interesting.","Statistical methods in data science",""
-"I'd prefer to steer clear of topics like computer architecture.","","Computer Architecture"
-"Machine learning for predictive analytics is something I'd like to work on.","Machine Learning, Predictive Analytics",""
-"I'm not very interested in computer networks.","","Computer Networks"
-"Working with data mining techniques to extract insights would be great.","Data Mining",""
-"Augmented reality projects don't particularly appeal to me.","","Augmented Reality"
-"I find the intersection of AI and healthcare fascinating.","Artificial Intelligence, AI for Healthcare",""
-"DevOps isn't really my area of interest.","","DevOps"
-"Sentiment analysis using natural language processing seems like a good direction.","Sentiment analysis and opinion mining",""
-"I'm interested in federated learning applications.","Federated Learning",""
-"Malware analysis is a topic I'd rather avoid.","","Malware analysis"
-"Exploring tiny machine learning on embedded systems could be exciting.","Tiny/Embedded Machine Learning",""
-"I'm not drawn to programming in C++ projects.","","Programming in C++"
-"Applying machine learning to time series data is something I'd consider.","Machine Learning",""
-"I'd like to avoid projects focused on digital electronic systems.","","Digital Electronic System"
-"Working on a project related to IoT security would be interesting.","IoT Security, IoT",""
-"I'm not particularly interested in web development.","","Web Development"
-"Using deep learning for image classification is a potential area.","Deep Learning, Computer vision and image processing",""
-"I'd prefer not to work on control systems.","","Control systems"
-"Data science projects using Python are appealing.","Data Sciencem, Programming in Python",""
-"I'm not keen on learning about logic design for my final year.","","Logic Design"
-"Exploring reinforcement learning algorithms could be a good fit.","Reinforcement Learning",""
-"I'd rather not do a project on mobile application development.","","Mobile Application Development"
-"Applying statistical methods to financial data seems interesting.","Statistical methods in data science, Financial Technology",""
-"I'm not interested in computer-aided design and simulation.","","Computer-Aided Design and Simulation"
-"A project involving natural language processing and text analytics would be great.","Text Analytics",""
-"I'd like to avoid projects on digital hardware design.","","Digital Hardware Design"
-"Using machine learning for social media analytics is something I'd consider.","Machine Learning, Social Media Analytics",""
-"I'm not particularly drawn to information technology operation management.","","Information Technology Operation Management"
-"Working on a project related to network analysis could be interesting.","Network Analysis",""
-"I'd prefer not to work on enterprise systems and e-commerce applications.","","Enterprise Systems and e-Commerce Application"
-"Applying deep learning to sentiment analysis is a possibility.","Deep Learning, Sentiment analysis and opinion mining",""
-"I'm not keen on projects focused on programming in Java.","","Programming in Java"
-"Exploring data mining techniques for anomaly detection would be interesting.","Data Mining",""
-"I'd rather not do a project on requirements engineering.","","Requirements engineering"
-"A project involving computer vision for object detection sounds good.","Computer vision and image processing",""
-"I'm not interested in blended and collaborative learning projects.","","Blended and Collaborative Learning"
-"Using machine learning for predictive maintenance is something I'd consider.","Machine Learning, Predictive Analytics",""
-"I'd like to avoid projects on data communication and networking.","","Data Communication and Networking"
-"Working on a project related to IoT and edge intelligence could be exciting.","IoT, Edge Intelligence",""
-"I'm not particularly drawn to programming concepts and principles.","","Programming concepts and principles"
-"Applying statistical methods in data science for fraud detection seems interesting.","Statistical methods in data science",""
-"I'm not keen on projects focused on visible light positioning.","","Visible Light Positioning"
-"Exploring deep learning for natural language understanding would be great.","Deep Learning",""
-"I'd rather not do a project on multimedia computing.","","Multimedia Computing"
-"A project involving data mining for customer segmentation sounds good.","Data Mining",""
-"I'm not interested in energy informatics projects.","","Energy Informatics"
-"Using machine learning for recommendation systems is something I'd consider.","Machine Learning",""
-"I'd like to avoid projects on empirical software engineering.","","Empirical Software Engineering"
-"Working on a project related to AI in telecommunications could be interesting.","Artificial Intelligence, AI in Telecommunications",""
-"I'm not particularly drawn to programming for data science.","","Programming for Data Science"
-"Applying statistical methods to analyze social media data seems interesting.","Statistical methods in data science, Social Media Analytics",""
-"I'm not keen on projects focused on algorithm analysis and design.","","Algorithm Analysis and Design"
-"Exploring deep learning for image segmentation would be great.","Deep Learning, Computer vision and image processing",""
-"I'd rather not do a project on information systems and design.","","Information Systems and Design"
-"A project involving data mining for text classification sounds good.","Data Mining, Text Analytics",""
-"I'm not interested in medical information system projects.","","Medical Information System"
-"Using machine learning for time series forecasting is something I'd consider.","Machine Learning",""
-"I'd like to avoid projects on microgrid/smart grid.","","Microgrid/Smart Grid"
-"Working on a project related to IoT security in industrial settings could be interesting.","IoT Security, Industrial Internet of Things",""
-"I'm not particularly drawn to sentiment analysis and opinion mining.","","Sentiment analysis and opinion mining"
-"Applying statistical methods in data science for A/B testing seems interesting.","Statistical methods in data science",""
-"I'm not keen on projects focused on knowledge management.","","Knowledge Management"
-"Exploring deep learning for object tracking would be great.","Deep Learning, Computer vision and image processing",""
-"I'd rather not do a project on internet of energy.","","Internet of Energy"
-"A project involving data mining for market basket analysis sounds good.","Data Mining",""
-"I'm not interested in programming in Python projects.","","Programming in Python"
-"Using machine learning for anomaly detection in networks is something I'd consider.","Machine Learning, Network Analysis",""
-"I'd like to avoid projects on business computing.","","Business Computing"
-"Working on a project related to augmented reality applications could be interesting.","Augmented Reality",""
-"I'm not particularly drawn to data management projects.","","Data Management"
-"Applying statistical methods to environmental data seems interesting.","Statistical methods in data science, ICT in Environment",""
-"I'm not keen on projects focused on requirements engineering.","","Requirements engineering"
-"Exploring deep learning for image generation would be great.","Deep Learning, Computer vision and image processing",""
-"I'd rather not do a project on interactive arts.","","Interactive arts"
-"A project involving data mining for web usage mining sounds good.","Data Mining, Web Development",""
-"I'm not interested in contents design projects.","","Contents design"
-"Using machine learning for natural language generation is something I'd consider.","Machine Learning",""
-"I'd like to avoid projects on microprocessor and interfacing techniques.","","Microprocessor and Interfacing Techniques"
-"Working on a project related to federated learning in healthcare could be interesting.","Federated Learning, AI for Healthcare",""
-"I'm not particularly drawn to information and data analytics projects.","","Information and Data Analytics"
-"Applying statistical methods in data science for causal inference seems interesting.","Statistical methods in data science",""
-"I'm not keen on projects focused on green computing.","","Green Computing"
-"Exploring deep learning for video analysis would be great.","Deep Learning, Computer vision and image processing, Multimedia Computing",""
-"I'd rather not do a project on advanced micro- technologies.","","Advanced Micro- Technologies"
-"A project involving data mining for educational data mining sounds good.","Data Mining, Blended and Collaborative Learning",""
-"I'm not interested in software engineering development projects.","","Software Engineering Development"
-"Using machine learning for fraud detection in financial transactions is something I'd consider.","Machine Learning, Fintech",""
-"I'd like to avoid projects on tiny/embedded machine learning.","","Tiny/Embedded Machine Learning"
-"Working on a project related to network security could be interesting.","Network Security",""
-"I'm not particularly drawn to control systems projects.","","Control systems"
-"Applying statistical methods to analyze sensor data from IoT devices seems interesting.","Statistical methods in data science, IoT",""
-"I'm not keen on projects focused on network analysis.","","Network Analysis"
-"Exploring deep learning for medical image analysis would be great.","Deep Learning, Computer vision and image processing, Medical Information System",""
-"I'd rather not do a project on mobile application development.","","Mobile Application Development"
-"A project involving data mining for social network analysis sounds good.","Data Mining, Social Media Analytics, Network Analysis",""
-"I'm not interested in mixed reality projects.","","Mixed Reality Programming"
-"Using machine learning for personalized recommendations is something I'd consider.","Machine Learning",""
-"I'd like to avoid projects on logic design.","","Logic Design"
-"Working on a project related to edge intelligence for autonomous vehicles could be interesting.","Edge Intelligence, Autonomous Vehicles",""
-"I'm not particularly drawn to programming languages projects.","","Programming Languages"
-"Applying statistical methods in data science for time series analysis seems interesting.","Statistical methods in data science",""
-"I'm not keen on projects focused on smart grid,  distribution network communication.","","Smart Grid,  Distribution Network Communication"
-"Exploring deep learning for text summarization would be great.","Deep Learning, Text Analytics",""
-"I'd rather not do a project on data structures and algorithms.","","Data structures and Algorithms"
-"A project involving data mining for bioinformatics sounds good.","Data Mining, AI for Healthcare",""
-"I'm not interested in reinforcement learning projects.","","Reinforcement Learning"
-"Using machine learning for anomaly detection in cybersecurity is something I'd consider.","Machine Learning, Network Security, Malware analysis",""
-"I'd like to avoid projects on distributed systems.","","Distributed Systems"
-"Working on a project related to blockchain technology could be interesting.","Blockchain",""
-"I'm not particularly drawn to intelligent transportation systems projects.","","Intelligent transportation systems"
-"Applying statistical methods to analyze financial time series data seems interesting.","Statistical methods in data science, Fintech",""
-"I'm not keen on projects focused on cryptography.","","Cryptography"
-"Exploring deep learning for human-computer interaction would be great.","Deep Learning, Human-Computer Interaction / Future Interaction Design",""
-"I'd rather not do a project on quantum computing.","","Quantum Computing"
-"A project involving data mining for user behavior analysis sounds good.","Data Mining, Human-Computer Interaction / Future Interaction Design, Web Development",""
-"I'm not interested in human factors in software systems projects.","","Human factors in Software Systems"
-"Using machine learning for predictive modeling in finance is something I'd consider.","Machine Learning, Fintech, Predictive Analytics",""
-"I'd like to avoid projects on Java programming.","","Java Programming"
-"Working on a project related to green machine learning could be interesting.","Green Machine Learning, Machine Learning, Green Computing",""
-"I'm not particularly drawn to mobile computing projects.","","Mobile Computing"
-"Applying statistical methods in data science for natural language processing seems interesting.","Statistical methods in data science, Text Analytics",""
-"I'm not keen on projects focused on concurrent programming.","","Concurrent Programming"
-"Exploring deep learning for context-aware applications would be great.","Deep Learning, Context-awareness",""
-"I'd rather not do a project on sustainable smart city.","","Sustainable smart city"
-"A project involving data mining for digital image forgery detection sounds good.","Data Mining, Digital image forgery detection, Computer vision and image processing",""
-"I'm not interested in digital hardware design projects.","","Digital Hardware Design"
-"Using machine learning for ultrasound indoor localization is something I'd consider.","Machine Learning, Ultrasound Indoor Localization",""
-"I'd like to avoid projects on data privacy and security.","","Data Privacy and security"
-"Working on a project related to brain-computer interface could be interesting.","Brain Computer Interface",""
-"I'm not particularly drawn to agile methodologies projects.","","Agile Methodologies"
-"Applying statistical methods to predictive analytics in business seems interesting.","Statistical methods in data science, Predictive Analytics, Business Computing",""
-"I'm not keen on projects focused on theory of automata.","","Theory of Automata"
-"Exploring deep learning for AI in healthcare would be great.","Deep Learning, AI for Healthcare, Medical Information System",""
-"I'd rather not do a project on data science using R.","","Data Science using R"
-"A project involving data mining for autonomous vehicles data sounds good.","Data Mining, Autonomous Vehicles",""
-"I'm not interested in emerging databases projects.","","Emerging databases"
-"Using machine learning for AI in telecommunications is something I'd consider.","Machine Learning, Artificial Intelligence, AI in Telecommunications",""
-"I'd like to avoid projects on computer & programming.","","Computer & Programming"
-"Working on a project related to optimized controllers could be interesting.","Optimized Controller, Control systems",""
-"I'm not particularly drawn to design of computer & communication systems.","","Design of Computer & Communication Systems."
-"Applying statistical methods in data science for information retrieval seems interesting.","Statistical methods in data science, Information Retrieval",""
-"I'm not keen on projects focused on smart energy-efficient buildings.","","Smart Energy-Efficient Buildings"
-"Exploring deep learning for financial technology applications would be great.","Deep Learning, Financial Technology, Fintech",""
-"I'd rather not do a project on cyber-physical systems.","","Cyber-Physical Systems"
-"A project involving data mining for fintech applications sounds good.","Data Mining, Financial Technology, Fintech",""
-"I'm not interested in safety critical system projects.","","Safety Critical System"
-"Using machine learning for UI/UX design development is something I'd consider.","Machine Learning, UI/UX Design Development, Human-Computer Interaction / Future Interaction Design",""
-"I'd like to avoid projects on text analytics.","","Text Analytics"
-"Working on a project related to context-awareness in IoT could be interesting.","Context-awareness, IoT",""
-"I'm not particularly drawn to ICT in environment projects.","","ICT in Environment"
-"Applying statistical methods to decision support systems seems interesting.","Statistical methods in data science, Decision Support System",""
-"I'm not keen on projects focused on energy management system.","","Energy Management System"
-"Exploring deep learning for internet programming applications would be great.","Deep Learning, Internet Programming",""
-"I'd rather not do a project on computational intelligence.","","Computational intelligence"
-"A project involving data mining for knowledge management sounds good.","Data Mining, Knowledge Management",""
-"I'm not interested in software defined networking projects.","","Software Defined Networking"
-"Using machine learning for applied artificial intelligence is something I'd consider.","Machine Learning, Applied Artificial Intelligence, Artificial Intelligence",""
-"I'd like to avoid projects on model checking and theorem proving.","","Model checking and Theorem proving"
-"Working on a project related to hardware oriented computing could be interesting.","Hardware Oriented Computing, Computer Architecture",""
-"I'm not particularly drawn to identification technology projects.","","Identification Technology"
-"Applying statistical methods in data science for evolutionary computation seems interesting.","Statistical methods in data science, Evolutionary Computation and Swarm Intelligence",""
-"I'm not keen on projects focused on computer-aided design and simulation.","","Computer-Aided Design and Simulation"
-"Exploring deep learning for energy storage and renewable energy integration would be great.","Deep Learning, Energy Storage and Renewable Energy Integration, Energy Informatics",""
-"I'd rather not do a project on software enginnering.","","Software Enginnering"
+sentence,positive_topic,negative_topic
+"I'm keen on a project in machine learning, perhaps focusing on image recognition, as I find AI applications very exciting.","Machine Learning, Image Recognition",""
+"I'd really like to work on something related to web development, maybe using React or Angular, because I enjoy front-end design.","Web Development, React, Angular",""
+"Cybersecurity, particularly ethical hacking, seems like a compelling area for my final year project.","Cybersecurity, Ethical Hacking",""
+"I'm hoping to do something with data science, possibly predictive analytics, as I enjoy working with large datasets.","Data Science, Predictive Analytics",""
+"Game development, maybe using Unity, would be a fun project to explore.","Game Development, Unity",""
+"I'm interested in mobile app development, perhaps for Android, as I use my phone constantly.","Mobile App Development, Android",""
+"Cloud computing projects, like working with AWS or Azure, seem relevant and interesting.","Cloud Computing, AWS, Azure",""
+"I'd prefer a project involving natural language processing, like sentiment analysis.","Natural Language Processing, Sentiment Analysis",""
+"I think a project on blockchain technology could be quite innovative.","Blockchain Technology",""
+"I'm drawn to projects that involve the Internet of Things (IoT).","Internet of Things",""
+"While I see its importance, I'd rather not do a project on theoretical computer science.","",Theoretical Computer Science
+"I'm not really interested in working on database management systems for my final year.","",Database Management Systems
+"Compiler design doesn't particularly appeal to me for this project.","",Compiler Design
+"I'd like to avoid projects that are heavily focused on low-level programming.","",Low-Level Programming
+"Software testing isn't my first choice for a final year project.","",Software Testing
+"I'm more interested in application than in purely theoretical work, so no formal methods projects for me.","",Formal Methods
+"I'm hoping for something more hands-on than a project on algorithms and data structures.","",Algorithms and Data Structures
+"Networking projects aren't really what I'm looking for.","",Networking
+"I'd prefer not to work on embedded systems for my final year.","",Embedded Systems
+"I'm not particularly interested in graphics programming.","",Graphics Programming
+"I'm very interested in exploring machine learning for my final year project.","Machine Learning",""
+"I find cybersecurity topics like digital forensics quite fascinating.","Cybersecurity, Digital Forensics",""
+"Developing a web application using Django is something I'd enjoy.","Web Development, Django",""
+"Working with big data analytics would be a great learning experience.","Big Data Analytics",""
+"I'm curious about creating a mobile app for iOS.","Mobile App Development, iOS",""
+"Exploring cloud security would be an interesting cybersecurity project.","Cloud Security, Cybersecurity",""
+"I'd like to delve into natural language understanding.","Natural Language Processing, Natural Language Understanding",""
+"A project on decentralized applications using blockchain sounds exciting.","Blockchain Technology, Decentralized Applications",""
+"Building smart home applications using IoT would be cool.","Internet of Things, Smart Home Applications",""
+"I'm not keen on a project focused solely on software architecture.","",Software Architecture
+"I'd rather not do a project on the mathematical foundations of computing.","",Mathematical Foundations of Computing
+"Operating systems aren't a topic I'm eager to work on.","",Operating Systems
+"I'm not particularly drawn to projects on distributed systems.","",Distributed Systems
+"I'd prefer to avoid a project that is purely focused on requirements engineering.","",Requirements Engineering
+"I'm more interested in implementation than in abstract design, so no UML-heavy projects.","",UML
+"I'd rather not work on simulation and modeling projects.","",Simulation and Modeling
+"I'm not really interested in artificial general intelligence at this stage.","",Artificial General Intelligence
+"I'd prefer something other than a project on computer graphics rendering.","",Computer Graphics Rendering
+"I'm not looking to do a project on formal verification.","",Formal Verification
+"I'm really interested in working on a project that applies machine learning to real-world problems.","Machine Learning",""
+"Exploring the vulnerabilities in network protocols for a cybersecurity project appeals to me.","Cybersecurity, Network Protocols",""
+"Building a responsive website using modern JavaScript frameworks would be great.","Web Development, JavaScript",""
+"Analyzing social media data using data science techniques seems interesting.","Data Science, Social Media Analysis",""
+"Developing a cross-platform mobile application using Flutter could be a good option.","Mobile App Development, Flutter",""
+"I'm interested in a cloud-based machine learning deployment project.","Cloud Computing, Machine Learning",""
+"Working on text generation using NLP would be fascinating.","Natural Language Processing, Text Generation",""
+"A project involving smart contracts on a blockchain platform could be very educational.","Blockchain Technology, Smart Contracts",""
+"I'd like to explore the security aspects of IoT devices.","Internet of Things, Cybersecurity",""
+"I'm not very enthusiastic about working on user interface design principles in isolation.","",User Interface Design
+"I'd rather not do a project that is primarily about software project management.","",Software Project Management
+"I'm not keen on working on the theoretical aspects of programming languages.","",Programming Languages (Theory)
+"I'd prefer not to do a project focused on parallel computing architectures.","",Parallel Computing
+"I'm not particularly interested in working on software evolution and maintenance.","",Software Evolution and Maintenance
+"I'd rather avoid projects heavily focused on formal specification.","",Formal Specification
+"I'm not looking to do a project on numerical analysis.","",Numerical Analysis
+"I'm not really drawn to projects on robotics control systems.","",Robotics Control Systems
+"I'd prefer something other than a project on multimedia systems.","",Multimedia Systems
+"I'm not interested in a project solely focused on human-computer interaction theory.","",Human-Computer Interaction
+"I'm very interested in applying machine learning techniques to solve problems in healthcare.","Machine Learning, Healthcare",""
+"Exploring the use of AI in detecting cyber threats would be a compelling cybersecurity project.","Cybersecurity, Artificial Intelligence",""
+"Building a single-page application with Vue.js is something I'd be interested in.","Web Development, Vue.js",""
+"Using data mining to discover patterns in educational data could be a worthwhile project.","Data Science, Data Mining",""
+"Developing a mobile game with a focus on augmented reality would be exciting.","Game Development, Augmented Reality, Mobile App Development",""
+"I'm interested in a project that leverages cloud services for scalable applications.","Cloud Computing",""
+"Working on speech recognition using natural language processing would be a great learning opportunity.","Natural Language Processing, Speech Recognition",""
+"A project on the governance aspects of blockchain technology could be interesting.","Blockchain Technology",""
+"I'd like to work on a project involving sensor networks within the realm of IoT.","Internet of Things, Sensor Networks",""
+"I'm not particularly interested in working on the formal semantics of programming languages.","",Programming Languages (Semantics)
+"I'd rather not do a project that is primarily about software quality assurance.","",Software Quality Assurance
+"I'm not keen on working on the mathematical modeling of computation.","",Mathematical Modeling of Computation
+"I'd prefer not to do a project focused on high-performance computing.","",High-Performance Computing
+"I'm not particularly interested in working on software configuration management.","",Software Configuration Management
+"I'd rather avoid projects heavily focused on logic programming.","",Logic Programming
+"I'm not looking to do a project on computational linguistics.","",Computational Linguistics
+"I'm not really drawn to projects on computer vision theory.","",Computer Vision (Theory)
+"I'd prefer something other than a project on virtual reality systems.","",Virtual Reality Systems
+"I'm not interested in a project solely focused on usability testing.","",Usability Testing
+"I'm really interested in a machine learning project focused on time series analysis.","Machine Learning, Time Series Analysis",""
+"Exploring security challenges in mobile applications for a cybersecurity project appeals to me.","Cybersecurity, Mobile App Development",""
+"Building a RESTful API using Node.js and Express would be a good project.","Web Development, Node.js, Express",""
+"Applying statistical analysis to financial data using data science tools seems interesting.","Data Science, Statistical Analysis, Finance",""
+"Developing a location-based mobile application would be a fun project.","Mobile App Development",""
+"I'm interested in a project that utilizes serverless computing on the cloud.","Cloud Computing, Serverless Computing",""
+"Working on machine translation using NLP would be a challenging and rewarding project.","Natural Language Processing, Machine Translation",""
+"A project on the environmental impact of blockchain technology could be relevant.","Blockchain Technology, Environmental Science",""
+"I'd like to explore the application of AI in IoT devices.","Internet of Things, Artificial Intelligence",""
+"I'm not very enthusiastic about working on the theoretical underpinnings of databases.","",Database Theory
+"I'd rather not do a project that is primarily about project planning.","",Project Planning
+"I'm not keen on working on the formal methods for software verification.","","Software Verification, Formal Methods" 
+"I'd prefer not to do a project focused on distributed databases.","",Distributed Databases
+"I'm not particularly interested in working on version control systems.","",Version Control Systems
+"I'd rather avoid projects heavily focused on functional programming paradigms.","",Functional Programming
+"I'm not looking to do a project on information retrieval systems.","",Information Retrieval
+"I'm not really drawn to projects on advanced topics in computer architecture.","",Computer Architecture
+"I'd prefer something other than a project on computer music.","",Computer Music
+"I'm not interested in a project solely focused on accessibility in software.","",Software Accessibility
+"I'm very interested in a machine learning project involving reinforcement learning.","Machine Learning, Reinforcement Learning",""
+"Exploring the human factors in cybersecurity would be an interesting project.","Cybersecurity, Human Factors",""
+"Building a progressive web app would be a modern web development project I'd enjoy.","Web Development, Progressive Web Apps",""
+"Using machine learning for fraud detection in financial transactions seems like a compelling data science project.","Data Science, Machine Learning, Finance",""
+"Developing a social networking mobile application could be a challenging project.","Mobile App Development, Social Networking",""
+"I'm interested in a project that integrates different cloud services.","Cloud Computing",""
+"Working on question answering systems using NLP would be a valuable experience.","Natural Language Processing, Question Answering",""
+"A project on the scalability challenges of blockchain could be insightful.","Blockchain Technology",""
+"I'd like to explore the use of machine learning for predictive maintenance in IoT systems.","Internet of Things, Machine Learning",""
+"I'm not particularly interested in working on the low-level details of computer hardware.","",Computer Hardware
+"I'd rather not do a project that is primarily about technical writing.","",Technical Writing
+"I'm not keen on working on the abstract algebra aspects relevant to computer science.","",Abstract Algebra
+"I'd prefer not to do a project focused on real-time operating systems.","",Real-Time Operating Systems
+"I'm not particularly interested in working on software deployment strategies.","",Software Deployment
+"I'd rather avoid projects heavily focused on artificial life simulations.","",Artificial Life
+"I'm not looking to do a project on recommender systems.","",Recommender Systems
+"I'm not really drawn to projects on computational geometry.","",Computational Geometry
+"I'd prefer something other than a project on digital signal processing.","",Digital Signal Processing
+"I'm not interested in a project solely focused on internationalization and localization.","",Software Internationalization and Localization
+"I'm really interested in a machine learning project for personalized education.","Machine Learning, Education",""
+"Exploring the legal and ethical implications of cybersecurity would be a fascinating project.","Cybersecurity, Ethics",""
+"Building a full-stack application with Python and Flask would be a great learning experience.","Web Development, Python, Flask",""
+"Using data visualization techniques to present insights from large datasets seems interesting.","Data Science, Data Visualization",""
+"Developing a fitness tracking mobile application could be a useful project.","Mobile App Development, Health & Fitness",""
+"I'm interested in a project that utilizes edge computing in conjunction with the cloud.","Cloud Computing, Edge Computing",""
+"Working on dialogue systems using NLP would be an interesting area to explore.","Natural Language Processing, Dialogue Systems",""
+"A project on the interoperability of different blockchain platforms could be significant.","Blockchain Technology",""
+"I'd like to explore the security of data in IoT environments.","Internet of Things, Data Security",""
+"I'm not very enthusiastic about working on the formal verification of algorithms.","",Algorithm Verification
+"I'd rather not do a project that is primarily about user research methodologies.","",User Research
+"I'm not keen on working on the mathematical logic underlying computation.","",Mathematical Logic
+"I'd prefer not to do a project focused on embedded Linux systems.","",Embedded Linux
+"I'm not particularly interested in working on continuous integration and continuous deployment pipelines.","",CI/CD
+"I'd rather avoid projects heavily focused on evolutionary computation.","",Evolutionary Computation
+"I'm not looking to do a project on semantic web technologies.","",Semantic Web
+"I'm not really drawn to projects on computational neuroscience.","",Computational Neuroscience
+"I'd prefer something other than a project on audio processing.","",Audio Processing
+"I'm not interested in a project solely focused on performance optimization of software.","",Software Performance Optimization
