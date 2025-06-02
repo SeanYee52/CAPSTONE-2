@@ -1,3 +1,4 @@
 src/results
 src/software tools
 .env_capstone/
+src/chrome-win64/chrome.dll
