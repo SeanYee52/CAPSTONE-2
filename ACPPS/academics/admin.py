@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import School, Department, Programme
+from .models import School, Department, Programme, Faculty
 
 # Register your models here.
 admin.site.register(
@@ -7,5 +7,6 @@ admin.site.register(
         School,
         Department,
         Programme,
+        Faculty,
     ]
 )

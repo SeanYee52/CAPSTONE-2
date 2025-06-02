@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.conf import settings
 from django.utils import timezone
-from academics.models import Programme, Department
+from academics.models import Programme, Department, School
 
 
 class UserManager(BaseUserManager):
@@ -72,6 +72,7 @@ class StudentProfile(models.Model):
 class SupervisorProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True)
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True, related_name='supervisors')
+    school = models.ForeignKey(School, on_delete=models.SET_NULL, null=True, related_name='supervisors')
     office_number = models.CharField(max_length=20)
     expertise = models.TextField(blank=True, null=True)
     preferred_programmes_first_choice = models.ManyToManyField(Programme, blank=True, related_name='supervisors_first_choice')

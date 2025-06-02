@@ -2,8 +2,15 @@ from django.db import models
 
 # Create your models here.
 
+class Faculty(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
 class School(models.Model):
     name = models.CharField(max_length=100)
+    faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE, related_name='schools', null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -11,10 +18,11 @@ class School(models.Model):
 
 class Department(models.Model):
     name = models.CharField(max_length=100)
-    school = models.ForeignKey(School, on_delete=models.CASCADE, related_name='departments')
+    school = models.ForeignKey(School, on_delete=models.CASCADE, related_name='departments', null=True, blank=True)
+    faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE, related_name='departments', null=True, blank=True)
 
     def __str__(self):
-        return f"{self.name} ({self.school.name})"
+        return f"{self.name} ({self.school.name if self.school else self.faculty.name if self.faculty else 'No School or Faculty'})"
 
 
 class Programme(models.Model):
