@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.conf import settings
 from django.utils import timezone
-from academics.models import Programme, Department, School
+from academics.models import Programme, Department, School, ProgrammePreferenceGroup
 
 
 class UserManager(BaseUserManager):
@@ -73,10 +73,9 @@ class SupervisorProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True)
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True, related_name='supervisors')
     school = models.ForeignKey(School, on_delete=models.SET_NULL, null=True, related_name='supervisors')
-    office_number = models.CharField(max_length=20)
     expertise = models.TextField(blank=True, null=True)
-    preferred_programmes_first_choice = models.ManyToManyField(Programme, blank=True, related_name='supervisors_first_choice')
-    preferred_programmes_second_choice = models.ManyToManyField(Programme, blank=True, related_name='supervisors_second_choice')
+    preferred_programmes_first_choice = models.ForeignKey(ProgrammePreferenceGroup, on_delete=models.SET_NULL, null=True, related_name='supervisors_first_choice')
+    preferred_programmes_second_choice = models.ForeignKey(ProgrammePreferenceGroup, on_delete=models.SET_NULL, null=True, related_name='supervisors_second_choice')
     supervision_capacity = models.PositiveIntegerField(default=0)
     standardised_expertise = models.TextField(blank=True, null=True)
 
@@ -84,8 +83,12 @@ class SupervisorProfile(models.Model):
         return f"{self.user.email} - Supervisor"
 
     @property
-    def school(self):
-        return self.department.school if self.department else None
+    def effective_school(self):
+        return self.department.school if self.department else self.school if self.school else None
+    
+    @property # Second choice cannot be the same as first choice
+    def has_different_choices(self):
+        return self.preferred_programmes_first_choice != self.preferred_programmes_second_choice and (self.preferred_programmes_second_choice is not None or self.preferred_programmes_first_choice is not None)
     
 class CoordinatorProfile(models.Model):
     supervisor = models.OneToOneField(SupervisorProfile, on_delete=models.CASCADE, primary_key=True)
@@ -93,4 +96,4 @@ class CoordinatorProfile(models.Model):
     role_scope = models.CharField(max_length=20, choices=[('system', 'System-wide'), ('department', 'Department'), ('school', 'School')], default='system')
 
     def __str__(self):
-        return f"{self.supervisor.email} - Coordinator"
+        return f"{self.supervisor.user.email} - Coordinator"

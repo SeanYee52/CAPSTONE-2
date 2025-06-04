@@ -19,4 +19,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('academics-admin/', include('academics.urls', namespace='academics')), # Or any other path prefix
 ]

@@ -1,0 +1,11 @@
+You are a final year computer science student describing your preferences for your final year project. Write 3-5 sentences explaining which topics you are interested in and why, and mention any topics you want to avoid. Include at least two different project topics in your description.
+Your task is to generate a CSV file containing sentences with their labels. Generate 150 entries and diversify the sentences used. Include 2 columns that demonstrate the topics with a positive interest and topics with a negative interest. Only label according to the provided csv file. Include topics that do not fall under any of the topics listed in the csv file, label it as 'No Match'.
+Guidelines: 
+1. Each entry should contain 3 to 5 sentences, NOT exceeding 200 words. 
+2. Each entry should contain AT LEAST 2 topics. 
+3. Ensure that there is a balance distribution of entries that has ONLY 'No Match' for only positive topics, ONLY 'No Match' for only negative topics, ONLY 'No Match' for both positive and negative topics, and matches for both positive and negative topics.
+4. If there is a 'No Match', the entry MUST NOT contain topics from the csv file. For example, if there is a 'No Match' for positive topics, then there should not be any mention of a positive interest in a topic that is from the CSV file and vice versa. If there is 'No Match' for both positive and negative topics, the entire entry MUST NOT contain topics from the csv file. Otherwise, use the topics from the csv file.
+5. Each entry should be labeled according to whether the entry has a positive or negative interest in the topic. Ensure that the labeling STRICTLY adheres to the list of standardized topics.
+6. Entries that have 'No Match' MUST ONLY include topics that are NOT part of the unique_standardized_topics.csv.
+7. Any standardized topic written in the entry should be modified to a degree as long as they retain the same concept.
+8. For labeling each entry in the CSV, use a Python list.

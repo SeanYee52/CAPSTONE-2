@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Academic Administration{% endblock %}</title>
+    <!-- Add Bootstrap or your preferred CSS framework for styling -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { padding: 20px; }
+        .container { max-width: 800px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="mb-3">
+            <a href="{% url 'academics:faculty_list' %}" class="btn btn-sm btn-outline-secondary">Faculties</a>
+            <a href="{% url 'academics:school_list' %}" class="btn btn-sm btn-outline-secondary">Schools</a>
+            <a href="{% url 'academics:department_list' %}" class="btn btn-sm btn-outline-secondary">Departments</a>
+            <a href="{% url 'academics:programme_list' %}" class="btn btn-sm btn-outline-secondary">Programmes</a>
+            <a href="{% url 'academics:preferencegroup_list' %}" class="btn btn-sm btn-outline-secondary">Preference Groups</a>
+            <!-- Add login/logout links -->
+            {% if user.is_authenticated %}
+                <span class="ms-auto">Hello, {{ user.username }}! <a href="/admin/logout/">Logout</a></span>
+                <!-- Replace /admin/logout/ with your actual logout URL if different -->
+            {% else %}
+                <a href="/admin/login/">Login</a>
+            {% endif %}
+        </nav>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -7,7 +7,8 @@ from django.contrib.auth.forms import (
 from django.contrib.auth import authenticate
 from django.db import transaction # For atomic operations
 
-from .models import User, StudentProfile, SupervisorProfile, CoordinatorProfile, Programme, Department
+from .models import User, StudentProfile, SupervisorProfile, CoordinatorProfile
+from academics.models import Programme, Department, School
 
 # --- User Management Forms ---
 
@@ -86,7 +87,7 @@ class SupervisorProfileForm(forms.ModelForm):
         model = SupervisorProfile
         fields = [
             'department',
-            'office_number',
+            'school',
             'expertise',
             'preferred_programmes_first_choice',
             'preferred_programmes_second_choice',
@@ -103,6 +104,7 @@ class SupervisorProfileForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['department'].queryset = Department.objects.all().order_by('name')
+        self.fields['school'].queryset = School.objects.all().order_by('name')
         self.fields['preferred_programmes_first_choice'].queryset = Programme.objects.all().order_by('name')
         self.fields['preferred_programmes_second_choice'].queryset = Programme.objects.all().order_by('name')
 
@@ -141,7 +143,6 @@ class StudentRegistrationForm(forms.Form):
     confirm_password = forms.CharField(widget=forms.PasswordInput, required=True, label="Confirm Password")
 
     programme = forms.ModelChoiceField(queryset=Programme.objects.all().order_by('name'), required=True)
-    # Add other StudentProfile fields if needed at registration
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -168,7 +169,6 @@ class StudentRegistrationForm(forms.Form):
             user=user,
             programme=self.cleaned_data['programme'],
             graduation_year=self.cleaned_data['graduation_year']
-            # Add other fields if collected
         )
         return user
 
@@ -179,8 +179,8 @@ class SupervisorRegistrationForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput, required=True)
     confirm_password = forms.CharField(widget=forms.PasswordInput, required=True, label="Confirm Password")
 
-    department = forms.ModelChoiceField(queryset=Department.objects.all().order_by('name'), required=True)
-    office_number = forms.CharField(max_length=20, required=True)
+    department = forms.ModelChoiceField(queryset=Department.objects.all().order_by('name'), required=False) # Optional at registration
+    school = forms.ModelChoiceField(queryset=School.objects.all().order_by('name'), required=False) # Optional at registration
     supervision_capacity = forms.IntegerField(min_value=0, initial=0, required=False) # Optional at registration
     expertise = forms.CharField(widget=forms.Textarea(attrs={'rows': 3}), required=False) # Optional at registration
 
@@ -208,7 +208,7 @@ class SupervisorRegistrationForm(forms.Form):
         SupervisorProfile.objects.create(
             user=user,
             department=self.cleaned_data['department'],
-            office_number=self.cleaned_data['office_number'],
+            school=self.cleaned_data['school'],
             supervision_capacity=self.cleaned_data.get('supervision_capacity', 0),
             expertise=self.cleaned_data.get('expertise', '')
         )

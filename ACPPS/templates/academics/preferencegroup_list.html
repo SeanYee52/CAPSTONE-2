@@ -1,0 +1,20 @@
+{% extends "academics/base_academics.html" %}
+
+{% block title %}Preference Groups{% endblock %}
+
+{% block content %}
+    <h2>Preference Groups</h2>
+    <a href="{% url 'academics:preferencegroup_add' %}" class="btn btn-success mb-3">Add New Preference Group</a>
+    {% if preference_groups %}
+        <ul class="list-group">
+            {% for preference in preference_groups %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ preference.name }}
+                    <a href="{% url 'academics:preferencegroup_edit' preference.pk %}" class="btn btn-sm btn-warning">Edit</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No preference groups found.</p>
+    {% endif %}
+{% endblock %}

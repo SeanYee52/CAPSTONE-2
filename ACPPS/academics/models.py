@@ -8,6 +8,7 @@ class Faculty(models.Model):
     def __str__(self):
         return self.name
 
+
 class School(models.Model):
     name = models.CharField(max_length=100)
     faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE, related_name='schools', null=True, blank=True)
@@ -31,3 +32,11 @@ class Programme(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.department.name})"
+    
+
+class ProgrammePreferenceGroup(models.Model):
+    name = models.CharField(max_length=100)
+    programme = models.ManyToManyField(Programme, blank=True, related_name='preference_groups')
+
+    def __str__(self):
+        return f"{self.name}"
