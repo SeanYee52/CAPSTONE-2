@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
     'academics.apps.AcademicsConfig',
+    'dashboards.apps.DashboardsConfig',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +126,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "users.User"
+
+# Define where to redirect after login and logout
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'  # Fallback redirect
+LOGOUT_REDIRECT_URL = 'home' # Where to go after logging out.

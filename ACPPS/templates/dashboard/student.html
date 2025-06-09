@@ -1,0 +1,24 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% block title %}Student Dashboard{% endblock %}
+{% block content %}
+    <h1>Student Dashboard</h1>
+    <p>Welcome, {{ user.get_full_name }}.</p>
+    <p>Here you can manage your project preferences and view your assigned supervisor.</p>
+    <div class="container">
+        <h2>Project Preferences</h2>
+        <p><a href="{% url 'update_profile' %}">Update Your Profile</a></p>
+        <ul>
+            <li>Name: {{ user.get_full_name }}</li>
+            <li>Email: {{ user.email }}</li>
+            <li>Prograamme: {{ user.studentprofile.programme }}</li>
+            <li>Preferences: {{ user.studentprofile.preference_text }} </li>
+        </ul>
+
+        <h2>Assigned Supervisor</h2>
+        {% if supervisor %}
+            <p>Your assigned supervisor is {{ supervisor.get_full_name }}.</p>
+        {% else %}
+            <p>You do not have an assigned supervisor yet.</p>
+        {% endif %}
+    </div>
+{% endblock %}

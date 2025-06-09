@@ -19,5 +19,9 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('academics-admin/', include('academics.urls', namespace='academics')), # Or any other path prefix
+    path('academics-admin/', include('academics.urls', namespace='academics')),
+    path('accounts/', include('users.urls')),
+    path('dashboards/', include('dashboards.urls')),
+    # If you have a homepage at the root, you can link it to the users app's home view
+    path('', include('users.urls')), # Assuming home is in users.urls
 ]

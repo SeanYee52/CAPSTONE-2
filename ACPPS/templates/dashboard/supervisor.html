@@ -1,0 +1,35 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% block title %}Supervisor Dashboard{% endblock %}
+{% block content %}
+    <h1>Supervisor Dashboard</h1>
+    <p>Welcome, {{ user.get_full_name }}.</p>
+    <p>Here you can view your assigned students and manage your profile.</p>
+    <div class="container">
+        <h2>Assigned Students</h2>
+        {% if students %}
+            <ul>
+                {% for student in students %}
+                    <li>{{ student.get_full_name }} - {{ student.project_title }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>You do not have any assigned students yet.</p>
+        {% endif %}
+
+        <h2>Profile Management</h2>
+        <!-- Current profile details -->
+        <p>Your current profile information is displayed below. You can update your profile at any time.</p>
+        <p><a href="{% url 'update_profile' %}">Update Your Profile</a></p>
+        <ul>
+            <li>Name: {{ user.get_full_name }}</li>
+            <li>Email: {{ user.email }}</li>
+            {% if user.supervisorprofile.department %}
+                <li>Department: {{ user.supervisorprofile.department }}</li>
+            {% endif %}
+            <li>School: {{ user.supervisorprofile.effective_school }} </li>
+            <li>Expertise: {{ user.supervisorprofile.expertise }}</li>
+            <li>Preferred Programmes (First Choice): {{ user.supervisorprofile.preferred_programmes_first_choice }}</li>
+            <li>Preferred Programmes (Second Choice): {{ user.supervisorprofile.preferred_programmes_second_choice }}</li>
+            <li>Capacity: {{ user.supervisorprofile.supervision_capacity }}</li>
+        </ul>
+{% endblock %}
