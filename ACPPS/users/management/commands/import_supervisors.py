@@ -1,6 +1,7 @@
 import csv
 import random
 import re
+import ast
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.auth import get_user_model
 from django.db import transaction
@@ -72,9 +73,12 @@ class Command(BaseCommand):
                         pref_prog_1_raw = row.get("Preferred Programme for Supervision (1st Choice)", "").strip()
                         pref_prog_2_raw = row.get("Preferred Programme for Supervision (2nd Choice)", "").strip()
                         # exp1, exp2, exp3 are all python lists
-                        exp1 = row.get("Expertise Area 1", "").strip()
-                        exp2 = row.get("Expertise Area 2", "").strip()
-                        exp3 = row.get("Expertise Area 3", "").strip()
+                        
+                        #region NEED TO UPDATE
+                        exp1 = ast.literal_eval(row.get("Expertise Area 1", ""))
+                        exp2 = ast.literal_eval(row.get("Expertise Area 2", ""))
+                        exp3 = ast.literal_eval(row.get("Expertise Area 3", ""))
+                        combined_exp = exp1 + exp2 + exp3
 
                         if not full_name:
                             self.stdout.write(self.style.WARNING(f"Skipping row {row_num}: Supervisor name is missing."))
@@ -116,10 +120,11 @@ class Command(BaseCommand):
                         # If department_abbr is empty, both will remain None which is allowed by model
 
                         # 3. Compile Expertise
-                        expertise_list = [re.sub(r"[^\w\s/]", "", e).strip().lower() for e in [exp1, exp2, exp3] if e] # Filter out empty strings
+                        #region NEED TO UPDATE
+                        expertise_list = [re.sub(r"[^\w\s/-]", "", e).strip().lower() for e in combined_exp if e] # Filter out empty strings
                         # use regex to remove any non-alphanumeric characters such as "[" and "]" and "'" and convert to lowercase
                         # do not remove "/" as it is used in some expertise areas
-                        expertise_text = ', '.join(e for e in expertise_list if e.strip() != "")
+                        expertise_text = ', '.join(f'"{e}"' for e in expertise_list if e.strip() != "")
 
                         # 4. Get Preferred Programmes
                         pref_prog_1_obj = None
@@ -137,12 +142,6 @@ class Command(BaseCommand):
                                 pref_prog_2_obj = programme_groups_cache[cleaned_pref_2]
                             else:
                                 self.stdout.write(self.style.WARNING(f"Row {row_num} for '{full_name}': ProgrammePreferenceGroup '{cleaned_pref_2}' (2nd choice) not found. Skipping."))
-                        
-                        # Ensure 2nd choice is different from 1st if both are set
-                        if pref_prog_1_obj and pref_prog_2_obj and pref_prog_1_obj == pref_prog_2_obj:
-                            self.stdout.write(self.style.WARNING(f"Row {row_num} for '{full_name}': First and second choice programmes are the same ('{pref_prog_1_obj.name}'). Setting second choice to None."))
-                            pref_prog_2_obj = None
-
 
                         # 5. Supervision Capacity
                         supervision_capacity = random.randint(3, 10)

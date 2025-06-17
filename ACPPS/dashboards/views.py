@@ -11,7 +11,7 @@ from users.forms import (
     SupervisorProfileForm,
 )
 from users.models import User, StudentProfile, SupervisorProfile
-
+from api.models import TopicMapping
 
 # --- Dashboard Views ---
 
@@ -22,7 +22,18 @@ def supervisor_dashboard_view(request):
     return render(request, 'dashboard/supervisor.html')
 
 def coordinator_dashboard_view(request):
-    return render(request, 'dashboard/coordinator.html')
+    """
+    Renders the coordinator dashboard, now including a list of
+    currently standardized topics.
+    """
+    context = {}
+    if TopicMapping:
+        # Fetch all topics from the database to display on the page.
+        # Ordering them by name makes for a cleaner presentation.
+        topics = TopicMapping.objects.all().order_by('standardised_topic', 'topic')
+        context['standardized_topics'] = topics
+
+    return render(request, 'dashboard/coordinator.html', context)
 
 
 # --- Profile Update View ---

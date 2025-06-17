@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,6 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-lt0r5-=i@!107buyql65&c+b2$sfd4v@w_$@w1b52uvla%tfjs'
+os.environ['GOOGLE_API_KEY'] = 'AIzaSyBr8aF6h4Vp1LpwxbKtD8KvuaCfUcl-2MM'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,9 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users.apps.UsersConfig',
-    'academics.apps.AcademicsConfig',
-    'dashboards.apps.DashboardsConfig',
+    'users',
+    'academics',
+    'dashboards',
+    'rest_framework',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +135,10 @@ AUTH_USER_MODEL = "users.User"
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'  # Fallback redirect
 LOGOUT_REDIRECT_URL = 'home' # Where to go after logging out.
+
+# --- CELERY AND REDIS CONFIGURATION ---
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0' # Stores task results
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'

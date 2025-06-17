@@ -40,3 +40,16 @@ class ProgrammePreferenceGroup(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+    
+
+class Semester(models.Model):
+    name = models.CharField(max_length=100)
+    start_date = models.DateField()
+    end_date = models.DateField()
+
+    class Meta:
+        get_latest_by = 'start_date'
+        ordering = ['-start_date']
+
+    def __str__(self):
+        return f"{self.name} ({self.start_date} to {self.end_date})"

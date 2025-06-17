@@ -1,0 +1,21 @@
+{% extends "academics/academics_base.html" %}
+
+{% block academic_content %}
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for item in dashboard_items %}
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.plural_name }}</h5>
+                    <p class="card-text">
+                        There {% if item.count == 1 %}is 1 record{% else %}are {{ item.count }} records{% endif %} currently in the system.
+                    </p>
+                </div>
+                <div class="card-footer bg-transparent border-top-0">
+                     <a href="{{ item.manage_url }}" class="btn btn-primary w-100">Manage {{ item.plural_name }}</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

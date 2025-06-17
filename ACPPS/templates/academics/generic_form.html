@@ -1,0 +1,23 @@
+{% extends "academics/academics_base.html" %}
+
+{% block academic_content %}
+    <h3>
+        {% if object %}
+            Edit {{ config.singular }}: {{ object }}
+        {% else %}
+            Create New {{ config.singular }}
+        {% endif %}
+    </h3>
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+        
+        <!-- Render form fields using your preferred method. This is a basic example. -->
+        {{ form.as_p }}
+
+        <div class="mt-4">
+            <button type="submit" class="btn btn-success">Save {{ config.singular }}</button>
+            <a href="{% url 'academics:admin_list' model_name_key %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+{% endblock %}

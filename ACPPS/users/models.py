@@ -1,9 +1,21 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator 
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.conf import settings
 from django.utils import timezone
-from academics.models import Programme, Department, School, ProgrammePreferenceGroup
+from academics.models import Programme, Department, School, ProgrammePreferenceGroup, Semester
+import re
 
+
+def get_default_semester():
+    try:
+        # .latest() is a convenient shortcut that uses get_latest_by from Meta
+        latest_session = Semester.objects.latest()
+        return latest_session.pk
+    except Semester.DoesNotExist:
+        # If no sessions exist, new Programmes can't have a default.
+        # Returning None makes the field empty, which requires it to be nullable.
+        return None
 
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -53,6 +65,14 @@ class StudentProfile(models.Model):
     supervisor = models.ForeignKey(
         'SupervisorProfile', on_delete=models.SET_NULL, null=True, blank=True, related_name='students'
     )
+    semester = models.ForeignKey(
+        Semester,
+        on_delete=models.PROTECT, # Don't delete a session if programmes are linked to it
+        default=get_default_semester(), 
+        null=True, 
+        blank=True,
+        related_name='students'
+    )
 
     def __str__(self):
         return f"{self.user.email} - Student"
@@ -78,10 +98,27 @@ class SupervisorProfile(models.Model):
     preferred_programmes_second_choice = models.ForeignKey(ProgrammePreferenceGroup, on_delete=models.SET_NULL, null=True, related_name='supervisors_second_choice')
     supervision_capacity = models.PositiveIntegerField(default=0)
     standardised_expertise = models.TextField(blank=True, null=True)
+    accepting_students = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.user.email} - Supervisor"
-
+    
+    def clean(self):
+        super().clean()
+        if self.supervision_capacity < StudentProfile.objects.filter(supervisor=self).count():
+            raise ValueError("Supervision capacity cannot be less than the number of students assigned to this supervisor.")
+        if self.supervision_capacity > StudentProfile.objects.all().count():
+            raise ValueError("Supervision capacity cannot exceed the total number of students in the system.")
+        #check if expertise is a proper list of strings and is quoted (e.g "expertise1", "expertise2")
+        if self.expertise:
+            self.expertise = self.expertise.strip()
+            pattern = r'"([^"]*)"'
+            if not re.match(pattern, self.expertise):
+                raise ValueError("Expertise must be a comma-separated list of non-empty quoted strings.")
+            expertise_list = re.findall(pattern, self.expertise)
+            if not all(item.strip() for item in expertise_list):
+                raise ValueError("Empty quotations are not allowed.")
+            
     @property
     def effective_school(self):
         return self.department.school if self.department else self.school if self.school else None
@@ -93,3 +130,9 @@ class CoordinatorProfile(models.Model):
 
     def __str__(self):
         return f"{self.supervisor.user.email} - Coordinator"
+    
+    # Set coordinator user base to staff
+    def save(self, *args, **kwargs):
+        self.supervisor.user.is_staff = True
+        self.supervisor.user.save()
+        super().save(*args, **kwargs)

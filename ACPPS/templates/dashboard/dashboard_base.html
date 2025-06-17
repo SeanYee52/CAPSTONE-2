@@ -3,10 +3,12 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h1>Dashboard</h1>
-        <p>Welcome, {{ user.get_full_name }}.</p>
-        {% block dasboard %}
-        {% endblock %}
-    </div>
+
+    {% block dashboard %}
+    {% endblock %}
+
+    <!-- THIS BLOCK IS ESSENTIAL -->
+     
+    {% block extra_js %}
+    {% endblock %}
 {% endblock %}

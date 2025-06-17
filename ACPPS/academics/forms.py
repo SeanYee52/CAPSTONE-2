@@ -1,6 +1,6 @@
 # academics/forms.py
 from django import forms
-from .models import Faculty, School, Department, Programme, ProgrammePreferenceGroup
+from .models import Faculty, School, Department, Programme, ProgrammePreferenceGroup, Semester
 
 class FacultyForm(forms.ModelForm):
     class Meta:
@@ -59,4 +59,14 @@ class ProgrammePreferenceGroupForm(forms.ModelForm):
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'programme': forms.SelectMultiple(attrs={'class': 'form-select', 'size': '5'}), # SelectMultiple for ManyToMany
+        }
+
+class SemesterForm(forms.ModelForm):
+    class Meta:
+        model = Semester
+        fields = ['name', 'start_date', 'end_date']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'start_date': forms.DateInput(attrs={'type': 'date'}),
+            'end_date': forms.DateInput(attrs={'type': 'date'}),
         }

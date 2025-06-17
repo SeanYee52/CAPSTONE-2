@@ -90,7 +90,7 @@ class SupervisorProfileForm(forms.ModelForm):
             'supervision_capacity',
         ]
         widgets = {
-            'expertise': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Comma-separated keywords for matching, e.g., AI, NLP, Computer Vision'}),
+            'expertise': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Comma-separated keywords for matching, e.g., "AI", "NLP", "Computer Vision"'}),
         }
 
     def __init__(self, *args, **kwargs):

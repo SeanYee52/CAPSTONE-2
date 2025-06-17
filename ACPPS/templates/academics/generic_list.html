@@ -1,0 +1,21 @@
+{% extends "academics/academics_base.html" %}
+
+{% block academic_content %}
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3>{{ config.plural }}</h3>
+        <a href="{% url 'academics:admin_create' model_name_key %}" class="btn btn-primary">Add New {{ config.singular }}</a>
+    </div>
+
+    {% if object_list %}
+        <ul class="list-group">
+            {% for object in object_list %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ object }}
+                    <a href="{% url 'academics:admin_update' model_name_key object.pk %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No {{ config.plural|lower }} have been created yet.</p>
+    {% endif %}
+{% endblock %}

@@ -1,7 +1,203 @@
 {% extends "dashboard/dashboard_base.html" %}
+{% load static %}
 {% block title %}Coordinator Dashboard{% endblock %}
-{% block content %}
+{% block dashboard %}
     <h1>Coordinator Dashboard</h1>
     <p>Welcome, Coordinator {{ user.get_full_name }}.</p>
-    <p>You have access to system-wide allocation tools.</p>
+    
+    <div class="row">
+        <!-- Card for Standardization Task -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Step 1: Standardize All Supervisor Topics</h5>
+                    <p class="card-text">
+                        This task analyzes all supervisor expertise fields, uses AI to create a consistent set of topics, and saves them. Run this whenever supervisor data changes.
+                    </p>
+                    <button id="standardize-btn" class="btn btn-primary">Run Standardization</button>
+                    <div id="standardize-status-message" class="mt-3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-4">
+            <h3>Current Standardized Topics</h3>
+            {% if standardized_topics %}
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Standardized Topic</th>
+                                <th>Original Topics</th>
+                                <th>Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% regroup standardized_topics by standardised_topic as topic_groups %}
+                            {% for group in topic_groups %}
+                                <tr>
+                                    <td class="fw-bold">{{ group.grouper }}</td>
+                                    <td>
+                                        <ul class="list-unstyled mb-0">
+                                            {% for topic in group.list %}
+                                                <li>{{ topic.topic }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </td>
+                                    <td>{{ group.list|length }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="alert alert-warning" role="alert">
+                    No topics have been standardized yet, or the topic model could not be found. Run Step 1 to generate them.
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Card for Labeling Task -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Step 2: Label Student Preferences</h5>
+                    <p class="card-text text-muted">
+                        Note: You must run the standardization task at least once before running this.
+                    </p>
+                    <div class="form-group mb-3">
+                        <label for="semester-input">Semester to Process:</label>
+                        <input type="text" id="semester-input" class="form-control" placeholder="e.g., 2024-S2">
+                    </div>
+                    <button id="label-btn" class="btn btn-secondary">Run Labeling for Semester</button>
+                    <div id="label-status-message" class="mt-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Get all the elements we need from the page ---
+        const standardizeBtn = document.getElementById('standardize-btn');
+        const standardizeStatus = document.getElementById('standardize-status-message');
+        
+        const labelBtn = document.getElementById('label-btn');
+        const labelStatus = document.getElementById('label-status-message');
+        const semesterInput = document.getElementById('semester-input');
+        
+        // --- A reliable function to get the CSRF token ---
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+
+        
+        /**
+         * Polls the task status endpoint until a final result is received.
+         * @param {string} taskId - The ID of the task to poll.
+         *- @param {HTMLElement} statusElement - The element to update with status messages.
+        */
+        function pollTaskStatus(taskId, statusElement) {
+            statusElement.className = 'mt-3 alert alert-info';
+            statusElement.innerHTML = `Task initiated (ID: ${taskId}).<br>Polling for result... <span class="spinner-border spinner-border-sm"></span>`;
+
+            // Set an interval to check the status every 3 seconds
+            const pollingInterval = setInterval(async () => {
+                try {
+                    // Note: The task_status URL needs a placeholder for the task_id
+                    const response = await fetch(`/api/coordinator/task-status/${taskId}/`);
+                    const data = await response.json();
+
+                    if (data.status === 'SUCCESS' || data.status === 'FAILURE') {
+                        clearInterval(pollingInterval); 
+
+                        if (data.status === 'SUCCESS') {
+                            statusElement.className = 'mt-3 alert alert-success';
+                            let successMessage = `Success: Task completed.`;
+                            // Check if the result from celery is a detailed message
+                            if (data.result && data.result.result) {
+                                successMessage = `Success: ${data.result.result}`;
+                            }
+                            statusElement.textContent = `${successMessage} The page will now reload.`;
+                            
+                            // *** THIS IS THE KEY CHANGE: RELOAD THE PAGE AFTER 2 SECONDS ***
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 2000); // 2-second delay to allow the user to read the message
+                            
+                        } else { // Handle FAILURE
+                            statusElement.className = 'mt-3 alert alert-danger';
+                            statusElement.textContent = `Task Failed: ${data.result}`;
+                        }
+                    }
+                } catch (error) {
+                    console.error("Polling failed:", error);
+                    clearInterval(pollingInterval); // Stop polling on error
+                    statusElement.className = 'mt-3 alert alert-danger';
+                    statusElement.textContent = 'Error: Could not retrieve task status.';
+                }
+            }, 3000); // Poll every 3000 milliseconds (3 seconds)
+        }
+
+        /**
+         * Starts a task by calling its API endpoint.
+         */
+        async function startTask(button, statusElement, url, body = null) {
+            const originalButtonText = button.innerHTML;
+            button.disabled = true;
+            button.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Starting...`;
+            
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrftoken },
+                    body: body ? JSON.stringify(body) : null,
+                });
+
+                const data = await response.json();
+                console.log(data)
+                if (response.ok) {
+                    // On success, we get the task_id and start polling
+                    pollTaskStatus(data.task_id, statusElement);
+                } else {
+                    statusElement.className = 'mt-3 alert alert-danger';
+                    statusElement.textContent = `Error: ${data.detail || data.error}`;
+                }
+            } catch (error) {
+                console.error("Task start failed:", error);
+                statusElement.className = 'mt-3 alert alert-danger';
+                statusElement.textContent = 'A network error occurred while starting the task.';
+            } finally {
+                button.disabled = false;
+                button.innerHTML = originalButtonText;
+            }
+        }
+
+        // --- Attach event listeners ---
+        standardizeBtn.addEventListener('click', function() {
+            startTask(standardizeBtn, standardizeStatus, "{% url 'start_standardization' %}");
+        });
+
+        labelBtn.addEventListener('click', function() {
+            const semester = semesterInput.value.trim();
+            if (!semester) { alert('Please enter a semester.'); return; }
+            const body = { semester: semester };
+            startTask(labelBtn, labelStatus, "{% url 'start_labeling' %}", body);
+        });
+    });
+    </script>
+    </script>
 {% endblock %}

@@ -104,13 +104,13 @@ class Command(BaseCommand):
                         email_username_part = slugify(student_identifier_base)
                         email = f"{email_username_part}@{email_domain}"
                         
-                        # Ensure email is unique if it might not be
-                        temp_email = email
-                        counter = 1
-                        while User.objects.filter(email=temp_email).exists():
-                            temp_email = f"{email_username_part}{counter}@{email_domain}"
-                            counter += 1
-                        email = temp_email
+                        # # Ensure email is unique if it might not be
+                        # temp_email = email
+                        # counter = 1
+                        # while User.objects.filter(email=temp_email).exists():
+                        #     temp_email = f"{email_username_part}{counter}@{email_domain}"
+                        #     counter += 1
+                        # email = temp_email
                         
                         # 2. Create or get User
                         user, user_created = User.objects.get_or_create(
