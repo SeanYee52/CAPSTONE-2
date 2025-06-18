@@ -73,7 +73,10 @@ class StudentProfile(models.Model):
         blank=True,
         related_name='students'
     )
-
+    programme_match_type = models.IntegerField(null=True)
+    matching_topics = models.TextField(blank=True, null=True)
+    conflicting_topics = models.TextField(blank=True, null=True)
+    
     def __str__(self):
         return f"{self.user.email} - Student"
 

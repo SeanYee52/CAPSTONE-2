@@ -8,7 +8,9 @@ import math
 import time
 
 from .models import TopicMapping
-from users.models import StudentProfile, SupervisorProfile
+from users.models import StudentProfile, SupervisorProfile, User
+from academics.models import Programme, ProgrammePreferenceGroup
+from django.db.models import Q, F, Count, Sum
 
 def get_standardisation_map_from_gemini(unique_terms_list, model, prompt=""):
     """
@@ -100,8 +102,8 @@ def create_prompt_for_batch(batch_sentences_list, all_standardized_topics):
         5.  Your output MUST be a valid JSON array of objects.
         6.  Each object in your output array should correspond to an input sentence and have the following keys:
             *   "SentenceID": (string) The ID from the input sentence object.
-            *   "Gemini_Positive_Topics": (array of strings) A list of positive topics. If no positive topics, label it as 'No Match'.
-            *   "Gemini_Negative_Topics": (array of strings) A list of negative topics. If no negative topics, label it as 'No Match'.
+            *   "Gemini_Positive_Topics": (comma separated values) A list of positive topics. If no positive topics, label it as 'No Match'.
+            *   "Gemini_Negative_Topics": (comma separated values) A list of negative topics. If no negative topics, label it as 'No Match'.
         7.  Ensure every SentenceID from the input batch is present in your output JSON array.
         8.  Do NOT include the original 'SentenceText' in your output JSON, only the specified keys.
 
@@ -109,13 +111,13 @@ def create_prompt_for_batch(batch_sentences_list, all_standardized_topics):
         [
         {{
             "SentenceID": "S001",
-            "Gemini_Positive_Topics": ["Machine Learning", "Artificial Intelligence"],
-            "Gemini_Negative_Topics": ["Web Development"]
+            "Gemini_Positive_Topics": "Machine Learning", "Artificial Intelligence",
+            "Gemini_Negative_Topics": "Web Development"
         }},
         {{
             "SentenceID": "S002",
-            "Gemini_Positive_Topics": ["Data Science"],
-            "Gemini_Negative_Topics": []
+            "Gemini_Positive_Topics": "Data Science",
+            "Gemini_Negative_Topics": "No Match"
         }}
         ]
 
@@ -123,6 +125,7 @@ def create_prompt_for_batch(batch_sentences_list, all_standardized_topics):
         """
     return prompt
 
+#region STANDARDISE TOPICS
 # --- TASK 1: Standardize Topics ---
 @shared_task
 def standardize_all_topics():
@@ -161,6 +164,15 @@ def standardize_all_topics():
                 topic=original_term,
                 defaults={'standardised_topic': standardised_term}
             )
+
+        for supervisor in SupervisorProfile.objects.all():
+            supervisor_topics = re.findall(pattern, supervisor.expertise)
+            standardised_topics = []
+            for supervisor_topic in supervisor_topics:
+                standardised_topics.append(standardisation_map.get(supervisor_topic))
+            supervisor.standardised_expertise = ', '.join(f'"{e}"' for e in standardised_topics if e.strip() != "")
+            supervisor.save()
+
         print("Topic mappings saved to the database.")
         print("--- TASK: Standardize Topics [SUCCESS] ---")
 
@@ -174,6 +186,7 @@ def standardize_all_topics():
         print(f"!!! ERROR in standardize_all_topics task: {e}")
         raise
 
+#region STUDENT LABELING
 # --- TASK 2: Label Student Preferences ---
 @shared_task
 def label_student_preferences_for_semester(semester):
@@ -192,7 +205,7 @@ def label_student_preferences_for_semester(semester):
         
         print(f"Loaded {len(standardised_topics)} standardized topics from the database.")
 
-        students = StudentProfile.objects.filter(preference_text__isnull=False, semester=semester).order_by('id')
+        students = StudentProfile.objects.filter(preference_text__isnull=False, semester=semester).order_by('user')
         if not students.exists():
             print("No students with preferences found for this semester. Task complete.")
             return
@@ -230,21 +243,21 @@ def label_student_preferences_for_semester(semester):
 
             print(f"\n--- Processing Batch {i+1}/{num_batches} ({len(batch)} sentences) ---")
 
-            if batch.empty:
+            if not batch:
                 print("Batch is empty, skipping.")
                 continue
 
             # Prepare list of sentences for the current batch's prompt
             batch_sentences_to_label_list = []
             for student in batch:
-                if not student.preference:
-                    print(f"Warning: Student {student.id} has no preference text. Skipping.")
+                if not student.preference_text:
+                    print(f"Warning: Student {student.student_id} has no preference text. Skipping.")
                     continue
                 
                 # Create a sentence object for the batch
                 sentence_object = {
-                    "SentenceID": str(student.id),
-                    "SentenceText": student.preference.strip()
+                    "SentenceID": str(student.student_id),
+                    "SentenceText": student.preference_text.strip()
                 }
                 batch_sentences_to_label_list.append(sentence_object)
 
@@ -327,27 +340,265 @@ def label_student_preferences_for_semester(semester):
 
         for result in all_gemini_results:
             sentence_id = result.get("SentenceID")
-            positive_topics = result.get("Gemini_Positive_Topics", [])
-            negative_topics = result.get("Gemini_Negative_Topics", [])
+            positive_topics = result.get("Gemini_Positive_Topics", []).split(',')
+            negative_topics = result.get("Gemini_Negative_Topics", []).split(',')
 
             if not sentence_id:
                 print("Warning: Result missing SentenceID, skipping this entry.")
                 continue
 
             try:
-                student = StudentProfile.objects.get(id=sentence_id)
-                student.positive_preferences = positive_topics
-                student.negative_preferences = negative_topics
+                student = StudentProfile.objects.get(user=User.objects.get(email__startswith=f"{sentence_id}@"))
+                student.positive_preferences = ', '.join(f'"{e}"' for e in positive_topics if e.strip() != "")
+                student.negative_preferences = ', '.join(f'"{e}"' for e in negative_topics if e.strip() != "")
                 student.save()
             except StudentProfile.DoesNotExist:
                 print(f"Warning: Student with ID {sentence_id} does not exist. Skipping this entry.")
 
         # Return the results
         print("--- TASK: Label Preferences [SUCCESS] ---")
-        message = f"Successfully labeled preferences for {student_count} students in semester {semester}."
+        message = f"Successfully labeled preferences for {students.count()} students in semester {semester}."
         print(f"--- TASK: Label Preferences [SUCCESS]: {message} ---")
         return {'status': 'SUCCESS', 'result': message}
 
     except Exception as e:
         print(f"!!! ERROR in label_student_preferences task: {e}")
+        raise
+
+#region OPTIMAL MATCHING
+from pulp import LpProblem, LpVariable, LpMaximize, lpSum, LpBinary
+import pandas as pd
+
+def get_preferences_list(preferences):
+    all_topics = []
+    pattern = r'"([^"]*)"'
+    if preferences:
+        topics_found = re.findall(pattern, preferences)
+        for topic in topics_found:
+            topic = topic.strip()
+            if topic:
+                all_topics.append(topic)
+    return all_topics
+
+@shared_task
+def match_students_for_semester(semester, weightage):
+    try:
+        print(f"--- TASK: Allocate Students for semester {semester} [STARTED] ---")
+
+        students = StudentProfile.objects.filter(semester=semester).filter(
+            Q(positive_preferences__isnull=False) & ~Q(positive_preferences='') &
+            Q(negative_preferences__isnull=False) & ~Q(negative_preferences=''))
+        
+        if students.count() == 0:
+            raise ValueError("Students preferences are not labeled"
+                             "Please run the 'Label Student Prefrences' task first.")
+        
+        students_no_label_count = StudentProfile.objects.filter(semester=semester).filter(
+            ~Q(positive_preferences__isnull=False) | Q(positive_preferences='') |
+            ~Q(negative_preferences__isnull=False) | Q(negative_preferences='')
+        ).count()
+
+        if students_no_label_count > 0:
+            print(f"Warning: There are {students_no_label_count} students who have no labels. Matching will be based on programme only!")
+
+        supervisors = SupervisorProfile.objects.filter(
+                accepting_students=True
+            ).annotate(
+                remaining_capacity=F('supervision_capacity')-Count('students')
+            ).filter(
+                remaining_capacity__gt=0
+            )
+
+        if supervisors.aggregate(total_capacity=Sum('remaining_capacity'))['total_capacity'] < students.count():
+            raise ValueError("There is not enough supervisor capacity to allocate all students")
+
+        students_data = []
+        for student in students:
+            students_data.append({
+                "student_id": student.student_id,
+                "programme": student.programme,
+                "positive_preferences": get_preferences_list(student.positive_preferences),
+                "negative_preferences": get_preferences_list(student.negative_preferences)
+            })
+        students_df = pd.DataFrame(students_data)
+
+        supervisors_data = []
+        for supervisor in supervisors:
+            supervisors_data.append({
+                "supervisor_id": supervisor.user.email,
+                "name": supervisor.user.full_name,
+                "programme_first_choice": supervisor.preferred_programmes_first_choice.programme.all() if supervisor.preferred_programmes_first_choice else "No Preferences",
+                "programme_second_choice": supervisor.preferred_programmes_second_choice.programme.all() if supervisor.preferred_programmes_second_choice else "No Preferences",
+                "capacity": supervisor.remaining_capacity,
+                "expertise": get_preferences_list(supervisor.standardised_expertise)
+            })
+        supervisors_df = pd.DataFrame(supervisors_data)
+        assignments = optimal_matching(students_df,supervisors_df,float(weightage))
+        for assignment in assignments:
+            student = StudentProfile.objects.get(user__email__contains=f"{assignment['student_id']}@")
+            student.supervisor = SupervisorProfile.objects.get(user__email=assignment['supervisor_id'])
+            student.matching_topics = ", ".join(f'"{e}"' for e in assignment['matching_topics'] if e.strip() != "")
+            student.conflicting_topics = ", ".join(f'"{e}"' for e in assignment['conflicting_topics'] if e.strip() != "")
+            student.programme_match_type = assignment['programme_match']
+            student.save()
+        message = f"Successfully match {students.count()} students in semester {semester} to {supervisors.count()} supervisors."
+        return {'status': 'SUCCESS', 'result': message}
+        
+    except Exception as e:
+        print(f"!!! ERROR in match_student_preferences task: {e}")
+        raise
+        
+def optimal_matching(students_df, supervisors_df, balancing_penalty_weight=0.5):
+    
+    # Create the optimization problem
+    problem = LpProblem("Optimal_Matching", LpMaximize)
+
+    # Create decision variables for each student-supervisor pair
+    decision_vars = {}
+    for _, student in students_df.iterrows():
+        for _, supervisor in supervisors_df.iterrows():
+            decision_vars[(student['student_id'], supervisor['supervisor_id'])] = LpVariable(
+                f"x_{student['student_id']}_{supervisor['supervisor_id']}", 0, 1, LpBinary
+            )
+
+    # --- Soft Balancing Setup ---
+    num_students_total = len(students_df)
+    num_supervisors_total = len(supervisors_df)
+
+    if num_supervisors_total == 0: # Avoid division by zero
+        target_load_per_supervisor = 0
+    else:
+        target_load_per_supervisor = num_students_total / num_supervisors_total
+
+    print(f"Target load per supervisor (for soft balancing): {target_load_per_supervisor:.2f}")
+
+    # Auxiliary variables for deviation from target load
+    supervisor_over_target = LpVariable.dicts(
+        "SupervisorOverTarget",
+        [s['supervisor_id'] for _, s in supervisors_df.iterrows()],
+        lowBound=0,
+        cat='Continuous'
+    )
+    supervisor_under_target = LpVariable.dicts(
+        "SupervisorUnderTarget",
+        [s['supervisor_id'] for _, s in supervisors_df.iterrows()],
+        lowBound=0,
+        cat='Continuous'
+    )
+
+    # Constraints linking actual load to deviation variables
+    for _, supervisor in supervisors_df.iterrows():
+        supervisor_id = supervisor['supervisor_id']
+        actual_load_expr = lpSum(decision_vars[(student['student_id'], supervisor_id)]
+                                for _, student in students_df.iterrows())
+        
+        problem += (
+            actual_load_expr - target_load_per_supervisor ==
+            supervisor_over_target[supervisor_id] - supervisor_under_target[supervisor_id],
+            f"Define_Deviation_Supervisor_{supervisor_id}"
+        )
+
+    # Objective function with prioritized programme preferences
+    problem += (
+        lpSum(
+            decision_vars[(student['student_id'], supervisor['supervisor_id'])] * (
+                # Programme preference weighting (higher weights to prioritize)
+                (20 if "No Preference" in supervisor['programme_first_choice'] or student.get('programme', '') in supervisor['programme_first_choice']  else
+                10 if "No Preference" in supervisor['programme_second_choice'] or student.get('programme', '') in supervisor['programme_second_choice']  else 0) +
+                # Topic preference weighting (lower weights relative to programme)
+                (2 * sum(1 for topic in safe_list(student['positive_preferences'])
+                        if topic in safe_list(supervisor['expertise']))) -
+                1 * sum(1 for topic in safe_list(student['negative_preferences'])
+                        if topic in safe_list(supervisor['expertise']))
+            )
+            for _, student in students_df.iterrows()
+            for _, supervisor in supervisors_df.iterrows()
+            
+        )
+        # Penalty: discourage supervisors from having too many students
+        - balancing_penalty_weight * lpSum(
+            supervisor_over_target[s['supervisor_id']] + supervisor_under_target[s['supervisor_id']]
+            for _, s in supervisors_df.iterrows()
+        )
+    )
+
+    # Constraint: Each student is assigned to exactly one supervisor
+    for _, student in students_df.iterrows():
+        problem += lpSum(
+            decision_vars[(student['student_id'], supervisor['supervisor_id'])]
+            for _, supervisor in supervisors_df.iterrows()
+        ) == 1
+
+    # Constraint: Each supervisor does not exceed their capacity
+    for _, supervisor in supervisors_df.iterrows():
+        capacity = supervisor.get('capacity', 5)  # Default capacity of 5
+        problem += lpSum(
+            decision_vars[(student['student_id'], supervisor['supervisor_id'])]
+            for _, student in students_df.iterrows()
+        ) <= capacity
+
+    # Solve the problem
+    problem.solve()
+
+    # Extract and display results with detailed matching information
+    assignments = []
+    for _, student in students_df.iterrows():
+        for _, supervisor in supervisors_df.iterrows():
+            if decision_vars[(student['student_id'], supervisor['supervisor_id'])].value() == 1:
+                programme_match_type = (
+                    1 if supervisor['programme_first_choice'] == student.get('programme', '') or "No Preference" in supervisor['programme_first_choice'] else
+                    2 if supervisor['programme_second_choice'] == student.get('programme', '') or "No Preference" in supervisor['programme_second_choice'] else
+                    0
+                )
+                matching_topics = [topic for topic in safe_list(student['positive_preferences'])
+                                if topic in safe_list(supervisor['expertise'])]
+                conflicting_topics = [topic for topic in safe_list(student['negative_preferences'])
+                                    if topic in safe_list(supervisor['expertise'])]
+                assignments.append({
+                    'student_id': student['student_id'],
+                    'supervisor_id': supervisor['supervisor_id'],
+                    'supervisor_name': supervisor['name'],
+                    'programme_match': programme_match_type,
+                    'matching_topics': matching_topics if matching_topics else ["No Matches"],
+                    'conflicting_topics': conflicting_topics if conflicting_topics else ["No Conflicts"],
+                    'match_score': (
+                        10 if programme_match_type == "First Choice" else
+                        5 if programme_match_type == "Second Choice" else
+                        0
+                    ) + (2 * len(matching_topics)) - len(conflicting_topics)
+                })
+    return assignments
+
+def safe_list(val):
+    if isinstance(val, list):
+        return val
+    if isinstance(val, float) or pd.isna(val):
+        return []
+    if isinstance(val, str):
+        try:
+            # Try to parse stringified list
+            if val.strip().startswith("[") and val.strip().endswith("]"):
+                parsed = eval(val)
+                if isinstance(parsed, list):
+                    return [str(t).strip() for t in parsed if str(t).strip()]
+            # Otherwise, split by comma or semicolon
+            return [t.strip() for t in val.split(',') if t.strip()]
+        except Exception:
+            return [val.strip()] if val.strip() else []
+    return []
+
+@shared_task
+def reset_students_for_semester(semester):
+    try:
+        print(f"--- TASK: Reset Students for semester {semester} [STARTED] ---")
+        StudentProfile.objects.filter(semester=semester).update(
+            supervisor=None, 
+            programme_match_type=None, 
+            matching_topics=None, 
+            conflicting_topics=None)
+        message = f"Successfully reset allocations for students in semester {semester}."
+        return {'status': 'SUCCESS', 'result': message}
+
+    except Exception as e:
+        print(f"!!! ERROR in match_student_preferences task: {e}")
         raise

@@ -11,7 +11,7 @@ from django.utils.text import slugify
 # Assuming StudentProfile is in 'users' app
 from users.models import StudentProfile
 # Assuming Programme is in 'academics' app
-from academics.models import Programme
+from academics.models import Programme, Semester
 
 User = get_user_model()
 
@@ -105,12 +105,12 @@ class Command(BaseCommand):
                         email = f"{email_username_part}@{email_domain}"
                         
                         # # Ensure email is unique if it might not be
-                        # temp_email = email
-                        # counter = 1
-                        # while User.objects.filter(email=temp_email).exists():
-                        #     temp_email = f"{email_username_part}{counter}@{email_domain}"
-                        #     counter += 1
-                        # email = temp_email
+                        temp_email = email
+                        counter = 1
+                        while User.objects.filter(email=temp_email).exists():
+                            temp_email = f"{email_username_part}{counter}@{email_domain}"
+                            counter += 1
+                        email = temp_email
                         
                         # 2. Create or get User
                         user, user_created = User.objects.get_or_create(
@@ -142,6 +142,7 @@ class Command(BaseCommand):
                             defaults={
                                 'programme': selected_programme,
                                 'preference_text': preference_text_data,
+                                'semester': Semester.objects.latest(),
                                 # Explicitly set others to None or leave them to model defaults if appropriate
                                 'positive_preferences': None,
                                 'negative_preferences': None,

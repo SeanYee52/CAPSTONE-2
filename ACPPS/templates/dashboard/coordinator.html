@@ -14,7 +14,7 @@
                     <p class="card-text">
                         This task analyzes all supervisor expertise fields, uses AI to create a consistent set of topics, and saves them. Run this whenever supervisor data changes.
                     </p>
-                    <button id="standardize-btn" class="btn btn-primary">Run Standardization</button>
+                    <button type="button" id="standardize-btn" class="btn btn-primary">Run Standardization</button>
                     <div id="standardize-status-message" class="mt-3"></div>
                 </div>
             </div>
@@ -66,9 +66,14 @@
                     </p>
                     <div class="form-group mb-3">
                         <label for="semester-input">Semester to Process:</label>
-                        <input type="text" id="semester-input" class="form-control" placeholder="e.g., 2024-S2">
+                        <select id="semester-input">
+                            {% for semester in semesters %}
+                                <option value="{{semester.pk}}">{{ semester }}</option>
+                            {% endfor %}
+                        </select>
+                        <!-- <input type="text" id="semester-input" class="form-control" placeholder="e.g., 2024-S2"> -->
                     </div>
-                    <button id="label-btn" class="btn btn-secondary">Run Labeling for Semester</button>
+                    <button type="button" id="label-btn" class="btn btn-secondary">Run Labeling for Semester</button>
                     <div id="label-status-message" class="mt-3"></div>
                 </div>
             </div>
@@ -78,8 +83,8 @@
 
 {% block extra_js %}
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // --- Get all the elements we need from the page ---
+        document.addEventListener('DOMContentLoaded', function() {
+        // --- Elements ---
         const standardizeBtn = document.getElementById('standardize-btn');
         const standardizeStatus = document.getElementById('standardize-status-message');
         
@@ -87,7 +92,7 @@
         const labelStatus = document.getElementById('label-status-message');
         const semesterInput = document.getElementById('semester-input');
         
-        // --- A reliable function to get the CSRF token ---
+        // --- CSRF Token ---
         function getCookie(name) {
             let cookieValue = null;
             if (document.cookie && document.cookie !== '') {
@@ -104,20 +109,19 @@
         }
         const csrftoken = getCookie('csrftoken');
 
-        
         /**
-         * Polls the task status endpoint until a final result is received.
-         * @param {string} taskId - The ID of the task to poll.
-         *- @param {HTMLElement} statusElement - The element to update with status messages.
+        * Polls the task status and manages the UI during the polling process.
+        * @param {string} taskId - The ID of the task to poll.
+        * @param {HTMLElement} statusElement - The element to update with status messages.
+        * @param {HTMLButtonElement} button - The button that triggered the task.
+        * @param {string} originalButtonText - The original text of the button to restore on failure.
         */
-        function pollTaskStatus(taskId, statusElement) {
+        function pollTaskStatus(taskId, statusElement, button, originalButtonText) {
             statusElement.className = 'mt-3 alert alert-info';
             statusElement.innerHTML = `Task initiated (ID: ${taskId}).<br>Polling for result... <span class="spinner-border spinner-border-sm"></span>`;
 
-            // Set an interval to check the status every 3 seconds
             const pollingInterval = setInterval(async () => {
                 try {
-                    // Note: The task_status URL needs a placeholder for the task_id
                     const response = await fetch(`/api/coordinator/task-status/${taskId}/`);
                     const data = await response.json();
 
@@ -126,35 +130,35 @@
 
                         if (data.status === 'SUCCESS') {
                             statusElement.className = 'mt-3 alert alert-success';
-                            let successMessage = `Success: Task completed.`;
-                            // Check if the result from celery is a detailed message
-                            if (data.result && data.result.result) {
-                                successMessage = `Success: ${data.result.result}`;
-                            }
+                            let successMessage = `Success: ${data.result?.result || 'Task completed.'}`;
                             statusElement.textContent = `${successMessage} The page will now reload.`;
-                            
-                            // *** THIS IS THE KEY CHANGE: RELOAD THE PAGE AFTER 2 SECONDS ***
-                            setTimeout(() => {
-                                window.location.reload();
-                            }, 2000); // 2-second delay to allow the user to read the message
+                            setTimeout(() => window.location.reload(), 2000);
                             
                         } else { // Handle FAILURE
                             statusElement.className = 'mt-3 alert alert-danger';
                             statusElement.textContent = `Task Failed: ${data.result}`;
+                            // ** FIX: Re-enable the button ONLY on failure **
+                            button.disabled = false;
+                            button.innerHTML = originalButtonText;
                         }
                     }
                 } catch (error) {
                     console.error("Polling failed:", error);
-                    clearInterval(pollingInterval); // Stop polling on error
+                    clearInterval(pollingInterval);
                     statusElement.className = 'mt-3 alert alert-danger';
                     statusElement.textContent = 'Error: Could not retrieve task status.';
+                    // ** FIX: Re-enable the button on polling error **
+                    button.disabled = false;
+                    button.innerHTML = originalButtonText;
                 }
-            }, 3000); // Poll every 3000 milliseconds (3 seconds)
+            }, 3000);
         }
 
         /**
-         * Starts a task by calling its API endpoint.
-         */
+        * Starts a task by calling its API endpoint.
+        * It disables the button and only re-enables it if the INITIAL call fails.
+        * If the call succeeds, it hands off UI management to pollTaskStatus.
+        */
         async function startTask(button, statusElement, url, body = null) {
             const originalButtonText = button.innerHTML;
             button.disabled = true;
@@ -168,19 +172,25 @@
                 });
 
                 const data = await response.json();
-                console.log(data)
+                
                 if (response.ok) {
-                    // On success, we get the task_id and start polling
-                    pollTaskStatus(data.task_id, statusElement);
+                    // On success, hand off to the poller. DO NOT re-enable the button here.
+                    pollTaskStatus(data.task_id, statusElement, button, originalButtonText);
                 } else {
+                    // Handle API errors (e.g., 400 Bad Request)
                     statusElement.className = 'mt-3 alert alert-danger';
                     statusElement.textContent = `Error: ${data.detail || data.error}`;
+                    // ** FIX: Re-enable the button because the task never started **
+                    button.disabled = false;
+                    button.innerHTML = originalButtonText;
                 }
+            // NOTE: The `finally` block has been REMOVED.
             } catch (error) {
+                // Handle network errors
                 console.error("Task start failed:", error);
                 statusElement.className = 'mt-3 alert alert-danger';
                 statusElement.textContent = 'A network error occurred while starting the task.';
-            } finally {
+                // ** FIX: Re-enable the button because the task never started **
                 button.disabled = false;
                 button.innerHTML = originalButtonText;
             }
@@ -192,12 +202,11 @@
         });
 
         labelBtn.addEventListener('click', function() {
-            const semester = semesterInput.value.trim();
-            if (!semester) { alert('Please enter a semester.'); return; }
+            const semester = semesterInput.value;
+            if (!semester) { alert('Please select a semester.'); return; }
             const body = { semester: semester };
             startTask(labelBtn, labelStatus, "{% url 'start_labeling' %}", body);
         });
     });
-    </script>
     </script>
 {% endblock %}

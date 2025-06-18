@@ -1,0 +1,45 @@
+{% extends "dashboard/coordinator_base.html" %}
+{% block title %}Coordinator Dashboard{% endblock %}
+
+{% block module %}
+    <h1>Coordinator Dashboard</h1>
+    <p>Welcome, Coordinator {{ user.get_full_name }}. Select a task to continue.</p>
+    
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <!-- Card for Standardization Task -->
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Task 1: Topic Standardization</h5>
+                    <p class="card-text">
+                        Standardize supervisor expertise fields into a consistent set of topics using AI. View current topics and re-run the process.
+                    </p>
+                    <p class="card-text">
+                        <small class="text-muted">Currently: <strong>{{ supervisor_with_standardized_expertise_count|default:0 }}</strong> supervisors with standardized expertise.</small>
+                    </p>
+                </div>
+                <div class="card-footer bg-transparent border-top-0">
+                    <a href="{% url 'coordinator_standardize' %}" class="btn btn-primary w-100">Manage Standardization</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card for Labeling Task -->
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Task 2: Student Preference Labeling</h5>
+                    <p class="card-text">
+                        Automatically label student project preferences with standardized topics. View the results and run the labeling for a specific semester.
+                    </p>
+                    <p class="card-text">
+                        <small class="text-muted">Currently: <strong>{{ students_with_labeled_preferences_count|default:0 }}</strong> students with labeled preferences.</small>
+                    </p>
+                </div>
+                <div class="card-footer bg-transparent border-top-0">
+                    <a href="{% url 'coordinator_label' %}" class="btn btn-secondary w-100">Manage Labeling</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

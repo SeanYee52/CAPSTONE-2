@@ -1,14 +1,12 @@
 # api/urls.py
 from django.urls import path
-from .views import StartStandardizationView, StartLabelingView, TaskStatusView
+from .views import StartStandardizationView, StartLabelingView, TaskStatusView, StartMatchingView, ResetMatchingView
 
 urlpatterns = [
-    # Endpoint for Task 1
+    # Endpoint for Tasks
     path('start-standardization/', StartStandardizationView.as_view(), name='start_standardization'),
-    
-    # Endpoint for Task 2
+    path('start-matching/', StartMatchingView.as_view(), name="start_matching"),
     path('start-labeling/', StartLabelingView.as_view(), name='start_labeling'),
-
-    # Endpoint for Task Status
+    path('reset-matching/', ResetMatchingView.as_view(), name='reset_matches'),
     path('coordinator/task-status/<str:task_id>/', TaskStatusView.as_view(), name='task_status'),
 ]

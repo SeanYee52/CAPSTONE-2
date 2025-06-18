@@ -1,0 +1,29 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load static %}
+{% block title %}Coordinator Dashboard{% endblock %}
+{% block dashboard %}
+    <h1>Coordinator Dashboard</h1>
+    <p>Welcome, Coordinator {{ user.get_full_name }}.</p>
+
+    <nav class="nav nav-pills mb-4">
+        {# The 'request.resolver_match.url_name' check makes the active link robust #}
+        <a class="nav-link {% if request.resolver_match.url_name == 'coordinator_dashboard' %}active{% endif %}" href="{% url 'coordinator_dashboard' %}">Capstone Dashboard</a>
+        <a class="nav-link {% if request.resolver_match.url_name == 'coordinator_standardize' %}active{% endif %}" href="{% url 'coordinator_standardize' %}">Standardise Topics</a>
+        <a class="nav-link {% if request.resolver_match.url_name == 'coordinator_label' %}active{% endif %}" href="{% url 'coordinator_label' %}">Label Student Preferences</a>
+        <a class="nav-link {% if request.resolver_match.url_name == 'coordinator_match' %}active{% endif %}" href="{% url 'coordinator_match' %}">Allocate Students</a>
+    </nav>
+
+    <!-- Django messages will be displayed here -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% block module %}
+    {% endblock %}
+    
+{% endblock %}
