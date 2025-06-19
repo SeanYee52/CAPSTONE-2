@@ -126,6 +126,17 @@ class SupervisorProfile(models.Model):
     def effective_school(self):
         return self.department.school if self.department else self.school if self.school else None
     
+    @property
+    def is_profile_incomplete(self):
+        """
+        Returns True if any of the key profile fields are empty, otherwise False.
+        """
+        return (
+            (not self.expertise or not self.expertise.strip()) or
+            self.preferred_programmes_first_choice is None or
+            self.preferred_programmes_second_choice is None
+        )
+    
 class CoordinatorProfile(models.Model):
     supervisor = models.OneToOneField(SupervisorProfile, on_delete=models.CASCADE, primary_key=True)
     appointed_on = models.DateTimeField(auto_now_add=True)

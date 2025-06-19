@@ -9,7 +9,7 @@ import time
 
 from .models import TopicMapping
 from users.models import StudentProfile, SupervisorProfile, User
-from academics.models import Programme, ProgrammePreferenceGroup
+from academics.models import Semester
 from django.db.models import Q, F, Count, Sum
 
 def get_standardisation_map_from_gemini(unique_terms_list, model, prompt=""):
@@ -383,9 +383,9 @@ def get_preferences_list(preferences):
 @shared_task
 def match_students_for_semester(semester, weightage):
     try:
-        print(f"--- TASK: Allocate Students for semester {semester} [STARTED] ---")
+        print(f"--- TASK: Allocate Students for semester {Semester.objects.get(pk=semester)} [STARTED] ---")
 
-        students = StudentProfile.objects.filter(semester=semester).filter(
+        students = StudentProfile.objects.filter(semester=semester, supervisor__isnull=True).filter(
             Q(positive_preferences__isnull=False) & ~Q(positive_preferences='') &
             Q(negative_preferences__isnull=False) & ~Q(negative_preferences=''))
         
@@ -404,7 +404,8 @@ def match_students_for_semester(semester, weightage):
         supervisors = SupervisorProfile.objects.filter(
                 accepting_students=True
             ).annotate(
-                remaining_capacity=F('supervision_capacity')-Count('students')
+                remaining_capacity=F('supervision_capacity')-Count('students'),
+                student_count=Count('students')
             ).filter(
                 remaining_capacity__gt=0
             )
@@ -430,6 +431,7 @@ def match_students_for_semester(semester, weightage):
                 "programme_first_choice": supervisor.preferred_programmes_first_choice.programme.all() if supervisor.preferred_programmes_first_choice else "No Preferences",
                 "programme_second_choice": supervisor.preferred_programmes_second_choice.programme.all() if supervisor.preferred_programmes_second_choice else "No Preferences",
                 "capacity": supervisor.remaining_capacity,
+                "student_count": supervisor.student_count,
                 "expertise": get_preferences_list(supervisor.standardised_expertise)
             })
         supervisors_df = pd.DataFrame(supervisors_data)
@@ -441,7 +443,7 @@ def match_students_for_semester(semester, weightage):
             student.conflicting_topics = ", ".join(f'"{e}"' for e in assignment['conflicting_topics'] if e.strip() != "")
             student.programme_match_type = assignment['programme_match']
             student.save()
-        message = f"Successfully match {students.count()} students in semester {semester} to {supervisors.count()} supervisors."
+        message = f"Successfully match {students.count()} students in semester {Semester.objects.get(pk=semester)} to {supervisors.count()} supervisors."
         return {'status': 'SUCCESS', 'result': message}
         
     except Exception as e:
@@ -462,15 +464,17 @@ def optimal_matching(students_df, supervisors_df, balancing_penalty_weight=0.5):
             )
 
     # --- Soft Balancing Setup ---
-    num_students_total = len(students_df)
+    # Account for students already assigned to supervisors
+    num_new_students = len(students_df)
+    num_existing_students = supervisors_df['student_count'].sum()
     num_supervisors_total = len(supervisors_df)
 
     if num_supervisors_total == 0: # Avoid division by zero
-        target_load_per_supervisor = 0
+        target_total_load = 0
     else:
-        target_load_per_supervisor = num_students_total / num_supervisors_total
+        target_total_load = (num_existing_students + num_new_students) / num_supervisors_total
 
-    print(f"Target load per supervisor (for soft balancing): {target_load_per_supervisor:.2f}")
+    print(f"Target TOTAL load per supervisor (existing + new): {target_total_load:.2f}")
 
     # Auxiliary variables for deviation from target load
     supervisor_over_target = LpVariable.dicts(
@@ -486,16 +490,22 @@ def optimal_matching(students_df, supervisors_df, balancing_penalty_weight=0.5):
         cat='Continuous'
     )
 
-    # Constraints linking actual load to deviation variables
+    # --- CONSTRAINTS (Balancing & Capacity) ---
     for _, supervisor in supervisors_df.iterrows():
         supervisor_id = supervisor['supervisor_id']
-        actual_load_expr = lpSum(decision_vars[(student['student_id'], supervisor_id)]
-                                for _, student in students_df.iterrows())
         
+        # Expression for the number of NEW students assigned to this supervisor
+        newly_assigned_load_expr = lpSum(decision_vars[(student['student_id'], supervisor_id)]
+                                         for _, student in students_df.iterrows())
+        
+        # Get the number of students this supervisor ALREADY has. Default to 0 if column is missing.
+        existing_load = supervisor.get('student_count', 0)
+        
+        # 1. Soft Balancing Constraint: Deviation is now based on the TOTAL load
         problem += (
-            actual_load_expr - target_load_per_supervisor ==
+            (newly_assigned_load_expr + existing_load) - target_total_load ==
             supervisor_over_target[supervisor_id] - supervisor_under_target[supervisor_id],
-            f"Define_Deviation_Supervisor_{supervisor_id}"
+            f"Define_Total_Load_Deviation_Supervisor_{supervisor_id}"
         )
 
     # Objective function with prioritized programme preferences
@@ -503,8 +513,8 @@ def optimal_matching(students_df, supervisors_df, balancing_penalty_weight=0.5):
         lpSum(
             decision_vars[(student['student_id'], supervisor['supervisor_id'])] * (
                 # Programme preference weighting (higher weights to prioritize)
-                (20 if "No Preference" in supervisor['programme_first_choice'] or student.get('programme', '') in supervisor['programme_first_choice']  else
-                10 if "No Preference" in supervisor['programme_second_choice'] or student.get('programme', '') in supervisor['programme_second_choice']  else 0) +
+                (10 if "No Preference" in supervisor['programme_first_choice'] or student.get('programme', '') in supervisor['programme_first_choice']  else
+                5 if "No Preference" in supervisor['programme_second_choice'] or student.get('programme', '') in supervisor['programme_second_choice']  else 0) +
                 # Topic preference weighting (lower weights relative to programme)
                 (2 * sum(1 for topic in safe_list(student['positive_preferences'])
                         if topic in safe_list(supervisor['expertise']))) -
@@ -546,8 +556,8 @@ def optimal_matching(students_df, supervisors_df, balancing_penalty_weight=0.5):
         for _, supervisor in supervisors_df.iterrows():
             if decision_vars[(student['student_id'], supervisor['supervisor_id'])].value() == 1:
                 programme_match_type = (
-                    1 if supervisor['programme_first_choice'] == student.get('programme', '') or "No Preference" in supervisor['programme_first_choice'] else
-                    2 if supervisor['programme_second_choice'] == student.get('programme', '') or "No Preference" in supervisor['programme_second_choice'] else
+                    1 if "No Preference" in supervisor['programme_first_choice'] or student.get('programme', '') in supervisor['programme_first_choice'] else
+                    2 if "No Preference" in supervisor['programme_second_choice'] or student.get('programme', '') in supervisor['programme_second_choice'] else
                     0
                 )
                 matching_topics = [topic for topic in safe_list(student['positive_preferences'])
@@ -590,13 +600,13 @@ def safe_list(val):
 @shared_task
 def reset_students_for_semester(semester):
     try:
-        print(f"--- TASK: Reset Students for semester {semester} [STARTED] ---")
+        print(f"--- TASK: Reset Students for semester {Semester.objects.get(pk=semester)} [STARTED] ---")
         StudentProfile.objects.filter(semester=semester).update(
             supervisor=None, 
             programme_match_type=None, 
             matching_topics=None, 
             conflicting_topics=None)
-        message = f"Successfully reset allocations for students in semester {semester}."
+        message = f"Successfully reset allocations for students in semester {Semester.objects.get(pk=semester)}."
         return {'status': 'SUCCESS', 'result': message}
 
     except Exception as e:

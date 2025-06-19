@@ -31,9 +31,44 @@ class CoordinatorRequiredMixin(LoginRequiredMixin):
 
 # --- Dashboard Views ---
 
-def student_dashboard_view(request):
-    # This view is not changed
-    return render(request, 'dashboard/student.html')
+class StudentDashboardView(LoginRequiredMixin, View):
+    login_url = "/login/"
+    redirect_field_name = "redirect_to"
+    template_name = 'dashboard/student.html'
+
+    def get(self, request, *args, **kwargs):
+        supervisor = SupervisorProfile.objects.get(pk=request.user.studentprofile.supervisor)
+        if supervisor:
+            context = {"supervisor": supervisor}
+        else:
+            context = {}
+        return render(request, self.template_name, context)
+
+class SupervisorDashboardView(LoginRequiredMixin, View):
+    login_url = "/login/"
+    redirect_field_name = "redirect_to"
+    template_name = 'dashboard/supervisor.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'students': [],
+            'remaining_capacity': 0,
+            'supervisor_profile': request.user.supervisorprofile,
+            'students_test': StudentProfile.objects.all()
+        }
+
+        if hasattr(request.user, 'supervisorprofile'):
+            supervisor_profile = request.user.supervisorprofile
+
+            students_queryset = StudentProfile.objects.filter(supervisor=supervisor_profile)
+
+            remaining_capacity = supervisor_profile.supervision_capacity - students_queryset.count()
+
+            context['students'] = students_queryset
+            context['remaining_capacity'] = remaining_capacity
+        else:
+            messages.warning(request, "The logged-in user does not have a supervisor profile.")
+        return render(request, self.template_name, context)
 
 def supervisor_dashboard_view(request):
     # This view is not changed

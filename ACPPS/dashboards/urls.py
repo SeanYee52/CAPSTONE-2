@@ -2,8 +2,8 @@
 
 from django.urls import path
 from .views import (
-    student_dashboard_view,
-    supervisor_dashboard_view,
+    StudentDashboardView,
+    SupervisorDashboardView,
     CoordinatorDashboardView,
     CoordinatorStandardizationView,
     CoordinatorLabelingView,
@@ -12,8 +12,8 @@ from .views import (
 )
 
 urlpatterns = [
-    path('student/', student_dashboard_view, name='student_dashboard'),
-    path('supervisor/', supervisor_dashboard_view, name='supervisor_dashboard'),
+    path('student/', StudentDashboardView.as_view(), name='student_dashboard'),
+    path('supervisor/', SupervisorDashboardView.as_view(), name='supervisor_dashboard'),
 
     # --- Coordinator URL Structure ---
     path('coordinator/', CoordinatorDashboardView.as_view(), name='coordinator_dashboard'),

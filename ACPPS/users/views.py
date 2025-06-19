@@ -20,8 +20,8 @@ class CustomLoginView(LoginView):
         """
         user = self.request.user
         if user.is_authenticated:
-            if user.is_superuser or user.is_staff:
-                return reverse_lazy('admin:index') # Redirect staff/superusers to admin panel
+            if user.is_superuser:
+                return reverse_lazy('admin:index') # Redirect superusers to admin panel
             elif user.user_type == 'supervisor':
                 # Check if the supervisor is also a coordinator
                 if hasattr(user.supervisorprofile, 'coordinatorprofile'):

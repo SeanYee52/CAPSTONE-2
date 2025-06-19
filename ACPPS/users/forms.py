@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate
 from django.db import transaction # For atomic operations
 
 from .models import User, StudentProfile, SupervisorProfile, CoordinatorProfile
-from academics.models import ProgrammePreferenceGroup, Programme, Department, School
+from academics.models import ProgrammePreferenceGroup, Department, School, Semester
 
 # --- User Management Forms ---
 
@@ -66,8 +66,8 @@ class StudentProfileForm(forms.ModelForm):
     class Meta:
         model = StudentProfile
         fields = [
-            'programme',
             'preference_text',
+            'semester',
         ]
         widgets = {
             'preference_text': forms.Textarea(attrs={'rows': 4}),
@@ -75,7 +75,7 @@ class StudentProfileForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['programme'].queryset = Programme.objects.all().order_by('name')
+        self.fields['semester'].queryset = Semester.objects.all().order_by('name')
 
 
 class SupervisorProfileForm(forms.ModelForm):

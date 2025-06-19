@@ -4,32 +4,105 @@
     <h1>Supervisor Dashboard</h1>
     <p>Welcome, {{ user.get_full_name }}.</p>
     <p>Here you can view your assigned students and manage your profile.</p>
-    <div class="container">
-        <h2>Assigned Students</h2>
-        {% if students %}
-            <ul>
-                {% for student in students %}
-                    <li>{{ student.get_full_name }} - {{ student.project_title }}</li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>You do not have any assigned students yet.</p>
-        {% endif %}
-
-        <h2>Profile Management</h2>
-        <!-- Current profile details -->
-        <p>Your current profile information is displayed below. You can update your profile at any time.</p>
-        <p><a href="{% url 'update_profile' %}">Update Your Profile</a></p>
-        <ul>
-            <li>Name: {{ user.get_full_name }}</li>
-            <li>Email: {{ user.email }}</li>
-            {% if user.supervisorprofile.department %}
-                <li>Department: {{ user.supervisorprofile.department }}</li>
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Supervisor Details</h5>
+            {% if user.supervisorprofile.is_profile_incomplete %}
+                <p class="card-text text-muted">Note: Please update your details soon.</p>
             {% endif %}
-            <li>School: {{ user.supervisorprofile.effective_school }} </li>
-            <li>Expertise: {{ user.supervisorprofile.expertise }}</li>
-            <li>Preferred Programmes (First Choice): {{ user.supervisorprofile.preferred_programmes_first_choice }}</li>
-            <li>Preferred Programmes (Second Choice): {{ user.supervisorprofile.preferred_programmes_second_choice }}</li>
-            <li>Capacity: {{ user.supervisorprofile.supervision_capacity }}</li>
-        </ul>
+            {% if user.supervisorprofile.accepting_students %}
+                <h5 class="card-subtitle text-success">You are currently accepting students.</h5>
+            {% else %}
+                <h5 class="card-subtitle text-danger">You are currently <em>NOT</em> accepting students.</h5>
+            {% endif %}
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <tr>
+                        <td>Name</td>
+                        <td>{{ user.get_full_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Department</td>
+                        <td>{{ user.supervisorprofile.department|default:"N/A" }}</td>
+                    </tr>
+                    <tr>
+                        <td>School</td>
+                        <td>{{ user.supervisorprofile.effective_school }}</td>
+                    </tr>
+                    <tr>
+                        <td>Expertise</td>
+                        <td>{{ user.supervisorprofile.expertise }}</td>
+                    </tr>
+                    <tr>
+                        <td>Preferred Programmes</td>
+                        <td>
+                            <p>First Choice: {{ user.supervisorprofile.preferred_programmes_first_choice|default:"N/A" }}</p>
+                            <p>Second Choice: {{ user.supervisorprofile.preferred_programmes_second_choice|default:"N/A" }}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Supervision Capacity</td>
+                        <td>
+                            <p>Total: {{ user.supervisorprofile.supervision_capacity }}</p>
+                            <p>Allocated: {{ students.count|default:0 }}</p>
+                            <p>Remaining: {{ remaining_capacity|default:user.supervisorprofile.supervision_capacity }}</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <button type="button" id="update-btn" class="btn btn-primary" data-url="{% url 'update_profile' %}">Update Your Profile</button>
+        </div>
+    </div>
+    <div class="card mb-4">
+        <div class="card-body">
+            {% if students %}
+                <h5 class="card-title">Assigned Students Details ({{ students.count }} Students)</h5>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Programme</th>
+                            <th>Semester</th>
+                            <th>Preferences</th>
+                        </thead>
+                        <tbody>
+                            {% for student in students %}
+                                <tr>
+                                    <td>{{ student.user.full_name }}</td>
+                                    <td>{{ student.user.email }}</td>
+                                    {% if student.programme_match_type == 1 %}
+                                        <td class="text-success">
+                                    {% elif student.programme_match_type == 2 %}
+                                        <td class="text-warning">
+                                    {% elif student.programme_match_type == 0 %}
+                                        <td class="text-danger">
+                                    {% else %}
+                                        <td>
+                                    {% endif %}
+                                    {{ student.programme }}</td>
+                                    <td>{{ student.semester.name }}</td>
+                                    <td>
+                                        <p>Student Topics: {{ student.positive_preferences }}</p>
+                                        <p>Matching Topics: {{ student.matching_topics }}</p>
+                                        <P>Conflicting Topics: {{ student.conflicting_topics }} </P>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <h5 class="card-title">You do not have any students assigned yet.</h5>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+{% block extra_js %}
+    {% load static %}
+    <script src="{% static 'js/profile_update.js' %}"></script>
 {% endblock %}
