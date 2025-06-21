@@ -8,7 +8,8 @@ from .views import (
     CoordinatorStandardizationView,
     CoordinatorLabelingView,
     UpdateProfileView,
-    CoordinatorMatchingView
+    CoordinatorMatchingView,
+    CoordinatorImportView
 )
 
 urlpatterns = [
@@ -20,6 +21,7 @@ urlpatterns = [
     path('coordinator/standardize/', CoordinatorStandardizationView.as_view(), name='coordinator_standardize'),
     path('coordinator/label/', CoordinatorLabelingView.as_view(), name='coordinator_label'),
     path('coordinator/match/', CoordinatorMatchingView.as_view(), name='coordinator_match'),
+    path('coordinator/import/', CoordinatorImportView.as_view(), name='coordinator_import'),
 
     path('update-profile/', UpdateProfileView.as_view(), name='update_profile'),
 ]

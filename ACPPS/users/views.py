@@ -1,5 +1,5 @@
 # users/views.py
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, PasswordChangeView, PasswordChangeDoneView
 from django.urls import reverse_lazy
 from django.shortcuts import render # For placeholder dashboard views
 
@@ -33,8 +33,21 @@ class CustomLoginView(LoginView):
         # Fallback for any other case
         return reverse_lazy('home')
 
-# --- Placeholder views for redirection ---
-# In a real application, these would be in their respective apps/views.
+
+class CustomPasswordChangeView(PasswordChangeView):
+    """
+    Handles the form for a user to change their own password.
+    This view automatically uses Django's built-in PasswordChangeForm
+    and requires the user to be logged in.
+    """
+    template_name = 'users/password_change.html'
+    success_url = reverse_lazy('password_change_done') # Redirect here on success
+
+class CustomPasswordChangeDoneView(PasswordChangeDoneView):
+    """
+    Displays a success message after the user has changed their password.
+    """
+    template_name = 'users/password_change_done.html'
 
 def home_view(request):
     return render(request, 'pages/home.html')

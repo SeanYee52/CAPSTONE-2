@@ -122,3 +122,4 @@ class TaskStatusView(APIView):
         
         # If status is PENDING, result will be None, which is correct.
         return Response(response_data, status=status.HTTP_200_OK)
+    

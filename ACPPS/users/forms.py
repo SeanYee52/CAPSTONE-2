@@ -112,3 +112,14 @@ class CoordinatorProfileForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['supervisor'].queryset = SupervisorProfile.objects.filter(coordinatorprofile__isnull=True).select_related('user').order_by('user__email')
         self.fields['supervisor'].label_from_instance = lambda obj: f"{obj.user.full_name} ({obj.user.email})"
+
+
+class CsvImportForm(forms.Form):
+    """
+    A simple form for uploading a CSV file.
+    """
+    csv_file = forms.FileField(
+        label='Select a CSV file',
+        help_text='The file must be in CSV format.',
+        widget=forms.FileInput(attrs={'class': 'form-control', 'accept': '.csv'})
+    )

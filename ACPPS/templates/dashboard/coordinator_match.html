@@ -21,7 +21,7 @@
                         <option value="">No semesters found</option>
                     {% endfor %}
                 </select>
-                <label for="weightage-input" class="form-label">Allocation Balancing Weightage:</label>
+                <label for="weightage-input" class="form-label mt-3">Allocation Balancing Weightage:</label>
                 <input id="weightage-input" type="number" min="0" max="10" step="0.1">
             </div>
             <button type="button" id="match-btn" class="btn btn-primary" data-url="{% url 'start_matching' %}">Run Matching for Semester</button>

@@ -6,11 +6,32 @@
     <p>Welcome, Coordinator {{ user.get_full_name }}. Select a task to continue.</p>
     
     <div class="row row-cols-1 row-cols-md-2 g-4">
+        <!-- Card for Import-->
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Task 1: Import Students & Supervisors</h5>
+                    <p class="card-text">
+                        Import student and supervisor data to create user accounts.
+                    </p>
+                    <p class="card-text">
+                        <small class="text-muted">Currently: <strong>{{ students_count|default:0 }}</strong> students in the system.</small>
+                    </p>
+                    <p class="card-text">
+                        <small class="text-muted">Currently: <strong>{{ supervisors_count|default:0 }}</strong> supervisors in the system.</small>
+                    </p>
+                </div>
+                <div class="card-footer bg-transparent border-top-0">
+                    <a href="{% url 'coordinator_match' %}" class="btn btn-primary w-100">Manage Allocation</a>
+                </div>
+            </div>
+        </div>
+
         <!-- Card for Standardization Task -->
         <div class="col">
             <div class="card h-100">
                 <div class="card-body">
-                    <h5 class="card-title">Task 1: Topic Standardization</h5>
+                    <h5 class="card-title">Task 2: Topic Standardization</h5>
                     <p class="card-text">
                         Standardize supervisor expertise fields into a consistent set of topics using AI. View current topics and re-run the process.
                     </p>
@@ -28,7 +49,7 @@
         <div class="col">
             <div class="card h-100">
                 <div class="card-body">
-                    <h5 class="card-title">Task 2: Student Preference Labeling</h5>
+                    <h5 class="card-title">Task 3: Student Preference Labeling</h5>
                     <p class="card-text">
                         Automatically label student project preferences with standardized topics. View the results and run the labeling for a specific semester.
                     </p>
@@ -37,7 +58,25 @@
                     </p>
                 </div>
                 <div class="card-footer bg-transparent border-top-0">
-                    <a href="{% url 'coordinator_label' %}" class="btn btn-secondary w-100">Manage Labeling</a>
+                    <a href="{% url 'coordinator_label' %}" class="btn btn-primary w-100">Manage Labeling</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card for Allocation-->
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Task 4: Students to Supervisors Allocation</h5>
+                    <p class="card-text">
+                        Automatically allocate students to supervisors based on programme, topic, and capacity.
+                    </p>
+                    <p class="card-text">
+                        <small class="text-muted">Currently: <strong>{{ students_allocated_count|default:0 }}</strong> students allocated.</small>
+                    </p>
+                </div>
+                <div class="card-footer bg-transparent border-top-0">
+                    <a href="{% url 'coordinator_match' %}" class="btn btn-primary w-100">Manage Allocation</a>
                 </div>
             </div>
         </div>

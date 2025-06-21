@@ -1,3 +1,6 @@
+import csv
+import io
+from django.db import transaction
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
@@ -13,7 +16,8 @@ from users.forms import (
     SupervisorProfileForm,
 )
 from users.models import User, StudentProfile, SupervisorProfile, CoordinatorProfile
-from academics.models import Semester
+from users.forms import CsvImportForm # The new form
+from academics.models import Programme, Department, School, Semester
 
 # --- Mixin for security ---
 class CoordinatorRequiredMixin(LoginRequiredMixin):
@@ -37,7 +41,10 @@ class StudentDashboardView(LoginRequiredMixin, View):
     template_name = 'dashboard/student.html'
 
     def get(self, request, *args, **kwargs):
-        supervisor = SupervisorProfile.objects.get(pk=request.user.studentprofile.supervisor)
+        try:
+            supervisor = SupervisorProfile.objects.get(pk=request.user.studentprofile.supervisor)
+        except:
+            supervisor = None
         if supervisor:
             context = {"supervisor": supervisor}
         else:
@@ -74,6 +81,7 @@ def supervisor_dashboard_view(request):
     # This view is not changed
     return render(request, 'dashboard/supervisor.html')
 
+#region COORDINATOR VIEWS
 class CoordinatorDashboardView(CoordinatorRequiredMixin, View):
     """
     The main overview dashboard for the coordinator.
@@ -91,9 +99,16 @@ class CoordinatorDashboardView(CoordinatorRequiredMixin, View):
             Q(negative_preferences__isnull=False) & ~Q(negative_preferences='')
         ).count()
 
+        students_allocated_count = StudentProfile.objects.filter(
+            supervisor__isnull=False
+        ).count
+
         context = {
             'supervisor_with_standardized_expertise_count': supervisors_with_standardized_expertise_count,
             'students_with_labeled_preferences_count': students_with_labeled_preferences_count,
+            'students_allocated_count': students_allocated_count,
+            'students_count': StudentProfile.objects.all().count(),
+            'supervisors_count': SupervisorProfile.objects.all().count(),
         }
         return render(request, self.template_name, context)
 
@@ -133,7 +148,7 @@ class CoordinatorLabelingView(CoordinatorRequiredMixin, View):
         if selected_semester_id_str:
             try:
                 selected_semester_id = int(selected_semester_id_str)
-                student_profiles_query = student_profiles_query.filter(semester_id=selected_semester_id)
+                student_profiles_query = student_profiles_query.filter(semester__pk=selected_semester_id)
             except (ValueError, TypeError):
                 # If the parameter is invalid, show no profiles
                 student_profiles_query = student_profiles_query.none()
@@ -202,6 +217,185 @@ class CoordinatorMatchingView(CoordinatorRequiredMixin, View):
         }
         return render(request, self.template_name, context)
 
+class CoordinatorImportView(CoordinatorRequiredMixin, View):
+    """
+    Provides a page for coordinators to import students and supervisors
+    from separate CSV files.
+    """
+    template_name = 'dashboard/coordinator_import.html'
+
+    def get(self, request, *args, **kwargs):
+        """Displays the two upload forms on the page."""
+        context = {
+            'student_form': CsvImportForm(),
+            'supervisor_form': CsvImportForm(),
+            'semesters': Semester.objects.all().order_by('-start_date')
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        """Handles the form submission for either students or supervisors."""
+        if 'import_students' in request.POST:
+            return self._handle_student_import(request)
+        elif 'import_supervisors' in request.POST:
+            return self._handle_supervisor_import(request)
+        else:
+            messages.error(request, "Invalid submission.")
+            return redirect('coordinator_import') # Assumes a URL name 'coordinator_import'
+
+    def _handle_student_import(self, request):
+        """Processes the uploaded CSV file for students."""
+        form = CsvImportForm(request.POST, request.FILES)
+        if not form.is_valid():
+            messages.error(request, "There was an error with the form. Please upload a valid CSV file.")
+            return redirect('coordinator_import')
+
+        csv_file = form.cleaned_data['csv_file']
+        
+        # Decode the file and use DictReader for easy column access
+        try:
+            reader = csv.DictReader(io.TextIOWrapper(csv_file, 'utf-8'))
+            required_headers = {'Full Name', 'Student ID', 'Programme'}
+            if not required_headers.issubset(set(map(str.strip, reader.fieldnames))):
+                messages.error(request, f"CSV file for students must have the headers: {', '.join(required_headers)}")
+                return redirect('coordinator_import')
+        except Exception:
+            messages.error(request, "Could not read the uploaded file. Please ensure it is a valid, UTF-8 encoded CSV.")
+            return redirect('coordinator_import')
+
+        try:
+            selected_semester_id_str = request.POST.get('semester')
+            semester = Semester.objects.get(pk=selected_semester_id_str)
+
+            if not semester:
+                messages.error(request, "Invalid semester. Please select a valid semester.")
+                return redirect('coordinator_import')
+        except Exception:
+            messages.error(request, "Missing semester parameter. Please select a semester before importing students.")
+            return redirect('coordinator_import')
+
+        created_count = 0
+        errors = []
+
+        for i, row in enumerate(reader, start=2):
+            full_name = row.get('Full Name', '').strip()
+            student_id = row.get('Student ID', '').strip()
+            programme_name = row.get('Programme', '').strip()
+
+            if not all([full_name, student_id, programme_name]):
+                errors.append(f"Row {i}: Missing required data (Full Name, Student ID, or Programme).")
+                continue
+
+            email = f"{student_id}@imail.sunway.edu.my"
+
+            if User.objects.filter(email__iexact=email).exists():
+                errors.append(f"Row {i}: User with email {email} already exists. Skipping.")
+                continue
+
+            try:
+                programme = Programme.objects.get(name__iexact=programme_name)
+            except Programme.DoesNotExist:
+                errors.append(f"Row {i}: Programme '{programme_name}' not found in the database. Skipping.")
+                continue
+
+            try:
+                with transaction.atomic(): # Atomic per row to ensure user and profile are created together
+                    password = "defaultPassword123!"
+                    user = User.objects.create_user(
+                        email=email,
+                        full_name=full_name,
+                        password=password,
+                        user_type='student'
+                    )
+                    StudentProfile.objects.create(user=user, programme=programme, semester=semester)
+                    created_count += 1
+            except Exception as e:
+                errors.append(f"Row {i}: A database error occurred for user {email}: {e}")
+
+        # Provide feedback to the user
+        if created_count > 0:
+            messages.success(request, f"Successfully imported {created_count} new students.")
+        if errors:
+            messages.warning(request, "Some rows could not be imported. See errors below.")
+            for error in errors:
+                messages.error(request, error)
+        if created_count == 0 and not errors:
+            messages.info(request, "The uploaded file did not contain any new students to import.")
+
+        return redirect('coordinator_import')
+
+    def _handle_supervisor_import(self, request):
+        """Processes the uploaded CSV file for supervisors."""
+        form = CsvImportForm(request.POST, request.FILES)
+        if not form.is_valid():
+            messages.error(request, "There was an error with the form. Please upload a valid CSV file.")
+            return redirect('coordinator_import')
+        
+        csv_file = form.cleaned_data['csv_file']
+
+        try:
+            reader = csv.DictReader(io.TextIOWrapper(csv_file, 'utf-8'))
+            required_headers = {'Full Name', 'Department', 'Email'}
+            if not required_headers.issubset(set(map(str.strip, reader.fieldnames))):
+                messages.error(request, f"CSV file for supervisors must have the headers: {', '.join(required_headers)}")
+                return redirect('coordinator_import')
+        except Exception:
+            messages.error(request, "Could not read the uploaded file. Please ensure it is a valid, UTF-8 encoded CSV.")
+            return redirect('coordinator_import')
+
+        created_count = 0
+        errors = []
+
+        for i, row in enumerate(reader, start=2):
+            full_name = row.get('Full Name', '').strip()
+            email = row.get('Email', '').strip()
+            org_unit_name = row.get('Department', '').strip()
+
+            if not all([full_name, email, org_unit_name]):
+                errors.append(f"Row {i}: Missing required data (Full Name, Department, or Email).")
+                continue
+            
+            if User.objects.filter(email__iexact=email).exists():
+                errors.append(f"Row {i}: User with email {email} already exists. Skipping.")
+                continue
+            
+            department, school = None, None
+            try: # First, try to find a matching Department
+                department = Department.objects.get(name__iexact=org_unit_name)
+                school = department.school # Infer school from department
+            except Department.DoesNotExist:
+                try: # If not a Department, try to find a matching School
+                    school = School.objects.get(name__iexact=org_unit_name)
+                except School.DoesNotExist:
+                    errors.append(f"Row {i}: Neither a Department nor a School named '{org_unit_name}' was found. Skipping.")
+                    continue
+            
+            try:
+                with transaction.atomic():
+                    password = "defaultPassword123!"
+                    user = User.objects.create_user(
+                        email=email,
+                        full_name=full_name,
+                        password=password,
+                        user_type='supervisor'
+                    )
+                    SupervisorProfile.objects.create(user=user, department=department, school=school)
+                    created_count += 1
+            except Exception as e:
+                errors.append(f"Row {i}: A database error occurred for user {email}: {e}")
+
+        # Provide feedback
+        if created_count > 0:
+            messages.success(request, f"Successfully imported {created_count} new supervisors.")
+        if errors:
+            messages.warning(request, "Some rows could not be imported. See errors below.")
+            for error in errors:
+                messages.error(request, error)
+        if created_count == 0 and not errors:
+            messages.info(request, "The uploaded file did not contain any new supervisors to import.")
+            
+        return redirect('coordinator_import')
+
 #region PROFILE UPDATE
 @method_decorator(login_required, name='dispatch')
 class UpdateProfileView(View):
@@ -221,9 +415,7 @@ class UpdateProfileView(View):
     
     def get_success_url(self, user):
         """Determines the redirect URL after a successful update."""
-        if CoordinatorProfile.objects.filter(supervisor__user=user).exists():
-            return reverse('coordinator_dashboard')
-        elif hasattr(user, 'supervisorprofile'):
+        if hasattr(user, 'supervisorprofile'):
             return reverse('supervisor_dashboard')
         elif hasattr(user, 'studentprofile'):
             return reverse('student_dashboard')

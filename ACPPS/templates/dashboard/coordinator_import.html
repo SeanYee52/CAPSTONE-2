@@ -1,0 +1,70 @@
+{% extends "dashboard/coordinator_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Import Users{% endblock %}
+
+{% block module %}
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h2 class="h3">Import Users</h2>
+            <p class="text-muted">Upload CSV files to create new student and supervisor accounts in bulk.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Student Import Card -->
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h4>Import Students</h4>
+                </div>
+                <div class="card-body">
+                    <p>Required CSV columns: <strong>Full Name, Student ID, Programme</strong></p>
+                    <p class="text-muted small">The student's email will be generated as <code>[Student ID]@imail.sunway.edu.my</code>. The programme name must exactly match an existing programme in the system (case-insensitive).</p>
+                    <hr>
+                    <form method="post" enctype="multipart/form-data">
+                        <label for="semester-input" class="form-label">Semester to Process:</label>
+                        <select name="semester" id="semester-input" class="form-select">
+                            {% for semester in semesters %}
+                                {# Add the 'selected' attribute if this semester is the one being displayed #}
+                                <option value="{{ semester.pk }}" {% if semester.pk == selected_semester_id %}selected{% endif %}>
+                                    {{ semester }}
+                                </option>
+                            {% empty %}
+                                <option value="">No semesters found</option>
+                            {% endfor %}
+                        </select>
+                        {% csrf_token %}
+                        {{ student_form|crispy }}
+                        <button type="submit" name="import_students" class="btn btn-primary mt-3 w-100">
+                            <i class="bi bi-upload me-2"></i>Upload and Import Students
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Supervisor Import Card -->
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h4>Import Supervisors</h4>
+                </div>
+                <div class="card-body">
+                    <p>Required CSV columns: <strong>Full Name, Department, Email</strong></p>
+                    <p class="text-muted small">The 'Department' column must contain the name of an existing department or school (case-insensitive). If a department is found, its school is automatically linked. If only a school is found, the department is left blank.</p>
+                    <hr>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ supervisor_form|crispy }}
+                        <button type="submit" name="import_supervisors" class="btn btn-primary mt-3 w-100">
+                            <i class="bi bi-upload me-2"></i>Upload and Import Supervisors
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

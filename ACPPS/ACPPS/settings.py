@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'api',
     'widget_tweaks',
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -146,3 +148,7 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379/0' # Stores task results
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
+
+# Crispy Forms Settings
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
