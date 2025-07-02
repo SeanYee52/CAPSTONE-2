@@ -1,0 +1,16 @@
+{% extends "academics/academics_base.html" %}
+
+{% block academic_content %}
+    <h3>Delete {{ config.singular }}</h3>
+    <hr>
+    
+    <p>Are you sure you want to delete the {{ config.singular|lower }}: <strong>"{{ object }}"</strong>?</p>
+    
+    <p class="text-danger">This action cannot be undone.</p>
+    
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+        <a href="{% url 'academics:admin_list' model_name_key %}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}

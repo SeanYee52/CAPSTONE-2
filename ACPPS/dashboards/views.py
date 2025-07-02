@@ -16,8 +16,9 @@ from users.forms import (
     SupervisorProfileForm,
 )
 from users.models import User, StudentProfile, SupervisorProfile, CoordinatorProfile
-from users.forms import CsvImportForm # The new form
+from users.forms import CsvImportForm
 from academics.models import Programme, Department, School, Semester
+from api.models import TopicMapping
 
 # --- Mixin for security ---
 class CoordinatorRequiredMixin(LoginRequiredMixin):
@@ -26,7 +27,6 @@ class CoordinatorRequiredMixin(LoginRequiredMixin):
     """
     def dispatch(self, request, *args, **kwargs):
         # Check if the user has a related CoordinatorProfile.
-        # This is more robust than checking is_staff.
         is_coordinator = CoordinatorProfile.objects.filter(supervisor__user=request.user).exists() or request.user.is_superuser
         if not is_coordinator:
             messages.error(request, "You do not have permission to access this page.")
@@ -60,7 +60,7 @@ class SupervisorDashboardView(LoginRequiredMixin, View):
         context = {
             'students': [],
             'remaining_capacity': 0,
-            'supervisor_profile': request.user.supervisorprofile,
+            'supervisor_profile': None,
             'students_test': StudentProfile.objects.all()
         }
 
@@ -73,12 +73,12 @@ class SupervisorDashboardView(LoginRequiredMixin, View):
 
             context['students'] = students_queryset
             context['remaining_capacity'] = remaining_capacity
+            context['supervisor_profile'] = supervisor_profile
         else:
             messages.warning(request, "The logged-in user does not have a supervisor profile.")
         return render(request, self.template_name, context)
 
 def supervisor_dashboard_view(request):
-    # This view is not changed
     return render(request, 'dashboard/supervisor.html')
 
 #region COORDINATOR VIEWS
@@ -90,25 +90,23 @@ class CoordinatorDashboardView(CoordinatorRequiredMixin, View):
     template_name = 'dashboard/coordinator_master.html'
 
     def get(self, request, *args, **kwargs):
-        supervisors_with_standardized_expertise_count = SupervisorProfile.objects.exclude(
-            Q(standardised_expertise__isnull=True) | Q(standardised_expertise__exact='')
-        ).count()
-
-        students_with_labeled_preferences_count = StudentProfile.objects.filter(
-            Q(positive_preferences__isnull=False) & ~Q(positive_preferences='') &
-            Q(negative_preferences__isnull=False) & ~Q(negative_preferences='')
-        ).count()
-
-        students_allocated_count = StudentProfile.objects.filter(
-            supervisor__isnull=False
-        ).count
+        supervisor_profile = SupervisorProfile.objects.all()
+        student_profile = StudentProfile.objects.all()
 
         context = {
-            'supervisor_with_standardized_expertise_count': supervisors_with_standardized_expertise_count,
-            'students_with_labeled_preferences_count': students_with_labeled_preferences_count,
-            'students_allocated_count': students_allocated_count,
-            'students_count': StudentProfile.objects.all().count(),
-            'supervisors_count': SupervisorProfile.objects.all().count(),
+            'supervisor_with_standardized_expertise_count': supervisor_profile.exclude(
+                Q(standardised_expertise__isnull=True) | Q(standardised_expertise__exact='')
+            ).count(),
+            'students_with_labeled_preferences_count': student_profile.filter(
+                Q(positive_preferences__isnull=False) & ~Q(positive_preferences='') &
+                Q(negative_preferences__isnull=False) & ~Q(negative_preferences='')
+            ).count(),
+            'students_allocated_count': student_profile.filter(
+                supervisor__isnull=False
+            ).count,
+            'students_count': student_profile.count(),
+            'supervisors_count': supervisor_profile.count(),
+            'supervisors': supervisor_profile,
         }
         return render(request, self.template_name, context)
 
@@ -121,9 +119,11 @@ class CoordinatorStandardizationView(CoordinatorRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         supervisors = SupervisorProfile.objects.select_related('user').all().order_by('user__full_name')
+        topics = TopicMapping.objects.all().order_by('standardised_topic')
         
         context = {
             'supervisors': supervisors,
+            'topics': topics,
         }
         return render(request, self.template_name, context)
 
@@ -150,7 +150,6 @@ class CoordinatorLabelingView(CoordinatorRequiredMixin, View):
                 selected_semester_id = int(selected_semester_id_str)
                 student_profiles_query = student_profiles_query.filter(semester__pk=selected_semester_id)
             except (ValueError, TypeError):
-                # If the parameter is invalid, show no profiles
                 student_profiles_query = student_profiles_query.none()
         else:
             # Default to the most recent semester if no parameter is given
@@ -159,7 +158,6 @@ class CoordinatorLabelingView(CoordinatorRequiredMixin, View):
                 selected_semester_id = latest_semester.pk
                 student_profiles_query = student_profiles_query.filter(semester=latest_semester)
             else:
-                # If there are no semesters at all, show no profiles
                 student_profiles_query = student_profiles_query.none()
 
         student_profiles = student_profiles_query.order_by('user__full_name')
@@ -167,7 +165,7 @@ class CoordinatorLabelingView(CoordinatorRequiredMixin, View):
         context = {
             'semesters': semesters,
             'student_profiles': student_profiles,
-            'selected_semester_id': selected_semester_id, # Pass the selected ID to the template
+            'selected_semester_id': selected_semester_id,
         }
         return render(request, self.template_name, context)
 
@@ -195,7 +193,6 @@ class CoordinatorMatchingView(CoordinatorRequiredMixin, View):
                 selected_semester_id = int(selected_semester_id_str)
                 student_profiles_query = student_profiles_query.filter(semester_id=selected_semester_id)
             except (ValueError, TypeError):
-                # If the parameter is invalid, show no profiles
                 student_profiles_query = student_profiles_query.none()
         else:
             # Default to the most recent semester if no parameter is given
@@ -204,7 +201,6 @@ class CoordinatorMatchingView(CoordinatorRequiredMixin, View):
                 selected_semester_id = latest_semester.pk
                 student_profiles_query = student_profiles_query.filter(semester=latest_semester)
             else:
-                # If there are no semesters at all, show no profiles
                 student_profiles_query = student_profiles_query.none()
 
         student_profiles = student_profiles_query.order_by('user__full_name')
@@ -241,7 +237,7 @@ class CoordinatorImportView(CoordinatorRequiredMixin, View):
             return self._handle_supervisor_import(request)
         else:
             messages.error(request, "Invalid submission.")
-            return redirect('coordinator_import') # Assumes a URL name 'coordinator_import'
+            return redirect('coordinator_import')
 
     def _handle_student_import(self, request):
         """Processes the uploaded CSV file for students."""
@@ -360,11 +356,11 @@ class CoordinatorImportView(CoordinatorRequiredMixin, View):
                 continue
             
             department, school = None, None
-            try: # First, try to find a matching Department
+            try: # Find a matching Department
                 department = Department.objects.get(name__iexact=org_unit_name)
-                school = department.school # Infer school from department
+                school = department.school
             except Department.DoesNotExist:
-                try: # If not a Department, try to find a matching School
+                try: # Find a matching School
                     school = School.objects.get(name__iexact=org_unit_name)
                 except School.DoesNotExist:
                     errors.append(f"Row {i}: Neither a Department nor a School named '{org_unit_name}' was found. Skipping.")
@@ -399,7 +395,6 @@ class CoordinatorImportView(CoordinatorRequiredMixin, View):
 #region PROFILE UPDATE
 @method_decorator(login_required, name='dispatch')
 class UpdateProfileView(View):
-    # This class remains the same as in your provided code
     template_name = 'dashboard/update_profile.html'
 
     def get_form_and_instance(self, user):

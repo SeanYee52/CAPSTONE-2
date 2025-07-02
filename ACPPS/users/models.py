@@ -94,11 +94,11 @@ class StudentProfile(models.Model):
 
 class SupervisorProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True)
-    department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True, related_name='supervisors')
-    school = models.ForeignKey(School, on_delete=models.SET_NULL, null=True, related_name='supervisors')
+    department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True, related_name='supervisors', blank=True)
+    school = models.ForeignKey(School, on_delete=models.SET_NULL, null=True, related_name='supervisors', blank=True)
     expertise = models.TextField(blank=True, null=True)
-    preferred_programmes_first_choice = models.ForeignKey(ProgrammePreferenceGroup, on_delete=models.SET_NULL, null=True, related_name='supervisors_first_choice')
-    preferred_programmes_second_choice = models.ForeignKey(ProgrammePreferenceGroup, on_delete=models.SET_NULL, null=True, related_name='supervisors_second_choice')
+    preferred_programmes_first_choice = models.ForeignKey(ProgrammePreferenceGroup, on_delete=models.SET_NULL, null=True, related_name='supervisors_first_choice', blank=True)
+    preferred_programmes_second_choice = models.ForeignKey(ProgrammePreferenceGroup, on_delete=models.SET_NULL, null=True, related_name='supervisors_second_choice', blank=True)
     supervision_capacity = models.PositiveIntegerField(default=0)
     standardised_expertise = models.TextField(blank=True, null=True)
     accepting_students = models.BooleanField(default=True)

@@ -13,5 +13,5 @@ class CoordinatorRequiredMixin(UserPassesTestMixin):
     def handle_no_permission(self):
         messages.error(self.request, "You do not have permission to access this page.")
         if not self.request.user.is_authenticated:
-            return redirect('login') # Or your login URL name
-        return redirect('/') # Or some other appropriate page
+            return redirect('login')
+        return redirect('/')

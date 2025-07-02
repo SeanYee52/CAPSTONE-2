@@ -166,12 +166,13 @@ def standardize_all_topics():
             )
 
         for supervisor in SupervisorProfile.objects.all():
-            supervisor_topics = re.findall(pattern, supervisor.expertise)
-            standardised_topics = []
-            for supervisor_topic in supervisor_topics:
-                standardised_topics.append(standardisation_map.get(supervisor_topic))
-            supervisor.standardised_expertise = ', '.join(f'"{e}"' for e in standardised_topics if e.strip() != "")
-            supervisor.save()
+            if supervisor.expertise:
+                supervisor_topics = re.findall(pattern, supervisor.expertise)
+                standardised_topics = []
+                for supervisor_topic in supervisor_topics:
+                    standardised_topics.append(standardisation_map.get(supervisor_topic))
+                supervisor.standardised_expertise = ', '.join(f'"{e}"' for e in standardised_topics if e.strip() != "")
+                supervisor.save()
 
         print("Topic mappings saved to the database.")
         print("--- TASK: Standardize Topics [SUCCESS] ---")
@@ -212,9 +213,6 @@ def label_student_preferences_for_semester(semester):
 
         # --- Configuration ---
         GEMINI_MODEL_NAME = "gemini-2.0-flash"
-        # STUDENT_PREFERENCES_CSV = "data\\claude_sentences.csv"
-        # STANDARDIZED_TOPICS_CSV = "data\\unique_standardised_topics.csv"
-        # OUTPUT_CSV_WITH_GEMINI_LABELS = "data\\gemini_labeled_preferences.csv"
         API_RETRY_LIMIT = 3
         API_RETRY_DELAY_SECONDS = 5
         BATCH_SIZE = 50
@@ -230,7 +228,7 @@ def label_student_preferences_for_semester(semester):
             raise
 
         model = genai.GenerativeModel(GEMINI_MODEL_NAME)
-        all_gemini_results = [] # To store results from all batches
+        all_gemini_results = []
 
         num_batches = math.ceil(students.count() / BATCH_SIZE)
         print(f"Processing in {num_batches} batches of size up to {BATCH_SIZE}.")
@@ -501,7 +499,7 @@ def optimal_matching(students_df, supervisors_df, balancing_penalty_weight=0.5):
         # Get the number of students this supervisor ALREADY has. Default to 0 if column is missing.
         existing_load = supervisor.get('student_count', 0)
         
-        # 1. Soft Balancing Constraint: Deviation is now based on the TOTAL load
+        # Soft Balancing Constraint: Deviation is now based on the TOTAL load
         problem += (
             (newly_assigned_load_expr + existing_load) - target_total_load ==
             supervisor_over_target[supervisor_id] - supervisor_under_target[supervisor_id],
@@ -550,7 +548,7 @@ def optimal_matching(students_df, supervisors_df, balancing_penalty_weight=0.5):
     # Solve the problem
     problem.solve()
 
-    # Extract and display results with detailed matching information
+    # Extract and display results with detailed matching information (USED FOR DEBUGGING)
     assignments = []
     for _, student in students_df.iterrows():
         for _, supervisor in supervisors_df.iterrows():
@@ -597,6 +595,7 @@ def safe_list(val):
             return [val.strip()] if val.strip() else []
     return []
 
+#region RESET STUFF
 @shared_task
 def reset_students_for_semester(semester):
     try:
@@ -607,6 +606,19 @@ def reset_students_for_semester(semester):
             matching_topics=None, 
             conflicting_topics=None)
         message = f"Successfully reset allocations for students in semester {Semester.objects.get(pk=semester)}."
+        return {'status': 'SUCCESS', 'result': message}
+
+    except Exception as e:
+        print(f"!!! ERROR in match_student_preferences task: {e}")
+        raise
+
+@shared_task
+def reset_topic_mappings():
+    try:
+        print(f"--- TASK: Reset Topic Mappings [STARTED] ---")
+        TopicMapping.objects.all().delete()
+        SupervisorProfile.objects.filter(standardised_expertise__isnull=False).update(standardised_expertise=None)
+        message = f"Successfully reset all topic mappings."
         return {'status': 'SUCCESS', 'result': message}
 
     except Exception as e:

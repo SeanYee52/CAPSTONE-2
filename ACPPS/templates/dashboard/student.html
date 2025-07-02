@@ -1,6 +1,17 @@
 {% extends "dashboard/dashboard_base.html" %}
 {% block title %}Student Dashboard{% endblock %}
 {% block content %}
+
+    <!-- Django messages will be displayed here -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
     <h1>Student Dashboard</h1>
     <p>Welcome, {{ user.get_full_name }}.</p>
     <p>Here you can manage your project preferences and view your assigned supervisor.</p>

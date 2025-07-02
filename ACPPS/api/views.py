@@ -5,14 +5,13 @@ from rest_framework.permissions import IsAdminUser
 from celery.result import AsyncResult
 
 # Import the two independent tasks
-from .tasks import standardize_all_topics, label_student_preferences_for_semester, match_students_for_semester, reset_students_for_semester
+from .tasks import standardize_all_topics, label_student_preferences_for_semester, match_students_for_semester, reset_students_for_semester, reset_topic_mappings
 
 class StartStandardizationView(APIView):
     """API endpoint to trigger the topic standardization task."""
     permission_classes = [IsAdminUser]
 
     def post(self, request, *format):
-        # Capture the task object returned by .delay()
         task = standardize_all_topics.delay()
         return Response(
             {
@@ -34,7 +33,6 @@ class StartLabelingView(APIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
         
-        # Capture the task object returned by .delay()
         task = label_student_preferences_for_semester.delay(semester=semester)
         return Response(
             {
@@ -63,8 +61,7 @@ class StartMatchingView(APIView):
                 {"error": "A 'weightage' parameter is required."},
                 status=status.HTTP_400_BAD_REQUEST
             )
-
-        # Capture the task object returned by .delay()
+        
         task = match_students_for_semester.delay(semester=semester,weightage=weightage)
         return Response(
             {
@@ -88,11 +85,26 @@ class ResetMatchingView(APIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # Capture the task object returned by .delay()
         task = reset_students_for_semester.delay(semester=semester)
         return Response(
             {
                 "message": f"Reset student allocations for semester '{semester}' has been initiated",
+                "task_id": task.id
+            },
+            status=status.HTTP_202_ACCEPTED
+        )
+    
+class ResetTopicMappingView(APIView):
+    """
+    Reset topic mappings
+    """
+    permission_classes = [IsAdminUser]
+
+    def post(self, request, *format):
+        task = reset_topic_mappings.delay()
+        return Response(
+            {
+                "message": f"Reset topic mappings has been initiated",
                 "task_id": task.id
             },
             status=status.HTTP_202_ACCEPTED

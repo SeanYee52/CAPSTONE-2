@@ -1,4 +1,3 @@
-# academics/forms.py
 from django import forms
 from .models import Faculty, School, Department, Programme, ProgrammePreferenceGroup, Semester
 
@@ -33,14 +32,8 @@ class DepartmentForm(forms.ModelForm):
         cleaned_data = super().clean()
         school = cleaned_data.get("school")
         faculty = cleaned_data.get("faculty")
-
-        # Example validation: A department should ideally belong to a school OR a faculty,
-        # but perhaps not neither if both are optional in the model.
-        # Adjust this logic based on your specific business rules.
-        # If both school and faculty are optional (blank=True, null=True),
-        # you might not need this specific validation.
-        # if not school and not faculty:
-        #     raise forms.ValidationError("A department must be associated with either a School or a Faculty.")
+        if not school and not faculty:
+            raise forms.ValidationError("A department must be associated with either a School or a Faculty.")
         return cleaned_data
 
 class ProgrammeForm(forms.ModelForm):
@@ -58,7 +51,7 @@ class ProgrammePreferenceGroupForm(forms.ModelForm):
         fields = ['name', 'programme']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'programme': forms.SelectMultiple(attrs={'class': 'form-select', 'size': '5'}), # SelectMultiple for ManyToMany
+            'programme': forms.SelectMultiple(attrs={'class': 'form-select', 'size': '5'}),
         }
 
 class SemesterForm(forms.ModelForm):

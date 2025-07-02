@@ -1,7 +1,6 @@
-# users/views.py
 from django.contrib.auth.views import LoginView, PasswordChangeView, PasswordChangeDoneView
 from django.urls import reverse_lazy
-from django.shortcuts import render # For placeholder dashboard views
+from django.shortcuts import render
 
 from .forms import UserLoginForm
 

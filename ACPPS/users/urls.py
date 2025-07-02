@@ -22,6 +22,5 @@ urlpatterns = [
     ),
     path('logout/', LogoutView.as_view(), name='logout'),
 
-    # A generic home page
     path('', home_view, name='home'),
 ]

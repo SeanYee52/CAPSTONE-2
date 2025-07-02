@@ -11,7 +11,12 @@
             {% for object in object_list %}
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     {{ object }}
-                    <a href="{% url 'academics:admin_update' model_name_key object.pk %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                    <div class="btn-group" role="group">
+                        <a href="{% url 'academics:admin_update' model_name_key object.pk %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                        {% if model_name_key != 'semester' or object.students.count == 0 %}
+                            <a href="{% url 'academics:admin_delete' model_name_key object.pk %}" class="btn btn-sm btn-outline-danger">Delete</a>
+                        {% endif %}
+                    </div>
                 </li>
             {% endfor %}
         </ul>

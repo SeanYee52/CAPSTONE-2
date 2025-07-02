@@ -10,7 +10,6 @@ from .forms import (
 )
 from .mixins import CoordinatorRequiredMixin
 
-# Centralized configuration for our models
 MODEL_CONFIG = {
     'faculty': {
         'model': Faculty,
@@ -58,7 +57,7 @@ class AcademicDashboardView(CoordinatorRequiredMixin, View):
     template_name = 'academics/master_dashboard.html'
 
     def get(self, request, *args, **kwargs):
-        # Dynamically create context for the dashboard from our config
+
         dashboard_items = []
         for key, config in MODEL_CONFIG.items():
             dashboard_items.append({
@@ -106,6 +105,12 @@ class AcademicAdminView(CoordinatorRequiredMixin, View):
             'model_name_key': self.model_name_key,
         }
 
+        # Check for DELETE confirmation view (e.g., /<model_name>/<pk>/delete/)
+        if pk and 'delete' in request.path:
+            obj = get_object_or_404(self.model, pk=pk)
+            context['object'] = obj
+            return render(request, 'academics/generic_delete_confirm.html', context)
+
         # If a primary key is provided, it's an UPDATE view
         if pk:
             obj = get_object_or_404(self.model, pk=pk)
@@ -131,6 +136,24 @@ class AcademicAdminView(CoordinatorRequiredMixin, View):
         updating existing ones.
         """
         pk = kwargs.get('pk')
+
+        # Handle DELETE operation
+        if pk and 'delete' in request.path:
+            obj = get_object_or_404(self.model, pk=pk)
+            obj_str = str(obj)
+            try:
+                obj.delete()
+                messages.success(
+                    request,
+                    f"{self.config['singular']} '{obj_str}' was deleted successfully."
+                )
+            except Exception as e:
+                messages.error(
+                    request,
+                    f"Error deleting {self.config['singular']} '{obj_str}': {str(e)}"
+                )
+            return redirect('academics:admin_list', model_name=self.model_name_key)
+
         obj = None
 
         # If a primary key is provided, it's an UPDATE operation
@@ -157,6 +180,6 @@ class AcademicAdminView(CoordinatorRequiredMixin, View):
             'config': self.config,
             'model_name_key': self.model_name_key,
             'form': form,
-            'object': obj, # will be None for create view, which is fine
+            'object': obj,
         }
         return render(request, 'academics/generic_form.html', context)

@@ -14,4 +14,7 @@ urlpatterns = [
 
     # Update View: e.g., /academics/faculty/1/edit/
     path('<str:model_name>/<int:pk>/edit/', AcademicAdminView.as_view(), name='admin_update'),
+
+    # Delete View: e.g.m /academics/faculty/1/delete/
+    path('<str:model_name>/<int:pk>/delete/', AcademicAdminView.as_view(), name='admin_delete'),
 ]

@@ -160,4 +160,13 @@ document.addEventListener('DOMContentLoaded', function() {
             startTask(resetBtn, status, url, body);
         })
     }
+
+    const deleteBtn = document.getElementById('delete-btn');
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', function(){
+            const standardizeStatus = document.getElementById('standardize-status-message');
+            const url = deleteBtn.dataset.url;
+            startTask(deleteBtn,  standardizeStatus, url);
+        })
+    }
 });

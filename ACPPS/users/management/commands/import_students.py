@@ -1,16 +1,10 @@
-# your_app_name/management/commands/import_students.py
-
 import csv
 import random
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.auth import get_user_model
 from django.db import transaction
 from django.utils.text import slugify
-
-# Adjust these imports based on your app structure
-# Assuming StudentProfile is in 'users' app
 from users.models import StudentProfile
-# Assuming Programme is in 'academics' app
 from academics.models import Programme, Semester
 
 User = get_user_model()
