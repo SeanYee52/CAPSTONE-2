@@ -67,7 +67,6 @@ class StudentProfileForm(forms.ModelForm):
         model = StudentProfile
         fields = [
             'preference_text',
-            'semester',
         ]
         widgets = {
             'preference_text': forms.Textarea(attrs={'rows': 4}),
@@ -75,15 +74,12 @@ class StudentProfileForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['semester'].queryset = Semester.objects.all().order_by('name')
 
 
 class SupervisorProfileForm(forms.ModelForm):
     class Meta:
         model = SupervisorProfile
         fields = [
-            'department',
-            'school',
             'expertise',
             'preferred_programmes_first_choice',
             'preferred_programmes_second_choice',
@@ -95,8 +91,6 @@ class SupervisorProfileForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['department'].queryset = Department.objects.all().order_by('name')
-        self.fields['school'].queryset = School.objects.all().order_by('name')
         self.fields['preferred_programmes_first_choice'].queryset = ProgrammePreferenceGroup.objects.all().order_by('name')
         self.fields['preferred_programmes_second_choice'].queryset = ProgrammePreferenceGroup.objects.all().order_by('name')
 
@@ -106,7 +100,7 @@ class CoordinatorProfileForm(forms.ModelForm):
 
     class Meta:
         model = CoordinatorProfile
-        fields = ['supervisor', 'role_scope'] # 'appointed_on' is auto_now_add
+        fields = ['supervisor'] # 'appointed_on' is auto_now_add
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

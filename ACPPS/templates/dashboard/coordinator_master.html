@@ -9,9 +9,9 @@
         <div class="col">
             <div class="card h-100">
                 <div class="card-body">
-                    <h5 class="card-title">Task 1: Import Students & Supervisors</h5>
+                    <h5 class="card-title">Manage Users</h5>
                     <p class="card-text">
-                        Import student and supervisor data to create user accounts.
+                        Import or export student and supervisor data. Delete students by semester if needed.
                     </p>
                     <p class="card-text">
                         <small class="text-muted">Currently: <strong>{{ students_count|default:0 }}</strong> students in the system.</small>
@@ -21,7 +21,7 @@
                     </p>
                 </div>
                 <div class="card-footer bg-transparent border-top-0">
-                    <a href="{% url 'coordinator_match' %}" class="btn btn-primary w-100">Manage Allocation</a>
+                    <a href="{% url 'coordinator_match' %}" class="btn btn-primary w-100">Manage Users</a>
                 </div>
             </div>
         </div>

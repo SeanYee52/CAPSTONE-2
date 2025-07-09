@@ -1,0 +1,51 @@
+{% extends "dashboard/coordinator_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Confirm Deletion{% endblock %}
+
+{% block module %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h2 class="h4 mb-0"><i class="bi bi-exclamation-triangle-fill me-2"></i>Confirm Permanent Deletion</h2>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-danger">
+                        <strong>Warning!</strong> You are about to perform an irreversible action. This will permanently delete all student profiles <strong>and their associated user accounts</strong> for the selected semester. This data cannot be recovered.
+                    </div>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="semester-select" class="form-label"><strong>Select Semester to Delete From:</strong></label>
+                            <select name="semester" id="semester-select" class="form-select" required>
+                                <option value="" selected disabled>--- Choose a semester ---</option>
+                                {% for semester in semesters %}
+                                    <option value="{{ semester.pk }}">{{ semester }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="confirmation_check" id="confirmationCheck" required>
+                            <label class="form-check-label" for="confirmationCheck">
+                                <strong>I understand that this action is permanent and I wish to delete all students from the selected semester.</strong>
+                            </label>
+                        </div>
+                        
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="{% url 'coordinator_import' %}" class="btn btn-secondary">Cancel</a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="bi bi-trash-fill me-2"></i>Delete Permanently
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -140,7 +140,6 @@ class SupervisorProfile(models.Model):
 class CoordinatorProfile(models.Model):
     supervisor = models.OneToOneField(SupervisorProfile, on_delete=models.CASCADE, primary_key=True)
     appointed_on = models.DateTimeField(auto_now_add=True)
-    role_scope = models.CharField(max_length=20, choices=[('system', 'System-wide'), ('department', 'Department'), ('school', 'School')], default='system')
 
     def __str__(self):
         return f"{self.supervisor.user.email} - Coordinator"

@@ -1,67 +1,97 @@
 {% extends "dashboard/coordinator_base.html" %}
 {% load crispy_forms_tags %}
 
-{% block title %}Import Users{% endblock %}
+{% block title %}Manage Users{% endblock %}
 
 {% block module %}
-<div class="container mt-4">
+<div class="container mt-4 mb-4">
     <div class="row mb-4">
         <div class="col-md-12">
-            <h2 class="h3">Import Users</h2>
-            <p class="text-muted">Upload CSV files to create new student and supervisor accounts in bulk.</p>
+            <h2 class="h3">Import & Export Users</h2>
+            <p class="text-muted">Upload CSV files to create or update users in bulk, or export all existing data.</p>
         </div>
     </div>
 
     <div class="row">
-        <!-- Student Import Card -->
+        <!-- Student Import & Export Card -->
         <div class="col-lg-6 mb-4">
             <div class="card h-100">
                 <div class="card-header">
-                    <h4>Import Students</h4>
+                    <h4>Students</h4>
                 </div>
-                <div class="card-body">
+                <div class="card-body d-flex flex-column">
                     <p>Required CSV columns: <strong>Full Name, Student ID, Programme</strong></p>
-                    <p class="text-muted small">The student's email will be generated as <code>[Student ID]@imail.sunway.edu.my</code>. The programme name must exactly match an existing programme in the system (case-insensitive).</p>
+                    <p class="text-muted small">The system will create new students or update existing ones based on the 'Student ID'. You can also export all student data to a CSV file for editing.</p>
                     <hr>
-                    <form method="post" enctype="multipart/form-data">
-                        <label for="semester-input" class="form-label">Semester to Process:</label>
-                        <select name="semester" id="semester-input" class="form-select">
-                            {% for semester in semesters %}
-                                {# Add the 'selected' attribute if this semester is the one being displayed #}
-                                <option value="{{ semester.pk }}" {% if semester.pk == selected_semester_id %}selected{% endif %}>
-                                    {{ semester }}
-                                </option>
-                            {% empty %}
-                                <option value="">No semesters found</option>
-                            {% endfor %}
-                        </select>
+                    <form method="post" enctype="multipart/form-data" class="flex-grow-1 d-flex flex-column">
                         {% csrf_token %}
-                        {{ student_form|crispy }}
-                        <button type="submit" name="import_students" class="btn btn-primary mt-3 w-100">
-                            <i class="bi bi-upload me-2"></i>Upload and Import Students
-                        </button>
+                        <div class="flex-grow-1">
+                            <label for="semester-input" class="form-label">Semester to Apply for Import:</label>
+                            <select name="semester" id="semester-input" class="form-select mb-3" required>
+                                {% for semester in semesters %}
+                                    <option value="{{ semester.pk }}">{{ semester }}</option>
+                                {% empty %}
+                                    <option value="" disabled>No semesters found</option>
+                                {% endfor %}
+                            </select>
+                            {{ student_form|crispy }}
+                        </div>
+                        <div class="mt-3">
+                            <button type="submit" name="import_students" class="btn btn-primary">
+                                <i class="bi bi-upload me-2"></i>Import Students
+                            </button>
+                            <a href="{% url 'coordinator_export' user_type='students' %}" class="btn btn-outline-secondary">
+                                <i class="bi bi-download me-2"></i>Export Students
+                            </a>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
 
-        <!-- Supervisor Import Card -->
+        <!-- Supervisor Import & Export Card -->
         <div class="col-lg-6 mb-4">
             <div class="card h-100">
                 <div class="card-header">
-                    <h4>Import Supervisors</h4>
+                    <h4>Supervisors</h4>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <p>Required CSV columns: <strong>Full Name, Department, Email</strong></p>
+                    <p class="text-muted small">The system will create new supervisors or update existing ones based on 'Email'. You can also export all supervisor data for editing.</p>
+                    <hr>
+                    <form method="post" enctype="multipart/form-data" class="flex-grow-1 d-flex flex-column">
+                        {% csrf_token %}
+                        <div class="flex-grow-1">
+                            {{ supervisor_form|crispy }}
+                        </div>
+                        <div class="mt-3">
+                            <button type="submit" name="import_supervisors" class="btn btn-primary">
+                                <i class="bi bi-upload me-2"></i>Import Supervisors
+                            </button>
+                             <a href="{% url 'coordinator_export' user_type='supervisors' %}" class="btn btn-outline-secondary">
+                                <i class="bi bi-download me-2"></i>Export Supervisors
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="my-5">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0"><i class="bi bi-exclamation-octagon-fill me-2"></i>WARNING</h4>
                 </div>
                 <div class="card-body">
-                    <p>Required CSV columns: <strong>Full Name, Department, Email</strong></p>
-                    <p class="text-muted small">The 'Department' column must contain the name of an existing department or school (case-insensitive). If a department is found, its school is automatically linked. If only a school is found, the department is left blank.</p>
-                    <hr>
-                    <form method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {{ supervisor_form|crispy }}
-                        <button type="submit" name="import_supervisors" class="btn btn-primary mt-3 w-100">
-                            <i class="bi bi-upload me-2"></i>Upload and Import Supervisors
-                        </button>
-                    </form>
+                    <h5 class="card-title">Delete Students by Semester</h5>
+                    <p class="card-text">This tool allows you to permanently remove all student accounts associated with a specific semester. This action is <b>irreversible</b> and should be used with extreme caution.</p>
+                    <a href="{% url 'delete_students_by_semester' %}" class="btn btn-danger">
+                        <i class="bi bi-trash me-2"></i>Proceed to Deletion Utility
+                    </a>
                 </div>
             </div>
         </div>
