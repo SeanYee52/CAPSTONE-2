@@ -1,35 +1,35 @@
-sentence,positive_topic,negative_topic
-"As a student and developer, I actively participate in and enjoy designing, building, and deploying full-stack applications with Python (using Flask and Django frameworks).","Python, Flask, Django",
-"I am also fluent in Kotlin and Flutter for Android development.","Kotlin, Flutter",
-"My education has provided me with a strong foundation in frontend and backend development, and I am adept at utilizing software frameworks and tools to develop solutions that meet user requirements.","Frontend, Backend, Software frameworks",
-"In addition to my software development skills, I have a keen interest in data analysis and machine learning.","Data analysis, Machine learning",
-"Dedicated Final Year Software Engineering student passionate about web/app development, database management, tech and UI/UX design.","Web development, App development, Database management, UI/UX design",
-"I am a final-year Software Engineering student with knowledge in software development and AI-related areas.","Software development, AI",
-"I am eager to apply my technical skills and problem-solving mindset in real-world projects, and open to opportunities across software and AI development.","Software development, AI development",
-"Final year Bachelor of Software Engineer (Hons) student at Sunway University Kuala Lumpur, School of Engineering and Technology. I am passionate about Web Development and Database Management.","Web Development, Database Management",
-"Highly motivated software engineering student specialized in software development, with proficiency in multiple programming languages including Python, Java, and Scala.","Software development, Python, Java, Scala",
-"I am currently a Computer Science scholar specializing in Artificial Intelligence and Machine Learning development, with a keen interest in applying these technologies for innovative problem solving.","Artificial Intelligence, Machine Learning",
-"As a software engineering student, I am proficient in Java, Scala, Python, and Kotlin, as well as web development languages like HTML, CSS, JavaScript, and PHP.","Java, Scala, Python, Kotlin, HTML, CSS, JavaScript, PHP",
-"I have practical experience in full-stack web and mobile application development.","Full-stack development, Web development, Mobile application development",
-"Proficient in Django REST Framework, ExpressJS, ScalaFX, Python, JavaScript, Scala, MySQL","Django REST Framework, ExpressJS, ScalaFX, Python, JavaScript, Scala, MySQL",
-"I am a Final Year Software Engineering undergraduate with experiences across a diverse range of programming languages like; Python, Java, JavaScript/TypeScript, Scala, Kotlin, and PHP.","Software Engineering, Python, Java, JavaScript, TypeScript, Scala, Kotlin, PHP",
-"Throughout my journey as a developer, I've built unique applications such as games, websites, and mobile apps.","Games, Websites, Mobile apps",
-"Having worked with several (FE & BE) libraries and frameworks such as; React, NextJS and Spring Boot, I understand how they enable code reuse and reduce boilerplate all while providing modular build structure for projects.","React, NextJS, Spring Boot",
-"I am versed in database operations, having worked with MySQL, Postgres, SQLite, Derby and other database systems.","Database operations, MySQL, Postgres, SQLite, Derby",
-"I’ve sharpened my designing skills by creating Figma prototypes and turning them into fully functional interfaces using HTML, XML, FXML, and CSS.","Figma, Prototypes, HTML, XML, FXML, CSS",
-"My passion for technology remains insatiable. I’m always eager to learn, with my current focus on natural language processing (NLP) and Web3 development.","Natural language processing, Web3 development",
-"Throughout my studies, I've developed a deep passion for designing and creating stunning visuals, which has shaped my strengths in front-end development and UI/UX design.","Front-end development, UI/UX design",
-"I have experience with front-end technologies such as HTML, CSS, and JavaScript, as well as design and prototyping tools like Canva and Figma to create user-friendly designs.","Front-end technologies, HTML, CSS, JavaScript, Canva, Figma",
-"Additionally, my knowledge of programming languages such as Java, Python, and Kotlin allows me to effectively tackle the logic behind my applications.","Java, Python, Kotlin",
-"Currently, I’m exploring and learning about Artificial Intelligence and generative tools to incorporate these trends into my applications, making them more robust and innovative.","Artificial Intelligence, Generative tools",
-"I've gained an attentive eye for product details, bugs, and an ability for listing products for appropriate visibility with my experiences working.","Product details, Bugs, Product visibility",
-"Apart from sales, I've explored with technology, learning about HTML, CSS, Python, and Java as programming languages.","HTML, CSS, Python, Java",
-"I am a final-year Software Engineering student with a deep interest in Software Testing, Quality Assurance, and improving software reliability.","Software Testing, Quality Assurance, Software reliability",
-"My background includes extensive knowledge of the Software Development Life Cycle (SDLC) and proficiency in coding with languages like Java, Python, Scala, HTML, CSS, and applying object-oriented principles. I also possess basic SQL skills.","Software Development Life Cycle, Java, Python, Scala, HTML, CSS, SQL",
-"My background/interests include AI, having studied it in university, Process Mining, a game-changing technology for efficiency, and Startups/Entrepreneurship, which tie everything together.","AI, Process Mining, Startups, Entrepreneurship",
-"A highly motivated software engineering student with a strong interest in collaboration and improving my skills in the software development field.","Software engineering, Collaboration, Software development",
-"I am a final-year student at Sunway University studying Software Engineering.","Software Engineering",
-"Throughout my studies, I applied numerous skills to create a variety of programs in Java, Scala, PHP, Kotlin, and Python.","Java, Scala, PHP, Kotlin, Python",
-"I utilised these skills to create web and mobile applications, one of which was used in HackUST 2023 and won the Web3.0 Creative Design Award.","Web applications, Mobile applications",
-"My main interest is in Artificial Intelligence, mainly due to its exciting potential to change the world.","Artificial Intelligence",
-"Ever since I was young, I have always been fascinated by technology that make up the world today. Thus, this led to today where I aim to contribute towards impactful technology, and I believe AI is the next step in that revolution.","AI",
+Entry,Positive_Topics,Negative_Topics
+"As a student and developer, I actively participate in and enjoy designing, building, and deploying full-stack applications with Python (using Flask and Django frameworks).","['Application Development']",['No Match']
+"I am also fluent in Kotlin and Flutter for Android development.","['Mobile Application Development']",['No Match']
+"My education has provided me with a strong foundation in frontend and backend development, and I am adept at utilizing software frameworks and tools to develop solutions that meet user requirements.","['Software Engineering', 'User Experience (UX)']",['No Match']
+"In addition to my software development skills, I have a keen interest in data analysis and machine learning.","['Data Analytics', 'Machine Learning']",['No Match']
+"Dedicated Final Year Software Engineering student passionate about web/app development, database management, tech and UI/UX design.","['Application Development', 'Databases', 'User Experience (UX)']",['No Match']
+"I am a final-year Software Engineering student with knowledge in software development and AI-related areas.","['Artificial Intelligence', 'Software Engineering']",['No Match']
+"I am eager to apply my technical skills and problem-solving mindset in real-world projects, and open to opportunities across software and AI development.","['Artificial Intelligence', 'Software Engineering']",['No Match']
+"Final year Bachelor of Software Engineer (Hons) student at Sunway University Kuala Lumpur, School of Engineering and Technology. I am passionate about Web Development and Database Management.","['Databases', 'Software Engineering']",['No Match']
+"Highly motivated software engineering student specialized in software development, with proficiency in multiple programming languages including Python, Java, and Scala.","['Software Engineering']",['No Match']
+"I am currently a Computer Science scholar specializing in Artificial Intelligence and Machine Learning development, with a keen interest in applying these technologies for innovative problem solving.","['Artificial Intelligence', 'Machine Learning', 'Computer Science']",['No Match']
+"As a software engineering student, I am proficient in Java, Scala, Python, and Kotlin, as well as web development languages like HTML, CSS, JavaScript, and PHP.","['User Experience (UX)', 'Software Engineering']",['No Match']
+"I have practical experience in full-stack web and mobile application development.","['Mobile Application Development']",['No Match']
+"Proficient in Django REST Framework, ExpressJS, ScalaFX, Python, JavaScript, Scala, MySQL","['No Match']",['No Match']
+"I am a Final Year Software Engineering undergraduate with experiences across a diverse range of programming languages like; Python, Java, JavaScript/TypeScript, Scala, Kotlin, and PHP.","['Software Engineering']",['No Match']
+"Throughout my journey as a developer, I've built unique applications such as games, websites, and mobile apps.","['Application Development', 'E-commerce games', 'Mobile Application Development']",['No Match']
+"Having worked with several (FE & BE) libraries and frameworks such as; React, NextJS and Spring Boot, I understand how they enable code reuse and reduce boilerplate all while providing modular build structure for projects.","['Appliation Development', 'User Experience (UX)']",['No Match']
+"I am versed in database operations, having worked with MySQL, Postgres, SQLite, Derby and other database systems.","['Databases']",['No Match']
+"I’ve sharpened my designing skills by creating Figma prototypes and turning them into fully functional interfaces using HTML, XML, FXML, and CSS.","['User Experience (UX)']",['No Match']
+"My passion for technology remains insatiable. I’m always eager to learn, with my current focus on natural language processing (NLP) and Web3 development.","['Natural Language Processing', 'Blockchain']",['No Match']
+"Throughout my studies, I've developed a deep passion for designing and creating stunning visuals, which has shaped my strengths in front-end development and UI/UX design.","['User Experience (UX)']",['No Match']
+"I have experience with front-end technologies such as HTML, CSS, and JavaScript, as well as design and prototyping tools like Canva and Figma to create user-friendly designs.","['User Experience (UX)']",['No Match']
+"Additionally, my knowledge of programming languages such as Java, Python, and Kotlin allows me to effectively tackle the logic behind my applications.","['Application Development']",['No Match']
+"Currently, I’m exploring and learning about Artificial Intelligence and generative tools to incorporate these trends into my applications, making them more robust and innovative.","['Artificial Intelligence', 'Generative AI', 'Application Development']",['No Match']
+"I've gained an attentive eye for product details, bugs, and an ability for listing products for appropriate visibility with my experiences working.","['Product/Service Design']",['No Match']
+"Apart from sales, I've explored with technology, learning about HTML, CSS, Python, and Java as programming languages.","['No Match']",['No Match']
+"I am a final-year Software Engineering student with a deep interest in Software Testing, Quality Assurance, and improving software reliability.","['Software Engineering']",['No Match']
+"My background includes extensive knowledge of the Software Development Life Cycle (SDLC) and proficiency in coding with languages like Java, Python, Scala, HTML, CSS, and applying object-oriented principles. I also possess basic SQL skills.","['Software Engineering', 'Application Development']",['No Match']
+"My background/interests include AI, having studied it in university, Process Mining, a game-changing technology for efficiency, and Startups/Entrepreneurship, which tie everything together.","['Artificial Intelligence', 'Data Mining']",['No Match']
+"A highly motivated software engineering student with a strong interest in collaboration and improving my skills in the software development field.","['Software Engineering']",['No Match']
+"I am a final-year student at Sunway University studying Software Engineering.","['Software Engineering']",['No Match']
+"Throughout my studies, I applied numerous skills to create a variety of programs in Java, Scala, PHP, Kotlin, and Python.","['Application Development']",['No Match']
+"I utilised these skills to create web and mobile applications, one of which was used in HackUST 2023 and won the Web3.0 Creative Design Award.","['Mobile Application Development', 'User Experience (UX)']",['No Match']
+"My main interest is in Artificial Intelligence, mainly due to its exciting potential to change the world.","['Artificial Intelligence']",['No Match']
+"Ever since I was young, I have always been fascinated by technology that make up the world today. Thus, this led to today where I aim to contribute towards impactful technology, and I believe AI is the next step in that revolution.","['Artificial Intelligence']",['No Match']

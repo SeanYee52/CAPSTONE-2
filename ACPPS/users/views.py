@@ -32,7 +32,6 @@ class CustomLoginView(LoginView):
         # Fallback for any other case
         return reverse_lazy('home')
 
-
 class CustomPasswordChangeView(PasswordChangeView):
     """
     Handles the form for a user to change their own password.

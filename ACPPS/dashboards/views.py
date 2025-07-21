@@ -1,16 +1,19 @@
 import csv
 import io
 import datetime
-from django.http import HttpResponse
+import json
+import re
+from django.http import HttpResponse, JsonResponse
 from django.db import transaction
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404, render
 from django.urls import reverse
 from django.views import View
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.db.models import Q, Exists, OuterRef
+from django.db.models import Count, Exists, OuterRef
+from django.core.exceptions import ValidationError
 
 # Import your forms and models
 from users.forms import (
@@ -20,7 +23,7 @@ from users.forms import (
 from users.models import User, StudentProfile, SupervisorProfile, CoordinatorProfile
 from users.forms import CsvImportForm
 from academics.models import Programme, Department, School, Semester, ProgrammePreferenceGroup
-from api.models import TopicMapping
+from api.models import OriginalTopic, StandardisedTopic
 
 # --- Mixin for security ---
 class CoordinatorRequiredMixin(LoginRequiredMixin):
@@ -80,9 +83,6 @@ class SupervisorDashboardView(LoginRequiredMixin, View):
             messages.warning(request, "The logged-in user does not have a supervisor profile.")
         return render(request, self.template_name, context)
 
-def supervisor_dashboard_view(request):
-    return render(request, 'dashboard/supervisor.html')
-
 #region COORDINATOR VIEWS
 class CoordinatorDashboardView(CoordinatorRequiredMixin, View):
     """
@@ -92,26 +92,77 @@ class CoordinatorDashboardView(CoordinatorRequiredMixin, View):
     template_name = 'dashboard/coordinator_master.html'
 
     def get(self, request, *args, **kwargs):
-        supervisor_profile = SupervisorProfile.objects.all()
-        student_profile = StudentProfile.objects.all()
+        # Annotate each supervisor profile with the count of their related students.
+        supervisors_with_counts = SupervisorProfile.objects.annotate(
+            allocated_student_count=Count('students')
+        ).order_by('user__full_name')
+
+        # Annotate with the count of related topics and filter where the count > 0.
+        supervisor_with_expertise_count = supervisors_with_counts.filter(
+            standardised_expertise__isnull=False
+        ).distinct().count()
+
+        # A student is considered "labeled" if they have at least one positive preference.
+        students_with_preferences_count = StudentProfile.objects.annotate(
+            pref_count=Count('positive_preferences')
+        ).filter(
+            pref_count__gt=0
+        ).count()
 
         context = {
-            'supervisor_with_standardized_expertise_count': supervisor_profile.exclude(
-                Q(standardised_expertise__isnull=True) | Q(standardised_expertise__exact='')
-            ).count(),
-            'students_with_labeled_preferences_count': student_profile.filter(
-                Q(positive_preferences__isnull=False) & ~Q(positive_preferences='') &
-                Q(negative_preferences__isnull=False) & ~Q(negative_preferences='')
-            ).count(),
-            'students_allocated_count': student_profile.filter(
-                supervisor__isnull=False
-            ).count,
-            'students_count': student_profile.count(),
-            'supervisors_count': supervisor_profile.count(),
-            'supervisors': supervisor_profile,
+            'supervisor_with_standardized_expertise_count': supervisor_with_expertise_count,
+            'students_with_labeled_preferences_count': students_with_preferences_count,
+            'students_allocated_count': StudentProfile.objects.filter(supervisor__isnull=False).count(),
+            'students_count': StudentProfile.objects.count(),
+            'supervisors_count': supervisors_with_counts.count(),
+            'supervisors': supervisors_with_counts,
         }
         return render(request, self.template_name, context)
+    
+# AJAX Views for Coordinator Actions
+class ToggleSupervisorAcceptanceView(CoordinatorRequiredMixin, View):
+    """
+    Toggles the 'accepting_students' boolean field for a SupervisorProfile via POST request.
+    """
+    def post(self, request, *args, **kwargs):
+        try:
+            supervisor_profile = get_object_or_404(SupervisorProfile, pk=kwargs['pk'])
+            supervisor_profile.accepting_students = not supervisor_profile.accepting_students
+            supervisor_profile.save()
+            return JsonResponse({
+                'status': 'success',
+                'new_state': supervisor_profile.accepting_students
+            })
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
 
+class UpdateSupervisorCapacityView(CoordinatorRequiredMixin, View):
+    """
+    Updates the 'supervision_capacity' for a SupervisorProfile via POST request.
+    """
+    def post(self, request, *args, **kwargs):
+        try:
+            supervisor_profile = get_object_or_404(SupervisorProfile, pk=kwargs['pk'])
+            data = json.loads(request.body)
+            new_capacity_str = data.get('capacity')
+
+            if new_capacity_str is None or not str(new_capacity_str).isdigit():
+                raise ValidationError("Capacity must be a non-negative integer.")
+
+            supervisor_profile.supervision_capacity = int(new_capacity_str)
+            supervisor_profile.full_clean()
+            supervisor_profile.save()
+
+            return JsonResponse({
+                'status': 'success',
+                'new_capacity': supervisor_profile.supervision_capacity
+            })
+        except ValidationError as e:
+            return JsonResponse({'status': 'error', 'message': '. '.join(e.messages)}, status=400)
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+
+# Task Views
 class CoordinatorStandardizationView(CoordinatorRequiredMixin, View):
     """
     Dedicated page for the topic standardization task.
@@ -121,7 +172,7 @@ class CoordinatorStandardizationView(CoordinatorRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         supervisors = SupervisorProfile.objects.select_related('user').all().order_by('user__full_name')
-        topics = TopicMapping.objects.all().order_by('standardised_topic')
+        topics = StandardisedTopic.objects.all().order_by('name')
         
         context = {
             'supervisors': supervisors,
@@ -170,6 +221,11 @@ class CoordinatorLabelingView(CoordinatorRequiredMixin, View):
             'selected_semester_id': selected_semester_id,
         }
         return render(request, self.template_name, context)
+    
+    def post(self, request, *args, **kwargs):
+        """
+        Updates supervisor availability based on the form submission.
+        """
 
 class CoordinatorMatchingView(CoordinatorRequiredMixin, View):
     """
@@ -264,11 +320,11 @@ class CoordinatorImportView(CoordinatorRequiredMixin, View):
         Optional CSV Headers:
         - 'Supervisor Email' (Email of the supervisor to assign)
         - 'Preference Text'
-        - 'Positive Preferences'
-        - 'Negative Preferences'
+        - 'Positive Preferences' (Semicolon-separated list of topic names)
+        - 'Negative Preferences' (Semicolon-separated list of topic names)
         - 'Programme Match Type' (Integer)
-        - 'Matching Topics'
-        - 'Conflicting Topics'
+        - 'Matching Topics' (Semicolon-separated list of topic names)
+        - 'Conflicting Topics' (Semicolon-separated list of topic names)
         """
         form = CsvImportForm(request.POST, request.FILES)
         if not form.is_valid():
@@ -295,64 +351,52 @@ class CoordinatorImportView(CoordinatorRequiredMixin, View):
             return redirect('coordinator_import')
 
         created_count, updated_count, errors = 0, 0, []
+        
+        # Define mappings for M2M fields to their CSV headers
+        m2m_field_map = {
+            'positive_preferences': 'Positive Preferences',
+            'negative_preferences': 'Negative Preferences',
+            'matching_topics': 'Matching Topics',
+            'conflicting_topics': 'Conflicting Topics',
+        }
 
         for i, row in enumerate(reader, start=2):
-            full_name = row.get('Full Name', '').strip()
-            student_id = row.get('Student ID', '').strip().lower()
-            programme_name = row.get('Programme', '').strip()
-
-            if not all([full_name, student_id, programme_name]):
-                errors.append(f"Row {i}: Missing required data (Full Name, Student ID, or Programme).")
-                continue
-
-            try:
-                programme = Programme.objects.get(name__iexact=programme_name)
-            except Programme.DoesNotExist:
-                errors.append(f"Row {i}: Programme '{programme_name}' not found. Skipping.")
-                continue
-
-            email = f"{student_id}@imail.sunway.edu.my"
-            profile_data = {}
-
-            # Handle optional fields and Foreign Keys
-            try:
-                if 'Supervisor Email' in headers and row.get('Supervisor Email', '').strip():
-                    supervisor_email = row.get('Supervisor Email').strip()
-                    profile_data['supervisor'] = SupervisorProfile.objects.get(user__email__iexact=supervisor_email)
-                
-                if 'Programme Match Type' in headers and row.get('Programme Match Type', '').strip():
-                    profile_data['programme_match_type'] = int(row.get('Programme Match Type').strip())
-
-                # Simple text fields
-                optional_text_fields = ['preference_text', 'positive_preferences', 'negative_preferences',
-                                        'matching_topics', 'conflicting_topics']
-                csv_headers_map = {'preference_text': 'Preference Text', 'positive_preferences': 'Positive Preferences',
-                                   'negative_preferences': 'Negative Preferences', 'matching_topics': 'Matching Topics',
-                                   'conflicting_topics': 'Conflicting Topics'}
-
-                for field in optional_text_fields:
-                    header = csv_headers_map[field]
-                    if header in headers:
-                        profile_data[field] = row.get(header, '').strip()
-
-            except SupervisorProfile.DoesNotExist:
-                errors.append(f"Row {i}: Supervisor with email '{row.get('Supervisor Email')}' not found. Skipping.")
-                continue
-            except (ValueError, TypeError):
-                errors.append(f"Row {i}: Invalid 'Programme Match Type'. It must be a whole number. Skipping.")
-                continue
-
             try:
                 with transaction.atomic():
-                    user, created = User.objects.get_or_create(
+                    full_name = row.get('Full Name', '').strip()
+                    student_id = row.get('Student ID', '').strip().lower()
+                    programme_name = row.get('Programme', '').strip()
+
+                    if not all([full_name, student_id, programme_name]):
+                        errors.append(f"Row {i}: Missing required data (Full Name, Student ID, or Programme).")
+                        continue
+
+                    programme = Programme.objects.get(name__iexact=programme_name)
+                    email = f"{student_id}@imail.sunway.edu.my"
+                    
+                    # --- Prepare data for direct fields and ForeignKeys ---
+                    profile_data = {
+                        'preference_text': row.get('Preference Text', '').strip() if 'Preference Text' in headers else None
+                    }
+
+                    if 'Supervisor Email' in headers and row.get('Supervisor Email', '').strip():
+                        supervisor_email = row.get('Supervisor Email').strip()
+                        profile_data['supervisor'] = SupervisorProfile.objects.get(user__email__iexact=supervisor_email)
+                    
+                    if 'Programme Match Type' in headers and row.get('Programme Match Type', '').strip():
+                        profile_data['programme_match_type'] = int(row.get('Programme Match Type').strip())
+
+                    # --- Create/Update User and StudentProfile (main object) ---
+                    user, user_created = User.objects.get_or_create(
                         email=email,
                         defaults={'full_name': full_name, 'user_type': 'student'}
                     )
                     
-                    if created:
-                        user.set_password("defaultPassword123!")
+                    if user_created:
+                        user.set_password("defaultPassword123!") # Consider a more secure default password strategy
                         user.save()
                     else:
+                        # Update existing user info if needed
                         user.full_name = full_name
                         user.user_type = 'student'
                         user.save()
@@ -362,22 +406,52 @@ class CoordinatorImportView(CoordinatorRequiredMixin, View):
                         defaults={'programme': programme, 'semester': semester, **profile_data}
                     )
                     
-                    if created: created_count += 1
+                    # --- Handle ManyToManyFields post-creation/update ---
+                    for field_name, header_name in m2m_field_map.items():
+                        if header_name in headers:
+                            topic_names_str = row.get(header_name, '').strip()
+                            m2m_manager = getattr(profile, field_name)
+
+                            if not topic_names_str:
+                                m2m_manager.clear() # Clear relationship if cell is empty
+                                continue
+
+                            # Split by semicolon and strip whitespace from each topic name
+                            topic_names = [name.strip() for name in topic_names_str.split(';') if name.strip()]
+                            
+                            # Find existing topics and set the relationship
+                            topics = StandardisedTopic.objects.filter(name__in=topic_names)
+                            m2m_manager.set(topics)
+                            
+                            found_topic_names = {topic.name for topic in topics}
+                            missing_topics = set(topic_names) - found_topic_names
+                            if missing_topics:
+                                errors.append(f"Row {i}: For student {email}, could not find topics: {', '.join(missing_topics)}")
+
+                    if profile_created: created_count += 1
                     else: updated_count += 1
 
+            except Programme.DoesNotExist:
+                errors.append(f"Row {i}: Programme '{programme_name}' not found. Skipping.")
+            except SupervisorProfile.DoesNotExist:
+                errors.append(f"Row {i}: Supervisor with email '{row.get('Supervisor Email')}' not found. Skipping.")
+            except (ValueError, TypeError) as e:
+                errors.append(f"Row {i}: Invalid data. Check 'Programme Match Type' is a number. Details: {e}")
             except Exception as e:
-                errors.append(f"Row {i}: Database error for student {email}: {e}")
+                errors.append(f"Row {i}: An unexpected database error occurred for student ID {student_id}: {e}")
 
         # Provide feedback
         if created_count > 0: messages.success(request, f"Successfully created {created_count} new students.")
         if updated_count > 0: messages.info(request, f"Successfully updated {updated_count} existing students.")
         if errors:
-            messages.warning(request, "Some rows could not be imported. See errors below:")
+            messages.warning(request, "Some rows could not be imported or had warnings. See details below:")
             for error in errors: messages.error(request, error)
         if created_count == 0 and updated_count == 0 and not errors:
             messages.info(request, "The file did not contain any new or updated student information.")
+        
         return redirect('coordinator_import')
 
+    
     def _handle_supervisor_import(self, request):
         """
         Processes the uploaded CSV file for supervisors. Creates or updates records.
@@ -388,10 +462,10 @@ class CoordinatorImportView(CoordinatorRequiredMixin, View):
         - 'Department' (Name of the Department or School)
         
         Optional CSV Headers:
-        - 'Expertise'
+        - 'Expertise' (Semicolon-separated list of expertise areas)
         - 'Supervision Capacity' (Integer)
         - 'Accepting Students' (True/False, Yes/No, 1/0)
-        - 'Standardised Expertise'
+        - 'Standardised Expertise' (Semicolon-separated list of topic names)
         - 'Preferred Programmes First Choice' (Name of the ProgrammePreferenceGroup)
         - 'Preferred Programmes Second Choice' (Name of the ProgrammePreferenceGroup)
         """
@@ -416,59 +490,53 @@ class CoordinatorImportView(CoordinatorRequiredMixin, View):
         created_count, updated_count, errors = 0, 0, []
 
         for i, row in enumerate(reader, start=2):
-            full_name = row.get('Full Name', '').strip()
-            email = row.get('Email', '').strip().lower()
-            org_unit_name = row.get('Department', '').strip()
-
-            if not all([full_name, email, org_unit_name]):
-                errors.append(f"Row {i}: Missing required data (Full Name, Department, or Email).")
-                continue
-            
-            department, school = None, None
-            try:
-                department = Department.objects.get(name__iexact=org_unit_name)
-                school = department.school
-            except Department.DoesNotExist:
-                try:
-                    school = School.objects.get(name__iexact=org_unit_name)
-                except School.DoesNotExist:
-                    errors.append(f"Row {i}: Department/School '{org_unit_name}' not found. Skipping.")
-                    continue
-            
-            profile_data = {}
-            try:
-                if 'Expertise' in headers: profile_data['expertise'] = row.get('Expertise', '').strip()
-                if 'Standardised Expertise' in headers: profile_data['standardised_expertise'] = row.get('Standardised Expertise', '').strip()
-                
-                if 'Supervision Capacity' in headers and row.get('Supervision Capacity', '').strip():
-                    profile_data['supervision_capacity'] = int(row.get('Supervision Capacity').strip())
-                
-                if 'Accepting Students' in headers:
-                    accepting = self._parse_boolean(row.get('Accepting Students'))
-                    if accepting is not None: profile_data['accepting_students'] = accepting
-                
-                if 'Preferred Programmes First Choice' in headers and row.get('Preferred Programmes First Choice', '').strip():
-                    group_name = row.get('Preferred Programmes First Choice').strip()
-                    profile_data['preferred_programmes_first_choice'] = ProgrammePreferenceGroup.objects.get(name__iexact=group_name)
-                
-                if 'Preferred Programmes Second Choice' in headers and row.get('Preferred Programmes Second Choice', '').strip():
-                    group_name = row.get('Preferred Programmes Second Choice').strip()
-                    profile_data['preferred_programmes_second_choice'] = ProgrammePreferenceGroup.objects.get(name__iexact=group_name)
-
-            except (ValueError, TypeError):
-                errors.append(f"Row {i}: Invalid 'Supervision Capacity'. It must be a whole number. Skipping.")
-                continue
-            except ProgrammePreferenceGroup.DoesNotExist:
-                errors.append(f"Row {i}: Programme Preference Group '{row.get('Preferred Programmes First Choice') or row.get('Preferred Programmes Second Choice')}' not found. Skipping.")
-                continue
-
             try:
                 with transaction.atomic():
-                    user, created = User.objects.get_or_create(
+                    full_name = row.get('Full Name', '').strip()
+                    email = row.get('Email', '').strip().lower()
+                    org_unit_name = row.get('Department', '').strip()
+
+                    if not all([full_name, email, org_unit_name]):
+                        errors.append(f"Row {i}: Missing required data (Full Name, Department, or Email).")
+                        continue
+                    
+                    department, school = None, None
+                    try:
+                        department = Department.objects.get(name__iexact=org_unit_name)
+                        school = department.school
+                    except Department.DoesNotExist:
+                        school = School.objects.get(name__iexact=org_unit_name)
+                    
+                    # --- Prepare data for direct fields and ForeignKeys ---
+                    profile_data = {}
+
+                    if 'Expertise' in headers:
+                        expertise_str = row.get('Expertise', '').strip()
+                        # Convert simple semicolon-separated list to the required quoted format
+                        expertise_items = [f'"{item.strip()}"' for item in expertise_str.split(';') if item.strip()]
+                        profile_data['expertise'] = ", ".join(expertise_items)
+
+                    if 'Supervision Capacity' in headers and row.get('Supervision Capacity', '').strip():
+                        profile_data['supervision_capacity'] = int(row.get('Supervision Capacity').strip())
+                    
+                    if 'Accepting Students' in headers:
+                        accepting = self._parse_boolean(row.get('Accepting Students'))
+                        if accepting is not None: profile_data['accepting_students'] = accepting
+                    
+                    if 'Preferred Programmes First Choice' in headers and row.get('Preferred Programmes First Choice', '').strip():
+                        group_name = row.get('Preferred Programmes First Choice').strip()
+                        profile_data['preferred_programmes_first_choice'] = ProgrammePreferenceGroup.objects.get(name__iexact=group_name)
+                    
+                    if 'Preferred Programmes Second Choice' in headers and row.get('Preferred Programmes Second Choice', '').strip():
+                        group_name = row.get('Preferred Programmes Second Choice').strip()
+                        profile_data['preferred_programmes_second_choice'] = ProgrammePreferenceGroup.objects.get(name__iexact=group_name)
+
+                    # --- Create/Update User and SupervisorProfile (main object) ---
+                    user, user_created = User.objects.get_or_create(
                         email=email,
                         defaults={'full_name': full_name, 'user_type': 'supervisor'}
                     )
-                    if created:
+                    if user_created:
                         user.set_password("defaultPassword123!")
                         user.save()
                     else:
@@ -480,17 +548,39 @@ class CoordinatorImportView(CoordinatorRequiredMixin, View):
                         user=user,
                         defaults={'department': department, 'school': school, **profile_data}
                     )
-                    if created: created_count += 1
+
+                    # --- Handle ManyToManyField ('standardised_expertise') post-creation/update ---
+                    if 'Standardised Expertise' in headers:
+                        topic_names_str = row.get('Standardised Expertise', '').strip()
+                        if not topic_names_str:
+                            profile.standardised_expertise.clear()
+                        else:
+                            topic_names = [name.strip() for name in topic_names_str.split(';') if name.strip()]
+                            topics = StandardisedTopic.objects.filter(name__in=topic_names)
+                            profile.standardised_expertise.set(topics)
+                            
+                            found_topic_names = {topic.name for topic in topics}
+                            missing_topics = set(topic_names) - found_topic_names
+                            if missing_topics:
+                                errors.append(f"Row {i}: For supervisor {email}, could not find standardised topics: {', '.join(missing_topics)}")
+
+                    if profile_created: created_count += 1
                     else: updated_count += 1
 
+            except (Department.DoesNotExist, School.DoesNotExist):
+                errors.append(f"Row {i}: Department/School '{org_unit_name}' not found. Skipping.")
+            except ProgrammePreferenceGroup.DoesNotExist as e:
+                errors.append(f"Row {i}: A Programme Preference Group was not found. Details: {e}")
+            except (ValueError, TypeError):
+                errors.append(f"Row {i}: Invalid 'Supervision Capacity'. It must be a whole number. Skipping.")
             except Exception as e:
-                errors.append(f"Row {i}: Database error for supervisor {email}: {e}")
+                errors.append(f"Row {i}: An unexpected database error occurred for supervisor {email}: {e}")
 
         # Provide feedback
         if created_count > 0: messages.success(request, f"Successfully created {created_count} new supervisors.")
         if updated_count > 0: messages.info(request, f"Successfully updated {updated_count} existing supervisors.")
         if errors:
-            messages.warning(request, "Some rows could not be imported. See errors below:")
+            messages.warning(request, "Some rows could not be imported or had warnings. See details below:")
             for error in errors: messages.error(request, error)
         if created_count == 0 and updated_count == 0 and not errors:
             messages.info(request, "The file did not contain any new or updated supervisor information.")
@@ -525,7 +615,6 @@ class CoordinatorExportView(CoordinatorRequiredMixin, View):
             headers={'Content-Disposition': f'attachment; filename="students_export_{datetime.date.today()}.csv"'},
         )
 
-        # Use the same headers as the import expects
         writer = csv.writer(response)
         header = [
             'Student ID', 'Full Name', 'Programme', 'Supervisor Email',
@@ -534,9 +623,19 @@ class CoordinatorExportView(CoordinatorRequiredMixin, View):
         ]
         writer.writerow(header)
 
+        def _format_m2m_for_csv(manager):
+            """Helper to format a ManyToMany related manager into a semicolon-separated string."""
+            return "; ".join([topic.name for topic in manager.all()])
+
         # Optimize query to fetch related data in one go
+        # Use select_related for FK/OneToOne and prefetch_related for M2M/Reverse FK
         students = StudentProfile.objects.select_related(
             'user', 'programme', 'supervisor__user'
+        ).prefetch_related(
+            'positive_preferences',
+            'negative_preferences',
+            'matching_topics',
+            'conflicting_topics'
         ).all()
 
         for profile in students:
@@ -546,11 +645,11 @@ class CoordinatorExportView(CoordinatorRequiredMixin, View):
                 profile.programme.name if profile.programme else '',
                 profile.supervisor.user.email if profile.supervisor and profile.supervisor.user else '',
                 profile.preference_text or '',
-                profile.positive_preferences or '',
-                profile.negative_preferences or '',
+                _format_m2m_for_csv(profile.positive_preferences),
+                _format_m2m_for_csv(profile.negative_preferences),
                 profile.programme_match_type if profile.programme_match_type is not None else '',
-                profile.matching_topics or '',
-                profile.conflicting_topics or '',
+                _format_m2m_for_csv(profile.matching_topics),
+                _format_m2m_for_csv(profile.conflicting_topics),
             ])
 
         return response
@@ -572,15 +671,29 @@ class CoordinatorExportView(CoordinatorRequiredMixin, View):
         ]
         writer.writerow(header)
 
-        # Optimize query
+        def _format_expertise_for_csv(expertise_str):
+            """
+            Parses the database format ' "item1", "item2" ' into 'item1; item2'.
+            """
+            if not expertise_str:
+                return ""
+            # Find all content within quotes
+            items = re.findall(r'"([^"]*)"', expertise_str)
+            return "; ".join(items)
+        
+        def _format_m2m_for_csv(manager):
+            """Helper to format a ManyToMany related manager into a semicolon-separated string."""
+            return "; ".join([item.name for item in manager.all()])
+
+        # Optimize query to fetch all related data efficiently
         supervisors = SupervisorProfile.objects.select_related(
             'user', 'department', 'school',
             'preferred_programmes_first_choice', 'preferred_programmes_second_choice'
-        ).all()
+        ).prefetch_related('standardised_expertise').all()
 
         for profile in supervisors:
             # The import function checks for Department name first, then School name.
-            # We will export the Department name if it exists, otherwise the School name.
+            # Export the Department name if it exists, otherwise the School name.
             org_unit_name = profile.department.name if profile.department else \
                             (profile.school.name if profile.school else '')
 
@@ -589,9 +702,9 @@ class CoordinatorExportView(CoordinatorRequiredMixin, View):
                 profile.user.full_name,
                 org_unit_name,
                 profile.supervision_capacity,
-                profile.accepting_students,
-                profile.expertise or '',
-                profile.standardised_expertise or '',
+                'Yes' if profile.accepting_students else 'No',
+                _format_expertise_for_csv(profile.expertise),
+                _format_m2m_for_csv(profile.standardised_expertise),
                 profile.preferred_programmes_first_choice.name if profile.preferred_programmes_first_choice else '',
                 profile.preferred_programmes_second_choice.name if profile.preferred_programmes_second_choice else '',
             ])

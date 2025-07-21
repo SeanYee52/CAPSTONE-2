@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.conf import settings
 from django.utils import timezone
 from academics.models import Programme, Department, School, ProgrammePreferenceGroup, Semester
+from api.models import StandardisedTopic
 import re
 
 
@@ -60,22 +61,20 @@ class StudentProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True)
     programme = models.ForeignKey(Programme, on_delete=models.SET_NULL, null=True, related_name='students')
     preference_text = models.TextField(blank=True, null=True)
-    positive_preferences = models.TextField(blank=True, null=True)
-    negative_preferences = models.TextField(blank=True, null=True)
-    supervisor = models.ForeignKey(
-        'SupervisorProfile', on_delete=models.SET_NULL, null=True, blank=True, related_name='students'
-    )
+    positive_preferences = models.ManyToManyField(StandardisedTopic, blank=True, related_name='positive_preferences_students')
+    negative_preferences = models.ManyToManyField(StandardisedTopic, blank=True, related_name='negative_preferences_students')
+    supervisor = models.ForeignKey('SupervisorProfile', on_delete=models.SET_NULL, null=True, blank=True, related_name='students')
     semester = models.ForeignKey(
         Semester,
-        on_delete=models.PROTECT, # Don't delete a session if programmes are linked to it
+        on_delete=models.PROTECT, # Don't delete a semester if programmes are linked to it
         default=get_default_semester(), 
         null=True, 
         blank=True,
         related_name='students'
     )
     programme_match_type = models.IntegerField(null=True)
-    matching_topics = models.TextField(blank=True, null=True)
-    conflicting_topics = models.TextField(blank=True, null=True)
+    matching_topics = models.ManyToManyField(StandardisedTopic, blank=True, related_name='matching_students')
+    conflicting_topics = models.ManyToManyField(StandardisedTopic, blank=True, related_name='conflicting_students')
     
     def __str__(self):
         return f"{self.user.email} - Student"
@@ -100,7 +99,7 @@ class SupervisorProfile(models.Model):
     preferred_programmes_first_choice = models.ForeignKey(ProgrammePreferenceGroup, on_delete=models.SET_NULL, null=True, related_name='supervisors_first_choice', blank=True)
     preferred_programmes_second_choice = models.ForeignKey(ProgrammePreferenceGroup, on_delete=models.SET_NULL, null=True, related_name='supervisors_second_choice', blank=True)
     supervision_capacity = models.PositiveIntegerField(default=0)
-    standardised_expertise = models.TextField(blank=True, null=True)
+    standardised_expertise = models.ManyToManyField(StandardisedTopic, blank=True, related_name='supervisors')
     accepting_students = models.BooleanField(default=True)
 
     def __str__(self):

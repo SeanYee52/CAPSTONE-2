@@ -157,7 +157,7 @@ class Command(BaseCommand):
                                 'preferred_programmes_first_choice': pref_prog_1_obj,
                                 'preferred_programmes_second_choice': pref_prog_2_obj,
                                 'supervision_capacity': supervision_capacity,
-                                'standardised_expertise': "", # Explicitly set to blank as per requirement
+                                'standardised_expertise': None, # Explicitly set to blank as per requirement
                             }
                         )
 

@@ -1,9 +1,21 @@
 from django.db import models
 
 # Create your models here.
-class TopicMapping(models.Model):
-    topic = models.CharField(max_length=255, unique=True)
-    standardised_topic = models.CharField(max_length=255, blank=True, null=True)
+
+class OriginalTopic(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+    standardised_topic = models.ForeignKey(
+        'StandardisedTopic',
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='original_topics'
+    )
 
     def __str__(self):
-        return self.topic
+        return self.name
+    
+class StandardisedTopic(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+
+    def __str__(self):
+        return self.name

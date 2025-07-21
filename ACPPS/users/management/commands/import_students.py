@@ -17,7 +17,7 @@ class Command(BaseCommand):
         parser.add_argument(
             '--email_domain',
             type=str,
-            default='student.example.com',
+            default='imail.sunway.edu.my',
             help='The domain to use for generating student email addresses.'
         )
         parser.add_argument(
@@ -83,9 +83,9 @@ class Command(BaseCommand):
                             student_identifier_base = row.get(id_column_name, "").strip()
                             if not student_identifier_base:
                                 self.stdout.write(self.style.WARNING(f"Row {row_num}: ID column '{id_column_name}' is empty. Using generic ID."))
-                                student_identifier_base = f"student{row_num}"
+                                student_identifier_base = f"S{row_num}"
                         else:
-                            student_identifier_base = f"student{row_num}" # Fallback if no ID column
+                            student_identifier_base = f"S{row_num}" # Fallback if no ID column
                         
                         if name_column_name:
                             csv_full_name = row.get(name_column_name, "").strip()

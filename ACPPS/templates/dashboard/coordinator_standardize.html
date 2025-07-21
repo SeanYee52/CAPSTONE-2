@@ -27,20 +27,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% regroup topics by standardised_topic as grouped_list %}
-                    {% for group in grouped_list %}
+                    {% for topic in topics %}
                         <tr>
-                            <td>{{ group.grouper }}</td>
+                            <td>{{ topic.name }}</td>
                             <td>
-                                <ul>
-                                    {% for mapping in group.list %}
-                                        <li>{{ mapping.topic }}</li>
-                                    {% endfor %}
-                                </ul>
+                                {% if topic.original_topics.all %}
+                                    <ul>
+                                        {% for original in topic.original_topics.all %}
+                                            <li>{{ original.name }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% else %}
+                                    -
+                                {% endif %}
                             </td>
                         </tr>
                     {% endfor %}
-                </tbody>
             </table>
         </div>
     {% else %}
@@ -63,7 +65,17 @@
                         <tr>
                             <td>{{ profile.user.get_full_name }}</td>
                             <td>{{ profile.expertise|default:"-" }}</td>
-                            <td class="fw-bold">{{ profile.standardised_expertise|default:"Not yet processed." }}</td>
+                            <td>
+                                {% if profile.standardised_expertise.all %}
+                                    <ul>
+                                        {% for topic in profile.standardised_expertise.all %}
+                                            <li>{{ topic.name }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>

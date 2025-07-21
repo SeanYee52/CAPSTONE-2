@@ -66,8 +66,28 @@
                                     <td>Not yet processed.</td>
                                 {% endif %}
                             </td>
-                            <td class="text-success">{{ profile.matching_topics|default:"Not yet processed." }}</td>
-                            <td class="text-danger">{{ profile.conflicting_topics|default:"Not yet processed." }}</td>
+                            <td>
+                                {% if profile.matching_topics.all %}
+                                    <ul>
+                                        {% for topic in profile.matching_topics.all %}
+                                            <li>{{ topic.name }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if profile.conflicting_topics.all %}
+                                    <ul>
+                                        {% for topic in profile.conflicting_topics.all %}
+                                            <li>{{ topic.name }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>

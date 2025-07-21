@@ -1,0 +1,500 @@
+--- SUMMARY REPORT: OPTIMAL CONFIGURATION ANALYSIS ---
+Analysis Date: 2025-07-20 17:02:51
+Total Configurations Tested: 256
+================================================================================
+
+--- Pareto Front: The Best Set of Trade-Offs ---
+These are non-dominated configurations, representing optimal trade-offs.
+
+KPIs and Balancing Weight for each Pareto Configuration:
+            first_choice_pct  workload_std_dev  avg_student_satisfaction_rate  balancing_penalty_weight
+Config_2               88.67              2.97                          82.25                       1.0
+Config_8               55.33              1.83                          84.78                       1.0
+Config_19              89.33              3.06                          82.58                       1.0
+Config_23              84.00              2.94                          83.92                       1.0
+Config_24              81.33              2.81                          84.58                       1.0
+Config_65              96.00              3.06                          77.31                       2.0
+Config_68              80.00              2.68                          84.78                       2.0
+Config_70              56.00              1.92                          83.25                       2.0
+Config_72              55.33              1.83                          84.78                       2.0
+Config_83              87.33              2.96                          83.08                       2.0
+Config_87              84.00              2.94                          83.92                       2.0
+Config_107             98.00              3.29                          78.25                       2.0
+Config_108             89.33              3.01                          82.08                       2.0
+Config_129             60.00              0.64                          80.75                       5.0
+Config_130             60.00              1.09                          82.53                       5.0
+Config_131             53.33              1.05                          84.69                       5.0
+Config_132             52.67              1.01                          84.78                       5.0
+Config_145            100.00              3.18                          75.14                       5.0
+Config_146             97.33              3.08                          77.14                       5.0
+Config_147             85.33              2.73                          83.31                       5.0
+Config_148             80.67              2.72                          84.69                       5.0
+Config_149             88.67              2.55                          76.31                       5.0
+Config_150             87.33              2.53                          78.31                       5.0
+Config_151             75.33              2.34                          84.31                       5.0
+Config_152             74.67              2.38                          84.69                       5.0
+Config_161            100.00              3.18                          75.14                       5.0
+Config_165            100.00              3.18                          75.14                       5.0
+Config_168             91.33              3.04                          81.58                       5.0
+Config_169            100.00              3.18                          75.14                       5.0
+Config_171             97.33              3.29                          78.47                       5.0
+Config_172             89.33              3.01                          82.08                       5.0
+Config_177            100.00              3.18                          75.14                       5.0
+Config_181            100.00              3.18                          75.14                       5.0
+Config_185            100.00              3.18                          75.14                       5.0
+Config_188            100.00              3.33                          77.25                       5.0
+Config_189            100.00              3.18                          75.14                       5.0
+Config_193             58.00              0.38                          80.42                      10.0
+Config_194             54.00              0.38                          81.92                      10.0
+Config_195             46.00              0.51                          84.53                      10.0
+Config_196             46.00              0.55                          84.69                      10.0
+Config_209             70.00              1.61                          80.42                      10.0
+Config_210             60.67              0.64                          80.42                      10.0
+Config_211             59.33              0.87                          82.75                      10.0
+Config_212             54.00              1.22                          84.69                      10.0
+Config_213             71.33              1.67                          80.42                      10.0
+Config_214             61.33              0.67                          80.42                      10.0
+Config_215             58.67              1.03                          83.03                      10.0
+Config_216             53.33              1.05                          84.69                      10.0
+Config_225            100.00              3.18                          75.14                      10.0
+Config_226            100.00              3.18                          75.14                      10.0
+Config_228             90.67              2.95                          81.64                      10.0
+Config_229            100.00              3.18                          75.14                      10.0
+Config_230            100.00              3.18                          75.14                      10.0
+Config_231             98.67              3.14                          76.47                      10.0
+Config_232             89.33              2.89                          81.97                      10.0
+Config_233             99.33              3.14                          75.47                      10.0
+Config_234             98.00              3.06                          75.97                      10.0
+Config_236             88.00              2.87                          82.47                      10.0
+Config_241            100.00              3.18                          75.14                      10.0
+Config_242            100.00              3.18                          75.14                      10.0
+Config_245            100.00              3.18                          75.14                      10.0
+Config_246            100.00              3.18                          75.14                      10.0
+Config_249            100.00              3.18                          75.14                      10.0
+Config_250            100.00              3.18                          75.14                      10.0
+Config_253            100.00              3.18                          75.14                      10.0
+Config_254            100.00              3.18                          75.14                      10.0
+Config_255            100.00              3.20                          75.81                      10.0
+
+Detailed Score Weights for each Pareto Configuration:
+
+Config Name: Config_2
+Score Weights:
+  - prog_first_choice: 10
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 20
+----------------------------------------
+Config Name: Config_8
+Score Weights:
+  - prog_first_choice: 10
+  - prog_second_choice: 10
+  - student_topic_satisfaction: 100
+----------------------------------------
+Config Name: Config_19
+Score Weights:
+  - prog_first_choice: 20
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 50
+----------------------------------------
+Config Name: Config_23
+Score Weights:
+  - prog_first_choice: 20
+  - prog_second_choice: 10
+  - student_topic_satisfaction: 50
+----------------------------------------
+Config Name: Config_24
+Score Weights:
+  - prog_first_choice: 20
+  - prog_second_choice: 10
+  - student_topic_satisfaction: 100
+----------------------------------------
+Config Name: Config_65
+Score Weights:
+  - prog_first_choice: 10
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 10
+----------------------------------------
+Config Name: Config_68
+Score Weights:
+  - prog_first_choice: 10
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 100
+----------------------------------------
+Config Name: Config_70
+Score Weights:
+  - prog_first_choice: 10
+  - prog_second_choice: 10
+  - student_topic_satisfaction: 20
+----------------------------------------
+Config Name: Config_72
+Score Weights:
+  - prog_first_choice: 10
+  - prog_second_choice: 10
+  - student_topic_satisfaction: 100
+----------------------------------------
+Config Name: Config_83
+Score Weights:
+  - prog_first_choice: 20
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 50
+----------------------------------------
+Config Name: Config_87
+Score Weights:
+  - prog_first_choice: 20
+  - prog_second_choice: 10
+  - student_topic_satisfaction: 50
+----------------------------------------
+Config Name: Config_107
+Score Weights:
+  - prog_first_choice: 50
+  - prog_second_choice: 25
+  - student_topic_satisfaction: 50
+----------------------------------------
+Config Name: Config_108
+Score Weights:
+  - prog_first_choice: 50
+  - prog_second_choice: 25
+  - student_topic_satisfaction: 100
+----------------------------------------
+Config Name: Config_129
+Score Weights:
+  - prog_first_choice: 10
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 10
+----------------------------------------
+Config Name: Config_130
+Score Weights:
+  - prog_first_choice: 10
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 20
+----------------------------------------
+Config Name: Config_131
+Score Weights:
+  - prog_first_choice: 10
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 50
+----------------------------------------
+Config Name: Config_132
+Score Weights:
+  - prog_first_choice: 10
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 100
+----------------------------------------
+Config Name: Config_145
+Score Weights:
+  - prog_first_choice: 20
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 10
+----------------------------------------
+Config Name: Config_146
+Score Weights:
+  - prog_first_choice: 20
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 20
+----------------------------------------
+Config Name: Config_147
+Score Weights:
+  - prog_first_choice: 20
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 50
+----------------------------------------
+Config Name: Config_148
+Score Weights:
+  - prog_first_choice: 20
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 100
+----------------------------------------
+Config Name: Config_149
+Score Weights:
+  - prog_first_choice: 20
+  - prog_second_choice: 10
+  - student_topic_satisfaction: 10
+----------------------------------------
+Config Name: Config_150
+Score Weights:
+  - prog_first_choice: 20
+  - prog_second_choice: 10
+  - student_topic_satisfaction: 20
+----------------------------------------
+Config Name: Config_151
+Score Weights:
+  - prog_first_choice: 20
+  - prog_second_choice: 10
+  - student_topic_satisfaction: 50
+----------------------------------------
+Config Name: Config_152
+Score Weights:
+  - prog_first_choice: 20
+  - prog_second_choice: 10
+  - student_topic_satisfaction: 100
+----------------------------------------
+Config Name: Config_161
+Score Weights:
+  - prog_first_choice: 50
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 10
+----------------------------------------
+Config Name: Config_165
+Score Weights:
+  - prog_first_choice: 50
+  - prog_second_choice: 10
+  - student_topic_satisfaction: 10
+----------------------------------------
+Config Name: Config_168
+Score Weights:
+  - prog_first_choice: 50
+  - prog_second_choice: 10
+  - student_topic_satisfaction: 100
+----------------------------------------
+Config Name: Config_169
+Score Weights:
+  - prog_first_choice: 50
+  - prog_second_choice: 25
+  - student_topic_satisfaction: 10
+----------------------------------------
+Config Name: Config_171
+Score Weights:
+  - prog_first_choice: 50
+  - prog_second_choice: 25
+  - student_topic_satisfaction: 50
+----------------------------------------
+Config Name: Config_172
+Score Weights:
+  - prog_first_choice: 50
+  - prog_second_choice: 25
+  - student_topic_satisfaction: 100
+----------------------------------------
+Config Name: Config_177
+Score Weights:
+  - prog_first_choice: 100
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 10
+----------------------------------------
+Config Name: Config_181
+Score Weights:
+  - prog_first_choice: 100
+  - prog_second_choice: 10
+  - student_topic_satisfaction: 10
+----------------------------------------
+Config Name: Config_185
+Score Weights:
+  - prog_first_choice: 100
+  - prog_second_choice: 25
+  - student_topic_satisfaction: 10
+----------------------------------------
+Config Name: Config_188
+Score Weights:
+  - prog_first_choice: 100
+  - prog_second_choice: 25
+  - student_topic_satisfaction: 100
+----------------------------------------
+Config Name: Config_189
+Score Weights:
+  - prog_first_choice: 100
+  - prog_second_choice: 50
+  - student_topic_satisfaction: 10
+----------------------------------------
+Config Name: Config_193
+Score Weights:
+  - prog_first_choice: 10
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 10
+----------------------------------------
+Config Name: Config_194
+Score Weights:
+  - prog_first_choice: 10
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 20
+----------------------------------------
+Config Name: Config_195
+Score Weights:
+  - prog_first_choice: 10
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 50
+----------------------------------------
+Config Name: Config_196
+Score Weights:
+  - prog_first_choice: 10
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 100
+----------------------------------------
+Config Name: Config_209
+Score Weights:
+  - prog_first_choice: 20
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 10
+----------------------------------------
+Config Name: Config_210
+Score Weights:
+  - prog_first_choice: 20
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 20
+----------------------------------------
+Config Name: Config_211
+Score Weights:
+  - prog_first_choice: 20
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 50
+----------------------------------------
+Config Name: Config_212
+Score Weights:
+  - prog_first_choice: 20
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 100
+----------------------------------------
+Config Name: Config_213
+Score Weights:
+  - prog_first_choice: 20
+  - prog_second_choice: 10
+  - student_topic_satisfaction: 10
+----------------------------------------
+Config Name: Config_214
+Score Weights:
+  - prog_first_choice: 20
+  - prog_second_choice: 10
+  - student_topic_satisfaction: 20
+----------------------------------------
+Config Name: Config_215
+Score Weights:
+  - prog_first_choice: 20
+  - prog_second_choice: 10
+  - student_topic_satisfaction: 50
+----------------------------------------
+Config Name: Config_216
+Score Weights:
+  - prog_first_choice: 20
+  - prog_second_choice: 10
+  - student_topic_satisfaction: 100
+----------------------------------------
+Config Name: Config_225
+Score Weights:
+  - prog_first_choice: 50
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 10
+----------------------------------------
+Config Name: Config_226
+Score Weights:
+  - prog_first_choice: 50
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 20
+----------------------------------------
+Config Name: Config_228
+Score Weights:
+  - prog_first_choice: 50
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 100
+----------------------------------------
+Config Name: Config_229
+Score Weights:
+  - prog_first_choice: 50
+  - prog_second_choice: 10
+  - student_topic_satisfaction: 10
+----------------------------------------
+Config Name: Config_230
+Score Weights:
+  - prog_first_choice: 50
+  - prog_second_choice: 10
+  - student_topic_satisfaction: 20
+----------------------------------------
+Config Name: Config_231
+Score Weights:
+  - prog_first_choice: 50
+  - prog_second_choice: 10
+  - student_topic_satisfaction: 50
+----------------------------------------
+Config Name: Config_232
+Score Weights:
+  - prog_first_choice: 50
+  - prog_second_choice: 10
+  - student_topic_satisfaction: 100
+----------------------------------------
+Config Name: Config_233
+Score Weights:
+  - prog_first_choice: 50
+  - prog_second_choice: 25
+  - student_topic_satisfaction: 10
+----------------------------------------
+Config Name: Config_234
+Score Weights:
+  - prog_first_choice: 50
+  - prog_second_choice: 25
+  - student_topic_satisfaction: 20
+----------------------------------------
+Config Name: Config_236
+Score Weights:
+  - prog_first_choice: 50
+  - prog_second_choice: 25
+  - student_topic_satisfaction: 100
+----------------------------------------
+Config Name: Config_241
+Score Weights:
+  - prog_first_choice: 100
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 10
+----------------------------------------
+Config Name: Config_242
+Score Weights:
+  - prog_first_choice: 100
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 20
+----------------------------------------
+Config Name: Config_245
+Score Weights:
+  - prog_first_choice: 100
+  - prog_second_choice: 10
+  - student_topic_satisfaction: 10
+----------------------------------------
+Config Name: Config_246
+Score Weights:
+  - prog_first_choice: 100
+  - prog_second_choice: 10
+  - student_topic_satisfaction: 20
+----------------------------------------
+Config Name: Config_249
+Score Weights:
+  - prog_first_choice: 100
+  - prog_second_choice: 25
+  - student_topic_satisfaction: 10
+----------------------------------------
+Config Name: Config_250
+Score Weights:
+  - prog_first_choice: 100
+  - prog_second_choice: 25
+  - student_topic_satisfaction: 20
+----------------------------------------
+Config Name: Config_253
+Score Weights:
+  - prog_first_choice: 100
+  - prog_second_choice: 50
+  - student_topic_satisfaction: 10
+----------------------------------------
+Config Name: Config_254
+Score Weights:
+  - prog_first_choice: 100
+  - prog_second_choice: 50
+  - student_topic_satisfaction: 20
+----------------------------------------
+Config Name: Config_255
+Score Weights:
+  - prog_first_choice: 100
+  - prog_second_choice: 50
+  - student_topic_satisfaction: 50
+----------------------------------------
+
+================================================================================
+
+--- Final Recommendation ---
+Decision Process: From the Pareto Front, the configuration with the best 'First Choice Percentage' (highest value up to 100.0) and 'Workload Standard Deviation' (lower is better) was selected.
+
+Recommended Configuration Details:
+             first_choice_pct  workload_std_dev  avg_student_satisfaction_rate
+config_name                                                                   
+Config_145              100.0              3.18                          75.14
+
+Corresponding Parameters for this Configuration:
+Name: Config_145
+Balancing Penalty Weight: 5.0
+Score Weights:
+  - prog_first_choice: 20
+  - prog_second_choice: 5
+  - student_topic_satisfaction: 10

@@ -47,8 +47,28 @@
                             <td>{{ profile.user.get_full_name }}</td>
                             <td>{{ profile.semester.name|default:"N/A" }}</td>
                             <td>{{ profile.preference_text|default:"-" }}</td>
-                            <td class="text-success fw-bold">{{ profile.positive_preferences|default:"Not yet processed." }}</td>
-                            <td class="text-danger fw-bold">{{ profile.negative_preferences|default:"Not yet processed." }}</td>
+                            <td>
+                                {% if profile.positive_preferences.all %}
+                                    <ul>
+                                        {% for label in profile.positive_preferences.all %}
+                                            <li>{{ label.name }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td> 
+                            <td>
+                                {% if profile.negative_preferences.all %}
+                                    <ul>
+                                        {% for label in profile.negative_preferences.all %}
+                                            <li>{{ label.name }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>

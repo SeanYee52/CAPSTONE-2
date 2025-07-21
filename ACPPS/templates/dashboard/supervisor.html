@@ -99,9 +99,27 @@
                                     {{ student.programme }}</td>
                                     <td>{{ student.semester.name }}</td>
                                     <td>
-                                        <p>Student Topics: {{ student.positive_preferences }}</p>
-                                        <p>Matching Topics: {{ student.matching_topics }}</p>
-                                        <P>Conflicting Topics: {{ student.conflicting_topics }} </P>
+                                        <p>Student Topics: 
+                                            {% if student.positive_preferences.all %} 
+                                                {{ student.positive_preferences.all|join:", " }}
+                                            {% else %}
+                                                <em>No preferences set</em>
+                                            {% endif %}
+                                        </p>
+                                        <p>Matching Topics: 
+                                            {% if student.matching_topics.all %}
+                                                {{ student.matching_topics.all|join:", " }}
+                                            {% else %}
+                                                <em>No matching topics</em>
+                                            {% endif %}
+                                        </p>
+                                        <P>Conflicting Topics: 
+                                            {% if student.conflicting_topics.all %}
+                                                {{ student.conflicting_topics.all|join:", " }}
+                                            {% else %}
+                                                <em>No conflicting topics</em>
+                                            {% endif %}
+                                        </p>
                                     </td>
                                 </tr>
                             {% endfor %}
