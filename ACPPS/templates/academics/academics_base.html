@@ -3,31 +3,33 @@
 {% block title %}Academic Administration{% endblock %}
 
 {% block content %}
-    <h2 class="mb-4">Academic Dashboard</h2>
+    <div class="container" style="height: 85vh; width: 100%;">
+        <h2 class="mb-4">Academic Dashboard</h2>
 
-    <!-- Academic Section Navigation -->
-    <nav class="nav nav-pills mb-4">
-        {# The 'request.resolver_match.url_name' check makes the active link robust #}
-        <a class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}" href="{% url 'academics:dashboard' %}">Dashboard</a>
-        <a class="nav-link {% if model_name_key == 'faculty' %}active{% endif %}" href="{% url 'academics:admin_list' 'faculty' %}">Faculties</a>
-        <a class="nav-link {% if model_name_key == 'school' %}active{% endif %}" href="{% url 'academics:admin_list' 'school' %}">Schools</a>
-        <a class="nav-link {% if model_name_key == 'department' %}active{% endif %}" href="{% url 'academics:admin_list' 'department' %}">Departments</a>
-        <a class="nav-link {% if model_name_key == 'programme' %}active{% endif %}" href="{% url 'academics:admin_list' 'programme' %}">Programmes</a>
-        <a class="nav-link {% if model_name_key == 'preferencegroup' %}active{% endif %}" href="{% url 'academics:admin_list' 'preferencegroup' %}">Preference Groups</a>
-        <a class="nav-link {% if model_name_key == 'semester' %}active{% endif %}" href="{% url 'academics:admin_list' 'semester' %}">Semesters</a>
-    </nav>
+        <!-- Academic Section Navigation -->
+        <nav class="nav nav-pills mb-4">
+            {# The 'request.resolver_match.url_name' check makes the active link robust #}
+            <a class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}" href="{% url 'academics:dashboard' %}">Dashboard</a>
+            <a class="nav-link {% if model_name_key == 'faculty' %}active{% endif %}" href="{% url 'academics:admin_list' 'faculty' %}">Faculties</a>
+            <a class="nav-link {% if model_name_key == 'school' %}active{% endif %}" href="{% url 'academics:admin_list' 'school' %}">Schools</a>
+            <a class="nav-link {% if model_name_key == 'department' %}active{% endif %}" href="{% url 'academics:admin_list' 'department' %}">Departments</a>
+            <a class="nav-link {% if model_name_key == 'programme' %}active{% endif %}" href="{% url 'academics:admin_list' 'programme' %}">Programmes</a>
+            <a class="nav-link {% if model_name_key == 'preferencegroup' %}active{% endif %}" href="{% url 'academics:admin_list' 'preferencegroup' %}">Preference Groups</a>
+            <a class="nav-link {% if model_name_key == 'semester' %}active{% endif %}" href="{% url 'academics:admin_list' 'semester' %}">Semesters</a>
+        </nav>
 
-    <!-- Django messages will be displayed here -->
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        {% endfor %}
-    {% endif %}
+        <!-- Django messages will be displayed here -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
 
-    <!-- Content for the specific dashboard, list, or form will be injected here -->
-    {% block academic_content %}{% endblock %}
+        <!-- Content for the specific dashboard, list, or form will be injected here -->
+        {% block academic_content %}{% endblock %}
+    </div>
 
 {% endblock %}
