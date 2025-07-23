@@ -69,7 +69,7 @@ class StudentProfileForm(forms.ModelForm):
             'preference_text',
         ]
         widgets = {
-            'preference_text': forms.Textarea(attrs={'rows': 4}),
+            'preference_text': forms.Textarea(attrs={'rows': 4, 'maxlength': StudentProfile.PREFERENCE_MAX_LENGTH, 'placeholder': 'Enter your preferences here...'}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -86,7 +86,7 @@ class SupervisorProfileForm(forms.ModelForm):
             'supervision_capacity',
         ]
         widgets = {
-            'expertise': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Comma-separated keywords for matching, e.g., "AI", "NLP", "Computer Vision"'}),
+            'expertise': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Comma-separated keywords for matching, e.g., "AI", "NLP", "Computer Vision"', 'maxlength': SupervisorProfile.EXPERTISE_MAX_LENGTH }),
         }
 
     def __init__(self, *args, **kwargs):

@@ -1,8 +1,8 @@
 from django.db import models
-from django.core.validators import MaxValueValidator, MinValueValidator 
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.conf import settings
 from django.utils import timezone
+from django.core.exceptions import ValidationError
 from academics.models import Programme, Department, School, ProgrammePreferenceGroup, Semester
 from api.models import StandardisedTopic
 import re
@@ -75,9 +75,19 @@ class StudentProfile(models.Model):
     programme_match_type = models.IntegerField(null=True)
     matching_topics = models.ManyToManyField(StandardisedTopic, blank=True, related_name='matching_students')
     conflicting_topics = models.ManyToManyField(StandardisedTopic, blank=True, related_name='conflicting_students')
+
+    PREFERENCE_MAX_LENGTH = 4093
     
     def __str__(self):
         return f"{self.user.email} - Student"
+    
+    def clean(self):
+        super().clean()
+        if self.preference_text:
+            if len(self.preference_text) > self.PREFERENCE_MAX_LENGTH:
+                raise ValidationError({
+                    'preference_text': "The preference text cannot exceed 4093 characters."
+                })
 
     @property
     def department(self):
@@ -102,24 +112,30 @@ class SupervisorProfile(models.Model):
     standardised_expertise = models.ManyToManyField(StandardisedTopic, blank=True, related_name='supervisors')
     accepting_students = models.BooleanField(default=True)
 
+    EXPERTISE_MAX_LENGTH = 1023
+
     def __str__(self):
         return f"{self.user.email} - Supervisor"
     
     def clean(self):
         super().clean()
         if self.supervision_capacity < StudentProfile.objects.filter(supervisor=self).count():
-            raise ValueError("Supervision capacity cannot be less than the number of students assigned to this supervisor.")
+            raise ValidationError({'supervision_capacity': "Supervision capacity cannot be less than the number of students assigned to this supervisor."})
         if self.supervision_capacity > StudentProfile.objects.all().count():
-            raise ValueError("Supervision capacity cannot exceed the total number of students in the system.")
+            raise ValidationError({'supervision_capacity': "Supervision capacity cannot exceed the total number of students in the system."})
         #check if expertise is a proper list of strings and is quoted (e.g "expertise1", "expertise2")
         if self.expertise:
+            if len(self.expertise) > self.EXPERTISE_MAX_LENGTH:
+                raise ValidationError({
+                    'expertise': _(f'The expertise field cannot exceed {self.EXPERTISE_MAX_LENGTH} characters.')
+                })
             self.expertise = self.expertise.strip()
             pattern = r'"([^"]*)"'
             if not re.match(pattern, self.expertise):
-                raise ValueError("Expertise must be a comma-separated list of non-empty quoted strings.")
+                raise ValidationError({'expertise': "Expertise must be a comma-separated list of non-empty quoted strings."})
             expertise_list = re.findall(pattern, self.expertise)
             if not all(item.strip() for item in expertise_list):
-                raise ValueError("Empty quotations are not allowed.")
+                raise ValidationError({'expertise': "Empty quotations are not allowed."})
             
     @property
     def effective_school(self):

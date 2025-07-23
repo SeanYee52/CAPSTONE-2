@@ -473,11 +473,6 @@ def match_students_for_semester(semester, weightage):
         assignments = optimal_matching(students_df,supervisors_df,float(weightage))
         all_topics_map = {topic.name: topic for topic in StandardisedTopic.objects.all()}
 
-        assignments_df = pd.DataFrame(assignments)
-        assignments_csv_path = f"assignments_semester_{semester}.csv"
-        assignments_df.to_csv(assignments_csv_path, index=False)
-        print(f"Assignments saved to {assignments_csv_path}")
-
         with transaction.atomic(): # Use a transaction for safer, faster updates
             for assignment in assignments:
                 if not assignment.get('student_id') or not assignment.get('supervisor_id'):
