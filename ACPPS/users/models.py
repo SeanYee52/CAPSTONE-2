@@ -130,10 +130,11 @@ class SupervisorProfile(models.Model):
                     'expertise': _(f'The expertise field cannot exceed {self.EXPERTISE_MAX_LENGTH} characters.')
                 })
             self.expertise = self.expertise.strip()
-            pattern = r'"([^"]*)"'
+            pattern = r'^"([^"]+)"(?:,\s*"([^"]+)")*$'
             if not re.match(pattern, self.expertise):
                 raise ValidationError({'expertise': "Expertise must be a comma-separated list of non-empty quoted strings."})
-            expertise_list = re.findall(pattern, self.expertise)
+            extract_pattern = r'"([^"]+)"'
+            expertise_list = re.findall(extract_pattern, self.expertise)
             if not all(item.strip() for item in expertise_list):
                 raise ValidationError({'expertise': "Empty quotations are not allowed."})
             
